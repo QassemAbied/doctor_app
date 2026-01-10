@@ -44,6 +44,15 @@ class _EmailAndPasswordAndPhoneState extends State<EmailAndPasswordAndPhone> {
       });
     });
   }
+  @override
+  void dispose() {
+    context.read<SignUpCubit>().emailController.dispose();
+    context.read<SignUpCubit>().nameController.dispose();
+    context.read<SignUpCubit>().phoneController.dispose();
+    context.read<SignUpCubit>().passwordController.dispose();
+    context.read<SignUpCubit>().passwordConfirmationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
