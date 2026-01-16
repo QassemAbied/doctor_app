@@ -24,11 +24,11 @@ import '../../features/map_smiple.dart';
 import '../di/dependey.dart';
 
 class RouterApp {
-  Route generateRoute(RouteSettings settings) {
+  Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.onBoardingScreen:
         {
-          return MaterialPageRoute(builder: (_) => OnboardingScre());
+          return MaterialPageRoute(builder: (_) => OnboardingScreen());
         }
       case Routes.loginScreen:
         {
@@ -118,13 +118,7 @@ class RouterApp {
         }
       default:
         {
-          return MaterialPageRoute(
-            builder: (_) {
-              return Scaffold(
-                body: Center(child: Text('any SCREEN ON ROUTER')),
-              );
-            },
-          );
+          return null;
         }
     }
   }

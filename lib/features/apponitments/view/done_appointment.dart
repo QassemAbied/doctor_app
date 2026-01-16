@@ -2,6 +2,7 @@ import 'package:doctor_app/core/helpers/extension.dart';
 import 'package:doctor_app/core/helpers/spacing.dart';
 import 'package:doctor_app/core/widgets/app_text_button_widget.dart';
 import 'package:doctor_app/features/apponitments/view/widgets/booking_information.dart';
+import 'package:doctor_app/features/apponitments/view/widgets/done_appointment_bloc_listener.dart';
 import 'package:doctor_app/features/my_appointment/logic/my_appointment_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -92,21 +93,19 @@ class DoneAppointmentScreen extends StatelessWidget {
                                 dataForDoctors?.id,
                                 formattedDateTime,
                               ),
-                            )
-                            .then((_) {
-                              if (!context.mounted) return;
-                              getIt<MyAppointmentCubit>().emitMyAppointment();
-                              //context.read<MyAppointmentCubit>().emitMyAppointment();
-                              context.pushNamed(
-                                '/detailsDoctors',
-
-                                arguments: dataForDoctors?.id,
-                              );
-
-                            });
+                            );
+                        if (!context.mounted) return;
+                        //  context.read<MyAppointmentCubit>().emitMyAppointment();
+                        //getIt<MyAppointmentCubit>().emitMyAppointment();
+                        // .then((_) {
+                        //  if (!context.mounted) return;
+                        //       getIt<MyAppointmentCubit>().emitMyAppointment();
+                        //   //context.read<MyAppointmentCubit>().emitMyAppointment();
+                        // });
                       }
                     },
                   ),
+                  DoneAppointmentBlocListener(dataForDoctors: dataForDoctors),
                 ],
               ),
             ),

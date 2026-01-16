@@ -1,7 +1,6 @@
 import 'package:doctor_app/core/helpers/extension.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../core/theming/app_color.dart';
 import '../../../../core/theming/app_styles.dart';
 
@@ -35,7 +34,6 @@ class AlreadyHaveAccount extends StatelessWidget {
                 context,
               ),
             ),
-
           ],
         ),
       ),

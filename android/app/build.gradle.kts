@@ -26,6 +26,7 @@ android {
 
 
 
+
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.doctor_app"
         // You can update the following values to match your application needs.
@@ -34,6 +35,9 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+
+       // manifestPlaceholders["GOOGLE_MAPS"] = System.getenv("GOOGLE_MAPS") ?: ""
+
     }
 
     buildTypes {

@@ -1,4 +1,5 @@
 import 'package:doctor_app/core/helpers/extension.dart';
+import 'package:doctor_app/core/helpers/spacing.dart';
 import 'package:doctor_app/core/routing/routes.dart';
 import 'package:doctor_app/core/widgets/app_text_button_widget.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,6 @@ class CustomTextAndButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(
-        //crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             'Manage and schedule all of your medical appointments easily with Docdoc to get a new experience.',
@@ -22,35 +22,13 @@ class CustomTextAndButton extends StatelessWidget {
 
             style: AppStyles.styleRegular13(ColorManager.geryColor, context),
           ),
-          SizedBox(height: 30.0),
+          verticalSpace(30),
           AppTextButtonWidget(
             buttonName: 'Get Started',
             onPressed: () {
               context.pushNamed(Routes.loginScreen);
             },
           ),
-
-          // TextButton(
-          //   style: ButtonStyle(
-          //     backgroundColor: WidgetStateProperty.all(
-          //       ColorManager.mainBlueColor,
-          //     ),
-          //     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          //     minimumSize: WidgetStateProperty.all(Size(double.infinity, 50)),
-          //     shape: WidgetStateProperty.all(
-          //       RoundedRectangleBorder(
-          //         borderRadius: BorderRadius.circular(16.0),
-          //       ),
-          //     ),
-          //   ),
-          //   onPressed: () {
-          //     context.pushNamed(Routes.loginScreen);
-          //   },
-          //   child: Text(
-          //     'Get Started',
-          //     style: AppStyles.styleSemiBold16(Colors.white, context),
-          //   ),
-          // ),
         ],
       ),
     );

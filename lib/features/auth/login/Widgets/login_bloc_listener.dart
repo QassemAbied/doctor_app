@@ -1,7 +1,7 @@
 import 'package:doctor_app/core/helpers/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import '../../../../core/routing/routes.dart';
 import '../logic/login_cubit.dart';
 import '../logic/login_state.dart';
 
@@ -15,23 +15,30 @@ class LoginBlocListener extends StatelessWidget {
           current is Loading || current is Success || current is Error,
       listener: (context, state) {
         state.whenOrNull(
-          loading: (){
-            showDialog(context: context, builder: (context){
-              return Center(child: CircularProgressIndicator(),);
-            },);
+          loading: () {
+            return showDialog(
+              context: context,
+              builder: (context) {
+                return Center(child: CircularProgressIndicator());
+              },
+            );
           },
-          success: (value){
+          success: (value) {
             context.navigatorPop();
-           return context.pushNamed('/home');
+            return context.pushNamedAndRemoveUntil(
+              Routes.bottonNavScreen,
+              (_) => false,
+            );
           },
-          error: (value){
+          error: (value) {
             context.navigatorPop();
-            return showDialog(context: context, builder: (context){
-              return AlertDialog(
-                content: Text(value),
-              );
-            },);
-          }
+            return showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(content: Text(value));
+              },
+            );
+          },
         );
       },
       child: SizedBox.shrink(),

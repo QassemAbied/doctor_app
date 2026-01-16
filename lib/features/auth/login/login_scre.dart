@@ -20,8 +20,16 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final formKey = GlobalKey<FormState>();
+  TextEditingController emailController=TextEditingController();
+  TextEditingController passwordController=TextEditingController();
 
-
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +48,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 verticalSpace(36.0),
                 Column(
                   children: [
-                   EmailAndPassword(),
+                   EmailAndPassword(
+                     formKey: formKey,
+                     emailController: emailController,
+                     passwordController: passwordController,),
                     verticalSpace(24.0),
                     Align(
                       alignment: Alignment.centerRight,
@@ -55,10 +66,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     verticalSpace(40.0),
                     AppTextButtonWidget(buttonName: 'Login',
                         onPressed: () {
-                          if (context.read<LoginCubit>().formKey.currentState!.validate()) {
+                          if (formKey.currentState!.validate()) {
                             context.read<LoginCubit>().emitLoginCubit( LoginRequestBody(
-                              email: context.read<LoginCubit>().emailController.text,
-                              password: context.read<LoginCubit>().passwordController.text,
+                              email: emailController.text,
+                              password: passwordController.text,
                             ),);
                           }
                         },
