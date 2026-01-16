@@ -9,29 +9,14 @@ class SignUpCubit extends Cubit<SignUpState> {
   final SignUpRepos signUpRepos;
   SignUpCubit(this.signUpRepos) : super(
       SignUpState.initial());
-  final formKey= GlobalKey<FormState>();
-  TextEditingController emailController=TextEditingController();
-  TextEditingController passwordController=TextEditingController();
-  TextEditingController nameController=TextEditingController();
-  TextEditingController phoneController=TextEditingController();
-  TextEditingController passwordConfirmationController=TextEditingController();
-  // bool obscure1 = true;
-  // bool obscure2 = true;
-  //
-  // void toggleObscure1() {
-  //   // obscure1 = !obscure1;
-  //   // emit(SignUpState.changeObscure());
-  //   emit(state.copyWith(obscure1: !state.obscure1));
-  // }
-  // void toggleObscure2() {
-  //   // obscure2 = !obscure2;
-  //   // emit(SignUpState.changeObscure2());
-  //   emit(state.copyWith(obscure2: !state.obscure2));
-  // }
+
+
 
   void emitSignUpCubit(SignUpRequest signUpRequest) async {
+    if (isClosed) return;
     emit(SignUpState.loading());
     final response = await signUpRepos.signUp(signUpRequest);
+    if (isClosed) return;
     response.when(
       success: (data) {
         emit(SignUpState.success(data));
@@ -43,6 +28,15 @@ class SignUpCubit extends Cubit<SignUpState> {
       },
     );
   }
+  // @override
+  // Future<void> close() {
+  //   emailController.dispose();
+  //   passwordController.dispose();
+  //   nameController.dispose();
+  //   phoneController.dispose();
+  //   passwordConfirmationController.dispose();
+  //   return super.close();
+  // }
 }
 
 class ToggleSignUpCubit extends Cubit<ToggleSignUpState> {

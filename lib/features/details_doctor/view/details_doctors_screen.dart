@@ -12,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../core/di/dependey.dart';
+import '../../../core/routing/routes.dart';
 
 class DetailsDoctorsScreen extends StatefulWidget {
   final int idDoctors;

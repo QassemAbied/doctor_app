@@ -385,4 +385,261 @@ as String,
 
 }
 
+/// @nodoc
+mixin _$ToggleLoginState {
+
+ bool get obscure;
+/// Create a copy of ToggleLoginState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ToggleLoginStateCopyWith<ToggleLoginState> get copyWith => _$ToggleLoginStateCopyWithImpl<ToggleLoginState>(this as ToggleLoginState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ToggleLoginState&&(identical(other.obscure, obscure) || other.obscure == obscure));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,obscure);
+
+@override
+String toString() {
+  return 'ToggleLoginState(obscure: $obscure)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ToggleLoginStateCopyWith<$Res>  {
+  factory $ToggleLoginStateCopyWith(ToggleLoginState value, $Res Function(ToggleLoginState) _then) = _$ToggleLoginStateCopyWithImpl;
+@useResult
+$Res call({
+ bool obscure
+});
+
+
+
+
+}
+/// @nodoc
+class _$ToggleLoginStateCopyWithImpl<$Res>
+    implements $ToggleLoginStateCopyWith<$Res> {
+  _$ToggleLoginStateCopyWithImpl(this._self, this._then);
+
+  final ToggleLoginState _self;
+  final $Res Function(ToggleLoginState) _then;
+
+/// Create a copy of ToggleLoginState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? obscure = null,}) {
+  return _then(_self.copyWith(
+obscure: null == obscure ? _self.obscure : obscure // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [ToggleLoginState].
+extension ToggleLoginStatePatterns on ToggleLoginState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ToggleLoginState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ToggleLoginState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ToggleLoginState value)  $default,){
+final _that = this;
+switch (_that) {
+case _ToggleLoginState():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ToggleLoginState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ToggleLoginState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool obscure)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ToggleLoginState() when $default != null:
+return $default(_that.obscure);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool obscure)  $default,) {final _that = this;
+switch (_that) {
+case _ToggleLoginState():
+return $default(_that.obscure);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool obscure)?  $default,) {final _that = this;
+switch (_that) {
+case _ToggleLoginState() when $default != null:
+return $default(_that.obscure);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+
+
+class _ToggleLoginState implements ToggleLoginState {
+  const _ToggleLoginState({required this.obscure});
+  
+
+@override final  bool obscure;
+
+/// Create a copy of ToggleLoginState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ToggleLoginStateCopyWith<_ToggleLoginState> get copyWith => __$ToggleLoginStateCopyWithImpl<_ToggleLoginState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ToggleLoginState&&(identical(other.obscure, obscure) || other.obscure == obscure));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,obscure);
+
+@override
+String toString() {
+  return 'ToggleLoginState(obscure: $obscure)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ToggleLoginStateCopyWith<$Res> implements $ToggleLoginStateCopyWith<$Res> {
+  factory _$ToggleLoginStateCopyWith(_ToggleLoginState value, $Res Function(_ToggleLoginState) _then) = __$ToggleLoginStateCopyWithImpl;
+@override @useResult
+$Res call({
+ bool obscure
+});
+
+
+
+
+}
+/// @nodoc
+class __$ToggleLoginStateCopyWithImpl<$Res>
+    implements _$ToggleLoginStateCopyWith<$Res> {
+  __$ToggleLoginStateCopyWithImpl(this._self, this._then);
+
+  final _ToggleLoginState _self;
+  final $Res Function(_ToggleLoginState) _then;
+
+/// Create a copy of ToggleLoginState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? obscure = null,}) {
+  return _then(_ToggleLoginState(
+obscure: null == obscure ? _self.obscure : obscure // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+
+}
+
 // dart format on

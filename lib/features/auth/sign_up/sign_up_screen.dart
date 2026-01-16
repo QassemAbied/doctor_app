@@ -9,9 +9,37 @@ import '../common_widgets/terms_and_condition.dart';
 import '../common_widgets/welcome_message.dart';
 import 'logic/sign_up_cubit.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  final formKey = GlobalKey<FormState>();
+
+  TextEditingController emailController = TextEditingController();
+
+  TextEditingController passwordController = TextEditingController();
+
+  TextEditingController nameController = TextEditingController();
+
+  TextEditingController phoneController = TextEditingController();
+
+  TextEditingController passwordConfirmationController =
+      TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordConfirmationController.dispose();
+    passwordController.dispose();
+    phoneController.dispose();
+    nameController.dispose();
+   //emailController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,23 +61,31 @@ class SignUpScreen extends StatelessWidget {
                       'Sign up now and start exploring all that our app has to offer. We\'re excited to welcome you to our community!',
                 ),
                 verticalSpace(26.0),
-                EmailAndPasswordAndPhone(),
+                EmailAndPasswordAndPhone(
+                  formKey: formKey,
+                  emailController: emailController,
+                  passwordController: passwordController,
+                  nameController: nameController,
+                  phoneController: phoneController,
+                  passwordConfirmationController: passwordConfirmationController,
+                ),
                 verticalSpace(20.0),
                 AppTextButtonWidget(
                   buttonName: 'Register',
                   onPressed: () {
-                    if (context
-                        .read<SignUpCubit>()
-                        .formKey
-                        .currentState!
-                        .validate()) {
+                    if (formKey.currentState!.validate()) {
                       context.read<SignUpCubit>().emitSignUpCubit(
                         SignUpRequest(
-                          email: context.read<SignUpCubit>().emailController.text,
-                          phone: context.read<SignUpCubit>().phoneController.text,
-                          password: context.read<SignUpCubit>().passwordController.text,
-                          passwordConfirmation: context.read<SignUpCubit>().passwordConfirmationController.text,
-                          name: context.read<SignUpCubit>().nameController.text, gender: 0,
+                          email: emailController
+                              .text,
+                          phone: phoneController
+                              .text,
+                          password: passwordController
+                              .text,
+                          passwordConfirmation:passwordConfirmationController
+                              .text,
+                          name:nameController.text,
+                          gender: 0,
                         ),
                       );
                     }
@@ -57,7 +93,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 verticalSpace(20.0),
                 TermsAndCondition(),
-               SignUpBlocListener(),
+                SignUpBlocListener(),
               ],
             ),
           ),

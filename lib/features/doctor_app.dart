@@ -16,7 +16,8 @@ class DoctorApp extends StatelessWidget {
         primaryColor: ColorManager.mainBlueColor,
         scaffoldBackgroundColor: Colors.white,
       ),
-      initialRoute: isLoggedInUser
+      initialRoute:
+      isLoggedInUser
           ? Routes.bottonNavScreen
           : Routes.loginScreen,
       onGenerateRoute: routerApp.generateRoute,

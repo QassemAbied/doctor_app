@@ -10,7 +10,21 @@ import '../../../../core/helpers/spacing.dart';
 import '../../../../core/widgets/custom_text_filed.dart';
 
 class EmailAndPasswordAndPhone extends StatefulWidget {
-  const EmailAndPasswordAndPhone({super.key});
+  final GlobalKey<FormState> formKey;
+  final TextEditingController? emailController;
+  final TextEditingController? passwordController;
+  final TextEditingController? nameController;
+  final TextEditingController? phoneController;
+  final TextEditingController? passwordConfirmationController;
+  const EmailAndPasswordAndPhone({
+    super.key,
+    required this.formKey,
+    required this.emailController,
+    required this.passwordController,
+    required this.nameController,
+    required  this.phoneController,
+    required  this.passwordConfirmationController
+  });
 
   @override
   State<EmailAndPasswordAndPhone> createState() =>
@@ -27,7 +41,7 @@ class _EmailAndPasswordAndPhoneState extends State<EmailAndPasswordAndPhone> {
   @override
   void initState() {
     super.initState();
-    passwordController = context.read<SignUpCubit>().passwordController;
+    passwordController = widget.passwordController!;
     setupPasswordControllerListener();
   }
 
@@ -46,23 +60,19 @@ class _EmailAndPasswordAndPhoneState extends State<EmailAndPasswordAndPhone> {
   }
   @override
   void dispose() {
-    context.read<SignUpCubit>().emailController.dispose();
-    context.read<SignUpCubit>().nameController.dispose();
-    context.read<SignUpCubit>().phoneController.dispose();
-    context.read<SignUpCubit>().passwordController.dispose();
-    context.read<SignUpCubit>().passwordConfirmationController.dispose();
+   //passwordController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: context.read<SignUpCubit>().formKey,
+      key: widget.formKey,
       child: Column(
         children: [
           AppTextFiled(
             textInputType: TextInputType.name,
-            controller: context.read<SignUpCubit>().nameController,
+            controller: widget.nameController,
             hintText: 'Name',
             validator: (value) {
               if (value == null || value.isEmpty) {
@@ -73,7 +83,7 @@ class _EmailAndPasswordAndPhoneState extends State<EmailAndPasswordAndPhone> {
           verticalSpace(15.0),
           AppTextFiled(
             textInputType: TextInputType.emailAddress,
-            controller: context.read<SignUpCubit>().emailController,
+            controller:  widget.emailController,
             helperText: r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$',
             hintText: 'Email',
             validator: (value) {
@@ -87,7 +97,7 @@ class _EmailAndPasswordAndPhoneState extends State<EmailAndPasswordAndPhone> {
           verticalSpace(15.0),
           AppTextFiled(
             textInputType: TextInputType.phone,
-            controller: context.read<SignUpCubit>().phoneController,
+            controller:  widget.phoneController,
             hintText: 'Phone',
             helperText: r'^(010|011|012|015)[0-9]{8}$',
             validator: (value) {
@@ -103,14 +113,11 @@ class _EmailAndPasswordAndPhoneState extends State<EmailAndPasswordAndPhone> {
             create: (context) => getIt<ToggleSignUpCubit>(),
             child: BlocBuilder<ToggleSignUpCubit, ToggleSignUpState>(
               builder: (context, state) {
-                //final cubit = context.read<SignUpCubit>();
                 return Column(
                   children: [
                     AppTextFiled(
                       textInputType: TextInputType.visiblePassword,
-                      controller: context
-                          .read<SignUpCubit>()
-                          .passwordController,
+                      controller: widget.passwordController,
                       hintText: 'Password',
                       isPassword: state.obscure1,
                       suffix: GestureDetector(
@@ -133,9 +140,7 @@ class _EmailAndPasswordAndPhoneState extends State<EmailAndPasswordAndPhone> {
                     verticalSpace(14.0),
                     AppTextFiled(
                       textInputType: TextInputType.visiblePassword,
-                      controller: context
-                          .read<SignUpCubit>()
-                          .passwordConfirmationController,
+                      controller:  widget.passwordConfirmationController,
                       hintText: 'passwordConfirmation',
                       isPassword: state.obscure2,
                       suffix: GestureDetector(
@@ -156,8 +161,7 @@ class _EmailAndPasswordAndPhoneState extends State<EmailAndPasswordAndPhone> {
                       },
                     ),
                     verticalSpace(14.0),
-                    //  context.read<LoginCubit>().passwordController.text.isEmpty? SizedBox.shrink():
-                    context.read<SignUpCubit>().passwordController.text.isEmpty
+                    widget.passwordController!.text.isEmpty
                         ? SizedBox.shrink()
                         : PasswordValidations(
                             hasLowerCase: hasLowerCase,
@@ -175,4 +179,5 @@ class _EmailAndPasswordAndPhoneState extends State<EmailAndPasswordAndPhone> {
       ),
     );
   }
+
 }

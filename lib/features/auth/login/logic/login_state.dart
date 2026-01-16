@@ -11,3 +11,9 @@ part 'login_state.freezed.dart';
   const factory LoginState.error({required String error})= Error;
 }
 
+@freezed
+abstract class ToggleLoginState with _$ToggleLoginState {
+  const factory ToggleLoginState({
+    required bool obscure,
+  }) = _ToggleLoginState;
+}

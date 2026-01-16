@@ -1,7 +1,6 @@
 import 'package:doctor_app/core/theming/app_color.dart';
 import 'package:doctor_app/core/theming/app_styles.dart';
 import 'package:flutter/material.dart';
-
 import '../../../core/helpers/spacing.dart';
 
 
