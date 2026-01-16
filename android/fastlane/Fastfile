@@ -1,0 +1,23 @@
+default_platform(:android)
+
+platform :android do
+  desc "Build & upload APK to Firebase App Distribution (ONE COMMAND)"
+  lane :dist do
+    sh "flutter clean"
+
+    sh "flutter build apk --release \
+        --flavor user \
+        --target lib/main_user.dart \
+        --no-tree-shake-icons"
+
+    firebase_app_distribution(
+      app: "1:781707400750:android:fde535f34b4c060ef871bf",
+      firebase_cli_token: ENV["FIRBASE_CLI_TOKEN"],
+      android_artifact_type: "APK",
+      android_artifact_path: "../build/app/outputs/flutter-apk/app-user-release.apk",
+      testers: "qassemab1@gmail.com",
+      upload_timeout: 600,
+      release_notes: "Auto upload via Fastlane 🚀"
+    )
+  end
+end
