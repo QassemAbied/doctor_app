@@ -11,15 +11,26 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupGetIt();
   await checkLoggedInUser();
+  await isOnBoarding();
   runApp(DoctorApp(routerApp: RouterApp()));
 
 
 }
-
+Future isOnBoarding() async {
+  bool? isOnBoarding = await SharedPrefHelper.getBool(
+    SharedPrefKeys.isOnBoarding,
+  );
+  if(isOnBoarding==true){
+    checkIsOnBoarding=false;
+  }else{
+    checkIsOnBoarding=true;
+  }
+}
 Future checkLoggedInUser() async {
   String? userToken = await SharedPrefHelper.getSecuredString(
     SharedPrefKeys.userToken,
   );
+
 
   if (!userToken.isNullOrEmpty()) {
     isLoggedInUser = true;

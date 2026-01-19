@@ -1,0 +1,24 @@
+current directory: /mnt/c/Users/HP/StudioProjects/doctor_app/android/vendor/bundle/ruby/3.2.0/gems/racc-1.8.1/ext/racc/cparse
+/usr/bin/ruby3.2 -I/usr/lib/ruby/vendor_ruby extconf.rb
+creating Makefile
+
+current directory: /mnt/c/Users/HP/StudioProjects/doctor_app/android/vendor/bundle/ruby/3.2.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20260116-2414-cxn89y sitelibdir\=./.gem.20260116-2414-cxn89y clean
+make: Warning: File 'Makefile' has modification time 0.09 s in the future
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+current directory: /mnt/c/Users/HP/StudioProjects/doctor_app/android/vendor/bundle/ruby/3.2.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20260116-2414-cxn89y sitelibdir\=./.gem.20260116-2414-cxn89y
+make: Warning: File 'Makefile' has modification time 0.041 s in the future
+compiling cparse.c
+linking shared-object racc/cparse.so
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+current directory: /mnt/c/Users/HP/StudioProjects/doctor_app/android/vendor/bundle/ruby/3.2.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20260116-2414-cxn89y sitelibdir\=./.gem.20260116-2414-cxn89y install
+make: Warning: File 'cparse.so' has modification time 0.14 s in the future
+/usr/bin/install -c -m 0755 cparse.so ./.gem.20260116-2414-cxn89y/racc
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+current directory: /mnt/c/Users/HP/StudioProjects/doctor_app/android/vendor/bundle/ruby/3.2.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20260116-2414-cxn89y sitelibdir\=./.gem.20260116-2414-cxn89y clean
