@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../helpers/spacing.dart';
+import '../utils/spacing.dart';
 import '../theming/app_color.dart';
 
 class DoctorItemShimmer extends StatelessWidget {
@@ -16,7 +16,7 @@ class DoctorItemShimmer extends StatelessWidget {
         children: [
           /// Doctor Image
           Shimmer.fromColors(
-            baseColor: ColorManager.lighterGeryColor,
+            baseColor: ColorManager.grey20,
             highlightColor: Colors.white,
             child: Container(
               height: 100,
@@ -48,7 +48,7 @@ class DoctorItemShimmer extends StatelessWidget {
 
   Widget _shimmerLine({required double width}) {
     return Shimmer.fromColors(
-      baseColor: ColorManager.lighterGeryColor,
+      baseColor: ColorManager.grey20,
       highlightColor: Colors.white,
       child: Container(
         height: 14,

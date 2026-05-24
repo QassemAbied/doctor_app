@@ -1,13 +1,14 @@
-import 'package:doctor_app/features/auth/sign_up/data/models/sign_up_request.dart';
-import 'package:doctor_app/features/auth/sign_up/widgets/email_and_password_and_phone.dart';
-import 'package:doctor_app/features/auth/sign_up/widgets/sign_up_bloc_listener.dart';
+import 'package:doctor_app/features/auth/domain/entities/sign_up_params.dart';
+import 'package:doctor_app/features/auth/presentation/screens/sign_up/widgets/email_and_password_and_phone.dart';
+import 'package:doctor_app/features/auth/presentation/screens/sign_up/widgets/sign_up_bloc_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../core/helpers/spacing.dart';
-import '../../../core/widgets/app_text_button_widget.dart';
+import '../../../../../core/common_widgets/custom_elevated_botton.dart';
+import '../../../../../core/utils/spacing.dart';
+import '../../controller/auth_cubit.dart';
 import '../common_widgets/terms_and_condition.dart';
 import '../common_widgets/welcome_message.dart';
-import 'logic/sign_up_cubit.dart';
+
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -27,19 +28,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   TextEditingController phoneController = TextEditingController();
 
-  TextEditingController passwordConfirmationController =
-      TextEditingController();
+
 
   @override
   void dispose() {
     emailController.dispose();
-    passwordConfirmationController.dispose();
     passwordController.dispose();
     phoneController.dispose();
     nameController.dispose();
-   //emailController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,8 +46,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Padding(
           padding: EdgeInsetsGeometry.only(
             top: 30,
-            right: 30,
-            left: 30,
+            right: 20,
+            left: 20,
             bottom: 5,
           ),
           child: SingleChildScrollView(
@@ -58,7 +57,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 WelcomeMessage(
                   welcomeText: 'Create Account',
                   subWelcomeText:
-                      'Sign up now and start exploring all that our app has to offer. We\'re excited to welcome you to our community!',
+                  'Sign up now and start exploring all that our app has to offer. We\'re excited to welcome you to our community!',
                 ),
                 verticalSpace(26.0),
                 EmailAndPasswordAndPhone(
@@ -67,25 +66,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   passwordController: passwordController,
                   nameController: nameController,
                   phoneController: phoneController,
-                  passwordConfirmationController: passwordConfirmationController,
                 ),
                 verticalSpace(20.0),
-                AppTextButtonWidget(
+                CustomElevatedButton(
                   buttonName: 'Register',
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      context.read<SignUpCubit>().emitSignUpCubit(
-                        SignUpRequest(
-                          email: emailController
-                              .text,
-                          phone: phoneController
-                              .text,
-                          password: passwordController
-                              .text,
-                          passwordConfirmation:passwordConfirmationController
-                              .text,
-                          name:nameController.text,
-                          gender: 0,
+                      context.read<AuthCubit>().signUp(
+                        SignUpParams(
+                          email: emailController.text.trim(),
+                          phone: phoneController.text,
+                          password: passwordController.text,
+                          name: nameController.text,
                         ),
                       );
                     }
