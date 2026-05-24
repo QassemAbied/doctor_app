@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/helpers/spacing.dart';
+import '../../../../core/utils/spacing.dart';
 import '../../../../core/theming/app_color.dart';
 import '../../../../core/theming/app_styles.dart';
 
@@ -13,7 +13,7 @@ class AppointPrice extends StatelessWidget {
       children: [
         Text(
           'Payment Info',
-          style: AppStyles.styleSemiBold16(
+          style: AppTextStyle.styleSemiBold16(
             ColorManager.blackColor,
             context,
           ),
@@ -24,14 +24,14 @@ class AppointPrice extends StatelessWidget {
           children: [
             Text(
               'Subtotal',
-              style: AppStyles.styleRegular14(
-                ColorManager.geryColor,
+              style: AppTextStyle.styleRegular14(
+                ColorManager.grey80,
                 context,
               ),
             ),
             Text(
               '\$${300}',
-              style: AppStyles.styleSemiBold16(
+              style: AppTextStyle.styleSemiBold16(
                 ColorManager.blackColor,
                 context,
               ),
@@ -44,14 +44,14 @@ class AppointPrice extends StatelessWidget {
           children: [
             Text(
               'Tax',
-              style: AppStyles.styleRegular14(
-                ColorManager.geryColor,
+              style: AppTextStyle.styleRegular14(
+                ColorManager.grey80,
                 context,
               ),
             ),
             Text(
               '\$${300 / 2}',
-              style: AppStyles.styleSemiBold16(
+              style: AppTextStyle.styleSemiBold16(
                 ColorManager.blackColor,
                 context,
               ),

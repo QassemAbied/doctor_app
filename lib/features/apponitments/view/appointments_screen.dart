@@ -1,8 +1,7 @@
-import 'package:doctor_app/core/helpers/extension.dart';
-import 'package:doctor_app/core/helpers/spacing.dart';
+import 'package:doctor_app/core/utils/extension.dart';
+import 'package:doctor_app/core/utils/spacing.dart';
 import 'package:doctor_app/core/theming/app_color.dart';
 import 'package:doctor_app/core/theming/app_styles.dart';
-import 'package:doctor_app/core/widgets/app_text_button_widget.dart';
 import 'package:doctor_app/features/apponitments/data/models/appointment_request.dart';
 import 'package:doctor_app/features/apponitments/logic/appiotment_store_cubit.dart';
 import 'package:doctor_app/features/apponitments/view/widgets/appointment_payment.dart';
@@ -13,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
+import '../../../core/common_widgets/custom_elevated_botton.dart';
 import '../../details_doctor/data/models/details_doctors_models.dart';
 import '../../details_doctor/view/widgets/doctor_data.dart';
 import '../logic/appointment_data_cubit.dart';
@@ -97,7 +97,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
                       currentStepAll == 1
                           ? SizedBox.shrink()
                           : Expanded(
-                              child: AppTextButtonWidget(
+                              child: CustomElevatedButton(
                                 onPressed: () {
                                   pageController.previousPage(
                                     duration: const Duration(milliseconds: 300),
@@ -110,7 +110,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
                       horizontalSpace(10),
                       Expanded(
                         flex: 2,
-                        child: AppTextButtonWidget(
+                        child: CustomElevatedButton(
                           buttonName: currentStepAll == 3
                               ? 'Finish'
                               : 'Continue',
@@ -194,22 +194,22 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
           height: 32,
           decoration: BoxDecoration(
             color: isActive
-                ? ColorManager.mainBlueColor
-                : ColorManager.lightGeryColor,
+                ? ColorManager.primaryColor
+                : ColorManager.grey40,
             shape: BoxShape.circle,
           ),
           child: Center(
             child: Text(
               step.toString(),
-              style: AppStyles.styleMedium14(Colors.white, context),
+              style: AppTextStyle.styleMedium14(Colors.white, context),
             ),
           ),
         ),
         const SizedBox(height: 6),
         Text(
           title,
-          style: AppStyles.styleRegular14(
-            isActive ? ColorManager.blackColor : ColorManager.lightGeryColor,
+          style: AppTextStyle.styleRegular14(
+            isActive ? ColorManager.blackColor : ColorManager.grey50,
             context,
           ),
         ),
@@ -223,8 +223,8 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
       child: Container(
         height: 2,
         color: isActive
-            ? ColorManager.mainBlueColor
-            : ColorManager.lightGeryColor,
+            ? ColorManager.primaryColor
+            : ColorManager.grey40,
       ),
     );
   }

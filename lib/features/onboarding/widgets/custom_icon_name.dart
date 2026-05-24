@@ -17,7 +17,7 @@ class CustomIconAndName extends StatelessWidget {
         ),
         Text(
           'Docdoc',
-          style: AppStyles.styleBold24(
+          style: AppTextStyle.styleBold24(
             ColorManager.blackColor,
             context,
           ),

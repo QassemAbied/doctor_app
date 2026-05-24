@@ -1,9 +1,10 @@
-import 'package:doctor_app/core/helpers/spacing.dart';
+import 'package:doctor_app/core/utils/spacing.dart';
 import 'package:doctor_app/core/theming/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../../../core/widgets/doctor_item_shimmer.dart';
+import '../../../../core/common_widgets/doctor_item_shimmer.dart';
+
 
 class ListDoctorShimmer extends StatelessWidget {
   const ListDoctorShimmer({super.key});

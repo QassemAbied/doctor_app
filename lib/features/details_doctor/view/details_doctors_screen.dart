@@ -1,8 +1,7 @@
-import 'package:doctor_app/core/helpers/extension.dart';
-import 'package:doctor_app/core/helpers/spacing.dart';
+import 'package:doctor_app/core/utils/extension.dart';
+import 'package:doctor_app/core/utils/spacing.dart';
 import 'package:doctor_app/core/theming/app_color.dart';
 import 'package:doctor_app/core/theming/app_styles.dart';
-import 'package:doctor_app/core/widgets/app_text_button_widget.dart';
 import 'package:doctor_app/features/details_doctor/logic/details_doctors_cubit.dart';
 import 'package:doctor_app/features/details_doctor/logic/details_doctors_state.dart';
 import 'package:doctor_app/features/details_doctor/view/widgets/about_tab_bar_widget.dart';
@@ -11,8 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import '../../../core/common_widgets/custom_elevated_botton.dart';
 import '../../../core/di/dependey.dart';
-import '../../../core/routing/routes.dart';
 
 class DetailsDoctorsScreen extends StatefulWidget {
   final int idDoctors;
@@ -43,7 +42,7 @@ class _DetailsDoctorsScreenState extends State<DetailsDoctorsScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Recommendation Doctor',
-            style: AppStyles.styleBold18(ColorManager.blackColor, context),),
+            style: AppTextStyle.styleBold18(ColorManager.blackColor, context),),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
@@ -65,9 +64,9 @@ class _DetailsDoctorsScreenState extends State<DetailsDoctorsScreen> {
                         verticalSpace(20.0),
                         TabBar(
                           indicatorSize: TabBarIndicatorSize.tab,
-                          labelColor: ColorManager.mainBlueColor,
-                          dividerColor: ColorManager.geryColor,
-                          indicatorColor: ColorManager.mainBlueColor,
+                          labelColor: ColorManager.primaryColor,
+                          dividerColor: ColorManager.grey80,
+                          indicatorColor: ColorManager.primaryColor,
                           tabs: [
                             Tab(text: 'About'),
                             Tab(text: 'Location'),
@@ -83,7 +82,7 @@ class _DetailsDoctorsScreenState extends State<DetailsDoctorsScreen> {
                                 children: [
                                   Text(
                                     cityName??'',
-                                    style: AppStyles.styleSemiBold16(
+                                    style: AppTextStyle.styleSemiBold16(
                                       ColorManager.blackColor,
                                       context,
                                     ),
@@ -91,7 +90,7 @@ class _DetailsDoctorsScreenState extends State<DetailsDoctorsScreen> {
                                   verticalSpace(5.0),
                                   Text(
                                     governorateName??'',
-                                    style: AppStyles.styleSemiBold16(
+                                    style: AppTextStyle.styleSemiBold16(
                                       ColorManager.blackColor,
                                       context,
                                     ),
@@ -104,7 +103,7 @@ class _DetailsDoctorsScreenState extends State<DetailsDoctorsScreen> {
                             ],
                           ),
                         ),
-                        AppTextButtonWidget(
+                        CustomElevatedButton(
                           buttonName: 'Make An Appointment',
                           onPressed: () {
                             context.pushNamed('/appointments',

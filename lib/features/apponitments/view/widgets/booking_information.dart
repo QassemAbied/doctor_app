@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../core/helpers/spacing.dart';
+import '../../../../core/utils/spacing.dart';
 import '../../../../core/theming/app_color.dart';
 import '../../../../core/theming/app_styles.dart';
 import '../../data/models/appointment_data_time_models.dart';
@@ -25,7 +25,7 @@ class BookingInformation extends StatelessWidget {
           children: [
             Text(
               'Booking Information',
-              style: AppStyles.styleSemiBold16(
+              style: AppTextStyle.styleSemiBold16(
                 ColorManager.blackColor,
                 context,
               ),

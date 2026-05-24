@@ -1,16 +1,17 @@
 import 'package:doctor_app/core/theming/app_color.dart';
+import 'package:doctor_app/features/auth/presentation/controller/auth_cubit.dart';
 import 'package:doctor_app/features/home/home_view/home_screen.dart';
-import 'package:doctor_app/features/profile/logic/profile_cubit.dart';
 import 'package:doctor_app/features/search/search_view/search_screen.dart';
 import 'package:doctor_app/message_scr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'core/di/dependey.dart';
+import 'core/utils/di/injection_container.dart';
 import 'features/home/logic/cubit/home_cubit.dart';
 import 'features/my_appointment/logic/my_appointment_cubit.dart';
 import 'features/my_appointment/view/my_appointment_screen.dart';
-import 'features/profile/view/profile_screen.dart';
+import 'features/profile/screens/profile/profile_screen.dart';
 
 
 
@@ -38,10 +39,7 @@ class _BottonNavBarViewState extends State<BottonNavBarView> {
       create: (context) => getIt<MyAppointmentCubit>()..emitMyAppointment(),
       child: MyAppointmentScreen(),
     ),
-    BlocProvider(
-      create: (context) => getIt<ProfileCubit>()..emitProfile(),
-      child: ProfileScreen(),
-    ),
+    ProfileScreen(),
   ];
   int currentIndex = 0;
 
@@ -93,7 +91,7 @@ class CustomBottomNavBar extends StatelessWidget {
               height: 55,
               width: 55,
               decoration: BoxDecoration(
-                color: ColorManager.mainBlueColor,
+                color: ColorManager.primaryColor,
                 borderRadius: BorderRadius.circular(20),
               ),
               child: IconButton(
@@ -116,8 +114,8 @@ class CustomBottomNavBar extends StatelessWidget {
         width: currentIndex == index ? 25 : 20,
         colorFilter: ColorFilter.mode(
           currentIndex == index
-              ? ColorManager.mainBlueColor
-              : ColorManager.geryColor,
+              ? ColorManager.primaryColor
+              : ColorManager.grey50,
           BlendMode.srcIn,
         ),
       ),

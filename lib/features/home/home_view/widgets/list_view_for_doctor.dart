@@ -1,11 +1,11 @@
-import 'package:doctor_app/core/helpers/extension.dart';
+import 'package:doctor_app/core/utils/extension.dart';
 import 'package:doctor_app/features/details_doctor/logic/details_doctors_cubit.dart';
 import 'package:doctor_app/features/home/logic/cubit/home_cubit.dart';
 import 'package:doctor_app/features/home/logic/cubit/home_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/helpers/spacing.dart';
+import '../../../../core/utils/spacing.dart';
 import '../../../../core/theming/app_color.dart';
 import '../../../../core/theming/app_styles.dart';
 import '../../data/models/home_models.dart';
@@ -51,7 +51,7 @@ class ListViewForDoctor extends StatelessWidget {
                     children: [
                       Text(
                         doctors?[index]?.name ?? '',
-                        style: AppStyles.styleSemiBold16(
+                        style: AppTextStyle.styleSemiBold16(
                           ColorManager.blackColor,
                           context,
                         ),
@@ -62,8 +62,8 @@ class ListViewForDoctor extends StatelessWidget {
                         child: Text(
                           '${doctors?[index]?.gender} - ${doctors?[index]
                               ?.degree}',
-                          style: AppStyles.styleRegular13(
-                            ColorManager.geryColor,
+                          style: AppTextStyle.styleRegular13(
+                            ColorManager.grey80,
                             context,
                           ),
                         ),
@@ -71,8 +71,8 @@ class ListViewForDoctor extends StatelessWidget {
                       verticalSpace(5),
                       Text(
                         doctors?[index]?.specialization!.name ?? '',
-                        style: AppStyles.styleRegular13(
-                          ColorManager.geryColor,
+                        style: AppTextStyle.styleRegular13(
+                          ColorManager.grey80,
                           context,
                         ),
                       ),

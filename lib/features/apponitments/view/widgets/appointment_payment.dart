@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../core/helpers/spacing.dart';
+import '../../../../core/utils/spacing.dart';
 import '../../../../core/theming/app_color.dart';
 import '../../../../core/theming/app_styles.dart';
 
@@ -24,7 +24,7 @@ class _AppointmentPaymentsState extends State<AppointmentPayments> {
         verticalSpace(20),
         Text(
           'Payment Option',
-          style: AppStyles.styleSemiBold16(
+          style: AppTextStyle.styleSemiBold16(
             ColorManager.blackColor,
             context,
           ),
@@ -107,7 +107,7 @@ class _AppointmentPaymentsState extends State<AppointmentPayments> {
             horizontalSpace(20),
             Text(
               subTitle,
-              style: AppStyles.styleMedium14(ColorManager.blackColor, context),
+              style: AppTextStyle.styleMedium14(ColorManager.blackColor, context),
             ),
 
 
@@ -115,7 +115,7 @@ class _AppointmentPaymentsState extends State<AppointmentPayments> {
 
         ),
         verticalSpace(20),
-        Divider(color: ColorManager.geryColor,),
+        Divider(color: ColorManager.grey80,),
       ],
     );
   }
@@ -135,8 +135,8 @@ class _AppointmentPaymentsState extends State<AppointmentPayments> {
         Theme(
           data: Theme.of(context).copyWith(
             radioTheme: RadioThemeData(
-              fillColor: WidgetStateProperty.all(ColorManager.mainBlueColor),
-              overlayColor: WidgetStateProperty.all(ColorManager.mainBlueColor),
+              fillColor: WidgetStateProperty.all(ColorManager.primaryColor),
+              overlayColor: WidgetStateProperty.all(ColorManager.primaryColor),
             ),
           ),
           child: RadioMenuButton(
@@ -149,7 +149,7 @@ class _AppointmentPaymentsState extends State<AppointmentPayments> {
               children: [
                 Text(
                   title,
-                  style: AppStyles.styleSemiBold16(ColorManager.blackColor, context),
+                  style: AppTextStyle.styleSemiBold16(ColorManager.blackColor, context),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

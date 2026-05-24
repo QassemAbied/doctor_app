@@ -1,5 +1,6 @@
-import 'package:doctor_app/core/widgets/doctor_item_shimmer.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/common_widgets/doctor_item_shimmer.dart';
 
 class ShimmerLoading extends StatelessWidget {
   const ShimmerLoading({super.key});

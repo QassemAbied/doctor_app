@@ -1,4 +1,4 @@
-import 'package:doctor_app/core/helpers/spacing.dart';
+import 'package:doctor_app/core/utils/spacing.dart';
 import 'package:doctor_app/features/onboarding/widgets/custom_icon_name.dart';
 import 'package:doctor_app/features/onboarding/widgets/custom_image_big_text.dart';
 import 'package:doctor_app/features/onboarding/widgets/custom_text_button.dart';

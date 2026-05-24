@@ -52,7 +52,7 @@ class _ListViewForCategoryState extends State<ListViewForCategory> {
                       ),
                       borderRadius: BorderRadius.circular(18.0),
                       color: selectIndex == index
-                          ? ColorManager.mainBlueColor
+                          ? ColorManager.primaryColor
                           : Colors.white,
                       //shape: BoxShape.circle
                     ),
@@ -60,7 +60,7 @@ class _ListViewForCategoryState extends State<ListViewForCategory> {
                     child: index == 0
                         ? Text(
                             '  All  ',
-                            style: AppStyles.styleBold18(
+                            style: AppTextStyle.styleBold18(
                               selectIndex == index
                                   ? Colors.white
                                   : ColorManager.blackColor,
@@ -69,7 +69,7 @@ class _ListViewForCategoryState extends State<ListViewForCategory> {
                           )
                         : Text(
                             widget.data?[index]?.name ?? '',
-                            style: AppStyles.styleBold18(
+                            style: AppTextStyle.styleBold18(
                               selectIndex == index
                                   ? Colors.white
                                   : ColorManager.blackColor,

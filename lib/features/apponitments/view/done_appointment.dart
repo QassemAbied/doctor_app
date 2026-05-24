@@ -1,6 +1,5 @@
-import 'package:doctor_app/core/helpers/extension.dart';
-import 'package:doctor_app/core/helpers/spacing.dart';
-import 'package:doctor_app/core/widgets/app_text_button_widget.dart';
+import 'package:doctor_app/core/utils/extension.dart';
+import 'package:doctor_app/core/utils/spacing.dart';
 import 'package:doctor_app/features/apponitments/view/widgets/booking_information.dart';
 import 'package:doctor_app/features/apponitments/view/widgets/done_appointment_bloc_listener.dart';
 import 'package:doctor_app/features/my_appointment/logic/my_appointment_cubit.dart';
@@ -9,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
+import '../../../core/common_widgets/custom_elevated_botton.dart';
 import '../../../core/di/dependey.dart';
 import '../../../core/theming/app_color.dart';
 import '../../../core/theming/app_styles.dart';
@@ -39,7 +39,7 @@ class DoneAppointmentScreen extends StatelessWidget {
                   verticalSpace(20),
                   Text(
                     'Booking Confirmed',
-                    style: AppStyles.styleBold18(
+                    style: AppTextStyle.styleBold18(
                       ColorManager.blackColor,
                       context,
                     ),
@@ -51,7 +51,7 @@ class DoneAppointmentScreen extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       'Doctor Information',
-                      style: AppStyles.styleSemiBold16(
+                      style: AppTextStyle.styleSemiBold16(
                         ColorManager.blackColor,
                         context,
                       ),
@@ -60,7 +60,7 @@ class DoneAppointmentScreen extends StatelessWidget {
                   verticalSpace(20),
                   DoctorsDataWidget(dataForDoctors: dataForDoctors),
                   verticalSpace(100),
-                  AppTextButtonWidget(
+                  CustomElevatedButton(
                     buttonName: 'Done',
                     onPressed: () {
                       final state = context.read<AppointmentCubit>().state;

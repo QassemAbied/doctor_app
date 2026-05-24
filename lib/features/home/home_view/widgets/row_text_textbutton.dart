@@ -15,7 +15,7 @@ class RowTextTextButton extends StatelessWidget {
         Text(
           text,
          // 'Recommendation Doctor',
-          style: AppStyles.styleSemiBold18(
+          style: AppTextStyle.styleSemiBold18(
             ColorManager.blackColor,
             context,
           ),
@@ -25,8 +25,8 @@ class RowTextTextButton extends StatelessWidget {
           onPressed: tap,
           child: Text(
             'See All',
-            style: AppStyles.styleRegular14(
-              ColorManager.mainBlueColor,
+            style: AppTextStyle.styleRegular14(
+              ColorManager.primaryColor,
               context,
             ),
           ),

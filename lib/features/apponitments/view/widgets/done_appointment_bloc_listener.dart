@@ -2,8 +2,8 @@ import 'package:doctor_app/features/apponitments/logic/appointment_store_state.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/di/dependey.dart';
-import '../../../../core/helpers/extension.dart';
-import '../../../../core/routing/routes.dart';
+import '../../../../core/utils/app_router/routes.dart';
+import '../../../../core/utils/extension.dart';
 import '../../../details_doctor/data/models/details_doctors_models.dart';
 import '../../../my_appointment/logic/my_appointment_cubit.dart';
 import '../../logic/appiotment_store_cubit.dart';
@@ -29,7 +29,7 @@ class DoneAppointmentBlocListener extends StatelessWidget {
           },
           success: (value) {
             getIt<MyAppointmentCubit>().emitMyAppointment();
-            context.navigatorPop();
+            context.pop();
             return context.pushNamed(
               Routes.detailsDoctorsScreen,
               arguments: dataForDoctors?.id,
@@ -43,7 +43,7 @@ class DoneAppointmentBlocListener extends StatelessWidget {
             // );
           },
           error: (value) {
-            context.navigatorPop();
+            context.pop();
             return showDialog(
               context: context,
               builder: (context) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../core/helpers/spacing.dart';
+import '../../../../core/utils/spacing.dart';
 import '../../../../core/theming/app_color.dart';
 import '../../../../core/theming/app_styles.dart';
 
@@ -24,7 +24,7 @@ class BookInformationItem extends StatelessWidget {
           children: [
             Text(
               title1,
-              style: AppStyles.styleSemiBold14(
+              style: AppTextStyle.styleSemiBold14(
                 ColorManager.blackColor,
                 context,
               ),
@@ -32,15 +32,15 @@ class BookInformationItem extends StatelessWidget {
             verticalSpace(5),
             Text(
               title2,
-              style: AppStyles.styleMedium14(
-                ColorManager.geryColor,
+              style: AppTextStyle.styleMedium14(
+                ColorManager.grey80,
                 context,
               ),
             ),
             Text(
               title3 ?? '',
-              style: AppStyles.styleMedium14(
-                ColorManager.geryColor,
+              style: AppTextStyle.styleMedium14(
+                ColorManager.grey80,
                 context,
               ),
             ),

@@ -1,6 +1,6 @@
 import 'package:doctor_app/features/apponitments/view/widgets/appoint_price.dart';
 import 'package:flutter/material.dart';
-import '../../../../core/helpers/spacing.dart';
+import '../../../../core/utils/spacing.dart';
 import '../../../../core/theming/app_color.dart';
 import '../../../../core/theming/app_styles.dart';
 import '../../../details_doctor/data/models/details_doctors_models.dart';
@@ -32,7 +32,7 @@ class _AppointmentSummaryState extends State<AppointmentSummary> {
               verticalSpace(20),
               Text(
                 'Doctor Information',
-                style: AppStyles.styleSemiBold16(
+                style: AppTextStyle.styleSemiBold16(
                   ColorManager.blackColor,
                   context,
                 ),
@@ -44,7 +44,7 @@ class _AppointmentSummaryState extends State<AppointmentSummary> {
               verticalSpace(20),
               Text(
                 'Payment Information',
-                style: AppStyles.styleSemiBold16(
+                style: AppTextStyle.styleSemiBold16(
                   ColorManager.blackColor,
                   context,
                 ),

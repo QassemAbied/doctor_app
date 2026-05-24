@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../core/helpers/spacing.dart';
+import '../../../../core/utils/spacing.dart';
 import '../../../../core/theming/app_color.dart';
 import '../../../../core/theming/app_styles.dart';
 import '../../data/models/my_appointment_response.dart';
@@ -25,7 +25,7 @@ class ItemListMyAppointments extends StatelessWidget {
                 children: [
                   Text(
                     appointments?.doctor?.name ?? '',
-                    style: AppStyles.styleBold16(
+                    style: AppTextStyle.styleBold16(
                       ColorManager.blackColor,
                       context,
                     ),
@@ -33,8 +33,8 @@ class ItemListMyAppointments extends StatelessWidget {
                   verticalSpace(5),
                   Text(
                     '${appointments?.doctor?.specialization?.name} | ${appointments?.doctor?.description}',
-                    style: AppStyles.styleMedium14(
-                      ColorManager.geryColor,
+                    style: AppTextStyle.styleMedium14(
+                      ColorManager.grey80,
                       context,
                     ),
                   ),
@@ -44,8 +44,8 @@ class ItemListMyAppointments extends StatelessWidget {
                     fit: BoxFit.scaleDown,
                     child: Text(
                       appointments?.appointmentTime ?? '',
-                      style: AppStyles.styleMedium14(
-                        ColorManager.geryColor,
+                      style: AppTextStyle.styleMedium14(
+                        ColorManager.grey80,
                         context,
                       ),
                     ),

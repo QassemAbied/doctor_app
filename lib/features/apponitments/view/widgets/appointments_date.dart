@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../core/helpers/spacing.dart';
+import '../../../../core/utils/spacing.dart';
 import '../../../../core/theming/app_color.dart';
 import '../../../../core/theming/app_styles.dart';
 
@@ -39,7 +39,7 @@ class AppointmentsDate extends StatelessWidget {
             children: [
               Text(
                 'Select Date',
-                style: AppStyles.styleSemiBold16(
+                style: AppTextStyle.styleSemiBold16(
                   ColorManager.blackColor,
                   context,
                 ),
@@ -79,21 +79,21 @@ class AppointmentsDate extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(14),
                             color: isSelected
-                                ? ColorManager.mainBlueColor
-                                : ColorManager.lightGeryColor,
+                                ? ColorManager.primaryColor
+                                : ColorManager.grey40,
                           ),
                           child: Column(
                             children: [
                               Text(
                                 DateFormat('EEE').format(date[index]),
-                                style: AppStyles.styleBold18(
+                                style: AppTextStyle.styleBold18(
                                   Colors.white,
                                   context,
                                 ),
                               ),
                               Text(
                                 DateFormat('dd').format(date[index]),
-                                style: AppStyles.styleBold18(
+                                style: AppTextStyle.styleBold18(
                                   Colors.white,
                                   context,
                                 ),
@@ -109,7 +109,7 @@ class AppointmentsDate extends StatelessWidget {
               verticalSpace(20),
               Text(
                 'Available time',
-                style: AppStyles.styleSemiBold16(
+                style: AppTextStyle.styleSemiBold16(
                   ColorManager.blackColor,
                   context,
                 ),
@@ -175,13 +175,13 @@ class AppointmentsDate extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12.0),
                   color: isSelected
-                      ? ColorManager.mainBlueColor
-                      : ColorManager.lightGeryColor,
+                      ? ColorManager.primaryColor
+                      : ColorManager.grey30,
                 ),
                 child: Center(
                   child: Text(
                     timeAppointments[index],
-                    style: AppStyles.styleMedium16(Colors.white, context),
+                    style: AppTextStyle.styleMedium16(Colors.white, context),
                   ),
                 ),
               ),
@@ -202,7 +202,7 @@ class AppointmentsDate extends StatelessWidget {
               verticalSpace(20),
               Text(
                 'Appointment Type',
-                style: AppStyles.styleSemiBold16(
+                style: AppTextStyle.styleSemiBold16(
                   ColorManager.blackColor,
                   context,
                 ),
@@ -282,18 +282,18 @@ class AppointmentsDate extends StatelessWidget {
         horizontalSpace(15),
         Text(
           title,
-          style: AppStyles.styleMedium14(ColorManager.blackColor, context),
+          style: AppTextStyle.styleMedium14(ColorManager.blackColor, context),
         ),
         Expanded(child: SizedBox.shrink()),
         Theme(
           data: Theme.of(context).copyWith(
             radioTheme: RadioThemeData(
-              fillColor: WidgetStateProperty.all(ColorManager.mainBlueColor),
+              fillColor: WidgetStateProperty.all(ColorManager.primaryColor),
             ),
           ),
           child: RadioMenuButton(
             style: ButtonStyle(
-              overlayColor: WidgetStateProperty.all(ColorManager.mainBlueColor),
+              overlayColor: WidgetStateProperty.all(ColorManager.primaryColor),
             ),
             value: value,
             groupValue: groupValue,

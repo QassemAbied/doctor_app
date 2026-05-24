@@ -17,7 +17,7 @@ class MyAppointmentScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'My Appointments',
-          style: AppStyles.styleBold24(ColorManager.blackColor, context),
+          style: AppTextStyle.styleBold24(ColorManager.blackColor, context),
         ),
         centerTitle: true,
       ),

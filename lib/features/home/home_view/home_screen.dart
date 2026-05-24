@@ -1,4 +1,4 @@
-import 'package:doctor_app/core/helpers/spacing.dart';
+import 'package:doctor_app/core/utils/spacing.dart';
 import 'package:doctor_app/core/theming/app_color.dart';
 import 'package:doctor_app/core/theming/app_styles.dart';
 import 'package:doctor_app/features/home/data/models/home_models.dart';
@@ -16,7 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../core/helpers/extension.dart';
+import '../../../core/utils/extension.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

@@ -56,8 +56,8 @@ class _CustomImageAndBigTextState extends State<CustomImageAndBigText> {
                     child: Text(
                       'Best Doctor\n Appointment App',
                       textAlign: TextAlign.center,
-                      style: AppStyles.styleBold32(
-                        ColorManager.mainBlueColor,
+                      style: AppTextStyle.styleBold32(
+                        ColorManager.primaryColor,
                         context,
                       ).copyWith(height: 1.4),
                     ),
@@ -78,8 +78,8 @@ class _CustomImageAndBigTextState extends State<CustomImageAndBigText> {
             dotHeight: 16.0,
             paintStyle: PaintingStyle.stroke,
             strokeWidth: 1.5,
-            dotColor: ColorManager.geryColor,
-            activeDotColor: ColorManager.mainBlueColor,
+            dotColor: ColorManager.grey100,
+            activeDotColor: ColorManager.primaryColor,
           ),
         ),
       ],

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/helpers/spacing.dart';
+import '../../../../core/common_widgets/custom_elevated_botton.dart';
+import '../../../../core/utils/spacing.dart';
 import '../../../../core/theming/app_color.dart';
 import '../../../../core/theming/app_styles.dart';
-import '../../../../core/widgets/app_text_button_widget.dart';
 
 class AllButtonInMyAppointments extends StatelessWidget {
   const AllButtonInMyAppointments({super.key});
@@ -25,7 +25,7 @@ class AllButtonInMyAppointments extends StatelessWidget {
                 fit: BoxFit.scaleDown,
                 child: Text(
                   'Cancel Appointment',
-                  style: AppStyles.styleSemiBold16(
+                  style: AppTextStyle.styleSemiBold16(
                     ColorManager.blackColor,
                     context,
                   ),
@@ -36,7 +36,7 @@ class AllButtonInMyAppointments extends StatelessWidget {
         ),
         horizontalSpace(18),
         Expanded(
-          child: AppTextButtonWidget(
+          child: CustomElevatedButton(
             buttonName: 'Reschedule',
             onPressed: () {},
           ),

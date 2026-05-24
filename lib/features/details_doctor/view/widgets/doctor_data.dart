@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../core/helpers/spacing.dart';
+import '../../../../core/utils/spacing.dart';
 import '../../../../core/theming/app_color.dart';
 import '../../../../core/theming/app_styles.dart';
 import '../../data/models/details_doctors_models.dart';
@@ -28,7 +28,7 @@ class DoctorsDataWidget extends StatelessWidget {
           children: [
             Text(
               dataForDoctors?.name ?? '',
-              style: AppStyles.styleBold16(
+              style: AppTextStyle.styleBold16(
                 ColorManager.blackColor,
                 context,
               ),
@@ -36,8 +36,8 @@ class DoctorsDataWidget extends StatelessWidget {
             verticalSpace(5),
             Text(
               '${dataForDoctors?.gender} - ${dataForDoctors?.email}',
-              style: AppStyles.styleMedium12(
-                ColorManager.geryColor,
+              style: AppTextStyle.styleMedium12(
+                ColorManager.grey80,
                 context,
               ),
             ),

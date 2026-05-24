@@ -1,4 +1,4 @@
-import 'package:doctor_app/core/helpers/spacing.dart';
+import 'package:doctor_app/core/utils/spacing.dart';
 import 'package:doctor_app/core/theming/app_color.dart';
 import 'package:doctor_app/core/theming/app_styles.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class MyAppointmentIsEmpty extends StatelessWidget {
         verticalSpace(40),
         Text(
           'Not Found Appointment',
-          style: AppStyles.styleBold18(ColorManager.blackColor, context),
+          style: AppTextStyle.styleBold18(ColorManager.blackColor, context),
         ),
       ],
     );
