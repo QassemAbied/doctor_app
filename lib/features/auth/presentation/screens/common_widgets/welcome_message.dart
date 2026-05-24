@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../../core/helpers/spacing.dart';
-import '../../../core/theming/app_color.dart';
-import '../../../core/theming/app_styles.dart';
+import '../../../../../core/utils/spacing.dart';
+import '../../../../../core/theming/app_color.dart';
+import '../../../../../core/theming/app_styles.dart';
 
 class WelcomeMessage extends StatelessWidget {
   final String welcomeText;
@@ -20,12 +20,12 @@ class WelcomeMessage extends StatelessWidget {
       children: [
         Text(
           welcomeText,
-          style: AppStyles.styleBold24(ColorManager.mainBlueColor, context),
+          style: AppTextStyle.styleBold24(ColorManager.primaryColor, context),
         ),
         verticalSpace(18.0),
         Text(
           subWelcomeText,
-          style: AppStyles.styleRegular14(ColorManager.geryColor, context),
+          style: AppTextStyle.styleRegular14(ColorManager.grey60, context),
         ),
       ],
     );
