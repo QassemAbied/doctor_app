@@ -1,13 +1,12 @@
-import 'package:doctor_app/core/helpers/extension.dart';
+import 'package:doctor_app/core/utils/extension.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '../../../../core/theming/app_color.dart';
-import '../../../../core/theming/app_styles.dart';
+
+import '../../../../../../core/theming/app_color.dart';
+import '../../../../../../core/theming/app_styles.dart';
 
 class AlreadyHaveAccount extends StatelessWidget {
-  const AlreadyHaveAccount({
-    super.key,
-  });
+  const AlreadyHaveAccount({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +17,7 @@ class AlreadyHaveAccount extends StatelessWidget {
           children: [
             TextSpan(
               text: 'Already have an account yet? ',
-              style: AppStyles.styleRegular14(
-                ColorManager.blackColor,
-                context,
-              ),
+              style: AppTextStyle.styleRegular14(ColorManager.blackColor, context),
             ),
             TextSpan(
               recognizer: TapGestureRecognizer()
@@ -29,8 +25,8 @@ class AlreadyHaveAccount extends StatelessWidget {
                   context.pushNamed('/signUp');
                 },
               text: ' Sign Up ',
-              style: AppStyles.styleSemiBold16(
-                ColorManager.mainBlueColor,
+              style: AppTextStyle.styleSemiBold16(
+                ColorManager.primaryColor,
                 context,
               ),
             ),
