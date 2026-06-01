@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
-import '../../../../core/utils/spacing.dart';
-
-import '../../../../core/theming/app_color.dart';
-
-import '../../../../core/theming/app_styles.dart';
-
-import '../../../home/domain/entities/doctor_entity.dart';
+import '../../../../../core/theming/app_color.dart';
+import '../../../../../core/theming/app_styles.dart';
+import '../../../../../core/utils/spacing.dart';
+import '../../../../home/domain/entities/doctor_entity.dart';
 
 class DoctorLocationWidget extends StatelessWidget {
   final DoctorEntity doctor;
@@ -27,7 +22,10 @@ class DoctorLocationWidget extends StatelessWidget {
         Text(
           'Practice Place',
 
-          style: AppTextStyle.styleSemiBold16(ColorManager.textPrimary, context),
+          style: AppTextStyle.styleSemiBold16(
+            ColorManager.textPrimary,
+            context,
+          ),
         ),
 
         verticalSpace(7),
@@ -43,7 +41,10 @@ class DoctorLocationWidget extends StatelessWidget {
         Text(
           'Location Map',
 
-          style: AppTextStyle.styleSemiBold16(ColorManager.textSecondary, context),
+          style: AppTextStyle.styleSemiBold16(
+            ColorManager.textSecondary,
+            context,
+          ),
         ),
 
         verticalSpace(16),
@@ -56,7 +57,7 @@ class DoctorLocationWidget extends StatelessWidget {
               initialCameraPosition: CameraPosition(
                 target: doctorLocation,
 
-                zoom: 15,
+                zoom: 14,
               ),
 
               markers: {
