@@ -3,7 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../features/home/data/models/doctor_model.dart';
 
-class SupABaseSpecializationServices {
+class SupABaseDoctorsSpecializationServices {
   final instance = Supabase.instance.client;
 
   Future<List<SpecializationModel>> getSpecialization() async {
