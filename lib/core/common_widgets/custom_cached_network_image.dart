@@ -127,14 +127,7 @@ class _ErrorWidget extends StatelessWidget {
       child: Center(
         child: GestureDetector(
           onTap: onRetry,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: const [
-              Icon(Icons.refresh, size: 28),
-              SizedBox(height: 6),
-              Text("Tap to retry"),
-            ],
-          ),
+          child: Icon(Icons.refresh, size: 10),
         ),
       ),
     );
