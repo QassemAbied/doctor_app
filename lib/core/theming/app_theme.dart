@@ -44,9 +44,7 @@ class AppTheme {
       // ================= CARD =================
       cardTheme: CardThemeData(
         color: ColorManager.whiteColor,
-
-        elevation: 0,
-
+        elevation: 1,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
 
@@ -150,6 +148,15 @@ class AppTheme {
 
       // ================= DIVIDER =================
       dividerColor: ColorManager.grey40,
+      dividerTheme: DividerThemeData(
+        color: ColorManager.grey40,
+        thickness: 1.5,
+        space: 10,
+        indent: 10,
+        endIndent: 10,
+
+      ),
+
 
       // ================= ICON =================
       iconTheme: IconThemeData(color: ColorManager.grey90),
@@ -158,6 +165,27 @@ class AppTheme {
       progressIndicatorTheme: ProgressIndicatorThemeData(
         color: ColorManager.primaryColor,
       ),
+      radioTheme: RadioThemeData(
+        fillColor: WidgetStateProperty.all(ColorManager.primaryColor),
+        overlayColor: WidgetStateProperty.all(ColorManager.primaryColor),
+
+        ),
+      checkboxTheme: CheckboxThemeData(
+        fillColor: WidgetStateProperty.all(ColorManager.primaryColor),
+        overlayColor: WidgetStateProperty.all(ColorManager.primaryColor),
+        ),
+      switchTheme: SwitchThemeData(
+        thumbColor: WidgetStateProperty.all(ColorManager.primaryColor),
+        trackColor: WidgetStateProperty.all(ColorManager.primaryColor),
+        overlayColor: WidgetStateProperty.all(ColorManager.primaryColor),
+        ),
+      sliderTheme: SliderThemeData(
+        activeTrackColor: ColorManager.primaryColor,
+        inactiveTrackColor: ColorManager.grey40,
+        thumbColor: ColorManager.primaryColor,
+
+      )
+
     );
   }
 }
