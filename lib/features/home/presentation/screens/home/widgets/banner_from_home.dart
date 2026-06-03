@@ -1,3 +1,4 @@
+import 'package:doctor_app/core/constants/app_images.dart';
 import 'package:flutter/material.dart';
 
 class BannerFromHome extends StatelessWidget {
@@ -9,8 +10,7 @@ class BannerFromHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return AspectRatio(
       aspectRatio: 343/197,
-      //  aspectRatio:0.8 / 0.5,
-      child: Image.asset('assets/images/Banner.png'),
+      child: Image.asset(AppImages.banner),
     );
   }
 }
