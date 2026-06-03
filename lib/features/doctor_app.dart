@@ -1,5 +1,5 @@
-import 'package:doctor_app/core/theming/app_color.dart';
 import 'package:doctor_app/features/auth/presentation/controller/auth_cubit.dart';
+import 'package:doctor_app/features/home/presentation/controller/specialization/specialization_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../core/services/shared_pref/shared_pref_keys.dart';
@@ -17,6 +17,12 @@ class DoctorApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) => sl<SpecializationCubit>()..getSpecialization(),
+        ),
+        // BlocProvider(
+        //   create: (context) =>BookAppointmentCubit(),
+        // ),
         BlocProvider(
           create: (context) => sl<AuthCubit>()..getUser(),
         ),

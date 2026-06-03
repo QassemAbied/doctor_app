@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import '../../../../../core/theming/app_color.dart';
-import '../../../../../core/theming/app_styles.dart';
-import '../../../../../core/utils/spacing.dart';
+import '../../../../../../core/theming/app_color.dart';
+import '../../../../../../core/theming/app_styles.dart';
+import '../../../../../../core/utils/spacing.dart';
 import '../../../../home/domain/entities/doctor_entity.dart';
 
 class DoctorLocationWidget extends StatelessWidget {

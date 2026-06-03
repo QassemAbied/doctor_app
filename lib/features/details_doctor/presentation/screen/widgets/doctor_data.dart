@@ -2,10 +2,10 @@ import 'package:doctor_app/core/constants/app_svgs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../../core/common_widgets/custom_cached_network_image.dart';
-import '../../../../../core/theming/app_color.dart';
-import '../../../../../core/theming/app_styles.dart';
-import '../../../../../core/utils/spacing.dart';
+import '../../../../../../core/common_widgets/custom_cached_network_image.dart';
+import '../../../../../../core/theming/app_color.dart';
+import '../../../../../../core/theming/app_styles.dart';
+import '../../../../../../core/utils/spacing.dart';
 import '../../../../home/domain/entities/doctor_entity.dart';
 
 class DoctorsDataWidget extends StatelessWidget {
@@ -23,16 +23,24 @@ class DoctorsDataWidget extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Hero(
-                  tag: doctor.id,
-                  child: CustomNetworkImage(
+                CustomNetworkImage(
+                  enableHero: true,
+                  heroTag: doctor.id,
                     imageUrl: doctor.image,
-                    width: 95,
-                    height: 95,
-                    borderRadius: BorderRadius.circular(18),
-                    fit: BoxFit.cover,
-                  ),
+                  width: 95,
+                      height: 95,
+                  fit: BoxFit.cover,
                 ),
+                // Hero(
+                //   tag: doctor.id,
+                //   child: CustomNetworkImage(
+                //     imageUrl: doctor.image,
+                //     width: 95,
+                //     height: 95,
+                //     borderRadius: BorderRadius.circular(18),
+                //     fit: BoxFit.cover,
+                //   ),
+                // ),
                 horizontalSpace(16),
                 Expanded(
                   child: Column(
@@ -41,14 +49,10 @@ class DoctorsDataWidget extends StatelessWidget {
                     children: [
                       Text(
                         doctor.name,
-
                         maxLines: 1,
-
                         overflow: TextOverflow.ellipsis,
-
                         style: AppTextStyle.styleBold18(
-                          ColorManager.blackColor,
-
+                          ColorManager.textPrimary,
                           context,
                         ),
                       ),
@@ -59,7 +63,7 @@ class DoctorsDataWidget extends StatelessWidget {
                         '${doctor.gender} • ${doctor.degree}',
 
                         style: AppTextStyle.styleMedium14(
-                          ColorManager.grey80,
+                          ColorManager.textSecondary,
 
                           context,
                         ),
@@ -104,7 +108,7 @@ class DoctorsDataWidget extends StatelessWidget {
                             '${doctor.rating} (${doctor.reviewsCount} reviews)',
 
                             style: AppTextStyle.styleMedium12(
-                              ColorManager.grey80,
+                              ColorManager.textSecondary,
 
                               context,
                             ),

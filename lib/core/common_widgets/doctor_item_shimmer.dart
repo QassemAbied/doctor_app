@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -14,9 +13,8 @@ class DoctorItemShimmer extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 10),
       child: Row(
         children: [
-          /// Doctor Image
           Shimmer.fromColors(
-            baseColor: ColorManager.grey20,
+            baseColor: ColorManager.grey30,
             highlightColor: Colors.white,
             child: Container(
               height: 100,
@@ -30,7 +28,6 @@ class DoctorItemShimmer extends StatelessWidget {
 
           horizontalSpace(10),
 
-          /// Doctor Info
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -48,8 +45,8 @@ class DoctorItemShimmer extends StatelessWidget {
 
   Widget _shimmerLine({required double width}) {
     return Shimmer.fromColors(
-      baseColor: ColorManager.grey20,
-      highlightColor: Colors.white,
+      baseColor: ColorManager.grey30,
+      highlightColor: ColorManager.whiteColor,
       child: Container(
         height: 14,
         width: width,
