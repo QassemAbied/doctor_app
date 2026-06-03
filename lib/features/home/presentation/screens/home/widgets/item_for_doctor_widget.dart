@@ -1,4 +1,5 @@
 import 'package:doctor_app/core/common_widgets/custom_cached_network_image.dart';
+import 'package:doctor_app/core/utils/app_router/routes.dart';
 import 'package:doctor_app/features/home/domain/entities/doctor_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -6,7 +7,6 @@ import '../../../../../../core/theming/app_color.dart';
 import '../../../../../../core/theming/app_styles.dart';
 import '../../../../../../core/utils/extension.dart';
 import '../../../../../../core/utils/spacing.dart';
-
 
 class ItemForDoctorWidget extends StatelessWidget {
   final List<DoctorEntity>? doctors;
@@ -19,8 +19,6 @@ class ItemForDoctorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: GestureDetector(
@@ -28,7 +26,7 @@ class ItemForDoctorWidget extends StatelessWidget {
           final id = doctors?[index].id;
 
           if (id == null) return;
-          context.pushNamed('/detailsDoctors', arguments: id);
+          context.pushNamed(Routes.detailsDoctorsScreen, arguments: id);
         },
         child: Row(
           children: [
@@ -39,19 +37,18 @@ class ItemForDoctorWidget extends StatelessWidget {
                 border: Border.all(color: ColorManager.primaryColor),
               ),
               child: Skeletonizer.of(context).enabled
-
                   ? Bone.square(
-                size: 100,
-                borderRadius:
-                BorderRadius.circular(12),
-              )
-
-                  :CustomNetworkImage(
-                imageUrl: doctors?[index].image ?? '',
-                height: 100,
-                width: 100,
-                fit: BoxFit.cover,
-              ),
+                      size: 100,
+                      borderRadius: BorderRadius.circular(12),
+                    )
+                  : CustomNetworkImage(
+                      heroTag: doctors?[index].id,
+                      enableHero: true,
+                      imageUrl: doctors?[index].image ?? '',
+                      height: 100,
+                      width: 100,
+                      fit: BoxFit.cover,
+                    ),
             ),
 
             horizontalSpace(10),
