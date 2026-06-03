@@ -19,4 +19,6 @@ class DummyData {
         (index) => DoctorEntity.fake(),
   );
 
+  static DoctorEntity fakeDetailsDoctor = DoctorEntity.fake();
+
 }
