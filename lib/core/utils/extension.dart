@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 extension Navigation on BuildContext {
   // 🔹 يفتح شاشة جديدة باستخدام اسم route
   // المستخدم يقدر يرجع للشاشة اللي قبلها (push عادي)
@@ -63,6 +62,8 @@ extension Navigation on BuildContext {
     ).popUntil((route) => route.settings.name == routeName || route.isFirst);
   }
 }
+
+
 
 
 
