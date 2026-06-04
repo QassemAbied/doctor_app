@@ -12,6 +12,8 @@ class AppTextField extends StatelessWidget {
   final Function(String?) validator;
   final bool? enable;
   final String? helperText;
+  final Function(String)? onChange;
+
   const AppTextField({
     super.key,
     required this.hintText,
@@ -25,6 +27,7 @@ class AppTextField extends StatelessWidget {
     this.helperText,
     this.labelText,
     this.enabled,
+    this.onChange,
   });
 
   @override
@@ -33,6 +36,7 @@ class AppTextField extends StatelessWidget {
       autofocus: enable ?? false,
       keyboardType: textInputType,
       controller: controller,
+      onChanged: onChange,
       obscureText: isPassword ?? false,
       decoration: InputDecoration(
         enabled: enabled ?? true,
