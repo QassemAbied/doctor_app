@@ -12,6 +12,23 @@ class DoctorCubit extends Cubit<DoctorState> {
   List<DoctorEntity> allDoctors = [];
 
   List<DoctorEntity> filteredDoctors = [];
+  List<DoctorEntity> searchDoctors = [];
+  Future<void> searchDoctorsByName({required String query}) async {
+    if (query.isEmpty) {
+      emit(DoctorSuccess(allDoctors));
+
+      return;
+    }
+
+    searchDoctors = allDoctors
+        .where(
+          (doctor) => doctor.name.toLowerCase().contains(query.toLowerCase()),
+        )
+        .toList();
+
+    emit(SearchDoctorSuccess(searchDoctors));
+  }
+
   Future<void> getDoctors() async {
     if (isClosed) return;
     emit(DoctorLoading());

@@ -19,3 +19,11 @@ class DoctorError extends DoctorState {
   DoctorError(this.message);
 }
 
+
+class SearchDoctorSuccess extends DoctorState {
+  final List<DoctorEntity> searchDoctors;
+
+  SearchDoctorSuccess(this.searchDoctors);
+}
+
+
