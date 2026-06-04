@@ -1,5 +1,5 @@
 import 'package:doctor_app/core/utils/spacing.dart';
-import 'package:doctor_app/features/home/presentation/controller/doctor/doctors_cubit.dart';
+import 'package:doctor_app/features/home/presentation/controller/recommendation/recommendation_cubit.dart';
 import 'package:doctor_app/features/home/presentation/screens/recommendation_doctor/widget/search_items_widget.dart';
 import 'package:doctor_app/features/home/presentation/screens/recommendation_doctor/widget/sort_widget.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +36,7 @@ class _RecommendationDoctorScreenState
                           controller: searchController,
                           hintText: 'Search',
                           onChange: (value) {
-                            context.read<DoctorCubit>().searchDoctorsByName(
+                            context.read<RecommendationCubit>().searchDoctorsByName(
                               query: value,
                             );
                           },
