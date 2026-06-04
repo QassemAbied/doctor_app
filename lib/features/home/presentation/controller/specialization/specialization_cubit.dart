@@ -14,20 +14,6 @@ class SpecializationCubit extends Cubit<SpecializationState> {
     selectIndex = index;
     emit(SpecializationSuccess(categories));
   }
-
-  void filterByCategory(int? categoryId) {
-    if (categoryId == null) {
-      // emit(HomeState.success(searchAllDoctors));
-    } else {
-      // final filter = searchAllDoctors
-      //     .where(
-      //       (e) => e.name.toLowerCase().contains(query.toLowerCase()),
-      //     )
-      //     .toList();
-      // emit(HomeState.success(filter));
-      // emit(HomeState.success(searchAllDoctors));
-    }
-  }
   Future<void> getSpecialization() async {
     emit(SpecializationLoading());
     final response = await _getSpecializationUseCase();
