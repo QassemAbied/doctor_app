@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-
 import '../../../domain/entities/doctor_entity.dart';
 import '../../../domain/use_case/doctor_usecase.dart';
 import 'doctors_state.dart';
@@ -12,22 +11,6 @@ class DoctorCubit extends Cubit<DoctorState> {
   List<DoctorEntity> allDoctors = [];
 
   List<DoctorEntity> filteredDoctors = [];
-  List<DoctorEntity> searchDoctors = [];
-  Future<void> searchDoctorsByName({required String query}) async {
-    if (query.isEmpty) {
-      emit(DoctorSuccess(allDoctors));
-
-      return;
-    }
-
-    searchDoctors = allDoctors
-        .where(
-          (doctor) => doctor.name.toLowerCase().contains(query.toLowerCase()),
-        )
-        .toList();
-
-    emit(SearchDoctorSuccess(searchDoctors));
-  }
 
   Future<void> getDoctors() async {
     if (isClosed) return;

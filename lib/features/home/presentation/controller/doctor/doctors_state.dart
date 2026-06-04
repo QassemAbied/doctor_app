@@ -20,10 +20,5 @@ class DoctorError extends DoctorState {
 }
 
 
-class SearchDoctorSuccess extends DoctorState {
-  final List<DoctorEntity> searchDoctors;
-
-  SearchDoctorSuccess(this.searchDoctors);
-}
 
 
