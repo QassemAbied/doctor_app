@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../domain/entities/doctor_entity.dart';
-import '../../../controller/doctor/doctors_cubit.dart';
-import '../../../controller/doctor/doctors_state.dart';
+import '../../../controller/recommendation/recommendation_cubit.dart';
+import '../../../controller/recommendation/recommendation_state.dart';
 import '../../home/widgets/empty_doctor_widget.dart';
 import '../../home/widgets/item_for_doctor_widget.dart';
 
@@ -12,23 +11,23 @@ class SearchItemsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  BlocBuilder<DoctorCubit, DoctorState>(
+    return  BlocBuilder<RecommendationCubit, RecommendationState>(
       builder: (context, state) {
-        if (state is DoctorLoading) {
+        if (state is RecommendationLoading) {
           return const SliverToBoxAdapter(
             child: Center(child: CircularProgressIndicator()),
           );
         }
 
-        if (state is DoctorError) {
+        if (state is RecommendationError) {
           return SliverToBoxAdapter(child: Text(state.message));
         }
 
         final List<DoctorEntity> data;
 
-        if (state is SearchDoctorSuccess) {
+        if (state is SearchRecommendationSuccess) {
           data = state.searchDoctors;
-        } else if (state is DoctorSuccess) {
+        } else if (state is RecommendationSuccess) {
           data = state.doctors;
         } else {
           data = [];
