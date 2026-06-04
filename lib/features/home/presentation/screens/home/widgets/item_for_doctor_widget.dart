@@ -36,7 +36,7 @@ class ItemForDoctorWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: ColorManager.primaryColor),
               ),
-              child: Skeletonizer.of(context).enabled
+              child: Skeletonizer.maybeOf(context)?.enabled ?? false
                   ? Bone.square(
                       size: 100,
                       borderRadius: BorderRadius.circular(12),
