@@ -3,24 +3,19 @@ import 'package:flutter/material.dart';
 import '../../../../../../core/theming/app_color.dart';
 import '../../../../../../core/theming/app_styles.dart';
 import '../../../../../../core/utils/spacing.dart';
-import 'custom_texts_appointment.dart';
-
-
+import '../../shared_widget/custom_texts_appointment.dart';
 
 class AppointPrice extends StatelessWidget {
   final double price;
-  const AppointPrice({super.key,required this.price});
+  const AppointPrice({super.key, required this.price});
 
   @override
   Widget build(BuildContext context) {
-    final subPrice= int.parse(price.toStringAsFixed(0)) / 2;
-    final total= price+subPrice;
+    final subPrice = int.parse(price.toStringAsFixed(0)) / 2;
+    final total = price + subPrice;
     return Column(
       children: [
-        buildText(
-          'Payment Info',
-          context
-        ),
+        buildText('Payment Info', context),
         verticalSpace(20),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -81,7 +76,6 @@ class AppointPrice extends StatelessWidget {
             ),
           ],
         ),
-
       ],
     );
   }
