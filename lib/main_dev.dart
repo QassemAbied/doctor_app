@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'core/di/dependey.dart';
 import 'core/services/shared_pref/shared_pref_keys.dart';
 import 'core/services/shared_pref/shared_pref_helpers.dart';
 import 'core/helpers/supabase_helper.dart';
@@ -8,7 +7,6 @@ import 'features/doctor_app.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await SupAbaseHelper.init();
-  setupGetIt();
   await checkLoggedInUser();
   runApp(DoctorApp(routerApp: RouterApp()));
 }
