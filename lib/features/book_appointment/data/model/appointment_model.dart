@@ -1,38 +1,70 @@
+import 'package:doctor_app/features/home/data/models/doctor_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../domain/entities/appointment_entity.dart';
+import '../../../../core/utils/eunm.dart';
 
 part 'appointment_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
+class AppointmentModel {
 
-class AppointmentModel
-    extends AppointmentEntity {
+  final String id;
+
+  @JsonKey(name: 'doctor_id')
+  final String doctorId;
+
+  @JsonKey(name: 'user_id')
+  final String userId;
+
+  @JsonKey(name: 'appointment_date')
+  final String appointmentDate;
+
+  @JsonKey(name: 'appointment_time')
+  final String appointmentTime;
+
+  @JsonKey(name: 'appointment_type')
+  final String appointmentType;
+
+  @JsonKey(name: 'payment_method')
+  final String paymentMethod;
+
+  final double price;
+  @JsonKey(
+    unknownEnumValue:
+    Status.upcoming,
+  )
+  final Status status;
+
+  @JsonKey(name: 'doctors')
+  final DoctorModel doctor;
 
   const AppointmentModel({
 
-    required super.id,
+    required this.id,
 
-    required super.doctorId,
+    required this.doctorId,
 
-    required super.userId,
+    required this.userId,
 
-    required super.appointmentDate,
+    required this.appointmentDate,
 
-    required super.appointmentTime,
+    required this.appointmentTime,
 
-    required super.appointmentType,
+    required this.appointmentType,
 
-    required super.paymentMethod,
+    required this.paymentMethod,
 
-    required super.price,
+    required this.price,
 
-    required super.status,
+    required this.status,
+
+    required this.doctor,
   });
 
   factory AppointmentModel.fromJson(
       Map<String, dynamic> json,
-      ) => _$AppointmentModelFromJson(json);
+      ) =>
+      _$AppointmentModelFromJson(json);
 
   Map<String, dynamic> toJson() =>
       _$AppointmentModelToJson(this);
