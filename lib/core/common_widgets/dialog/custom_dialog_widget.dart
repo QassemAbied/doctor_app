@@ -18,7 +18,7 @@ class CustomDialogWidget {
       builder: (context) {
         return AlertDialog(
           title: Text(
-            'ERORR',
+            text,
             style: AppTextStyle.styleBold18(ColorManager.fillRed, context),
           ),
           content: Text(
@@ -30,11 +30,12 @@ class CustomDialogWidget {
     );
   }
 
-  static void showSnackBar(BuildContext context, String text){
+  static void showSnackBar(BuildContext context, String text) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: ColorManager.primaryColor,
-        content: Text(text,
+        content: Text(
+          text,
           style: AppTextStyle.styleBold16(ColorManager.whiteColor, context),
         ),
       ),
