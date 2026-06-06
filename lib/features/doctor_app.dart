@@ -1,4 +1,6 @@
 import 'package:doctor_app/features/auth/presentation/controller/auth_cubit.dart';
+import 'package:doctor_app/features/home/presentation/controller/doctor/doctors_cubit.dart';
+import 'package:doctor_app/features/home/presentation/controller/recommendation/recommendation_cubit.dart';
 import 'package:doctor_app/features/home/presentation/controller/specialization/specialization_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,9 +22,12 @@ class DoctorApp extends StatelessWidget {
         BlocProvider(
           create: (context) => sl<SpecializationCubit>()..getSpecialization(),
         ),
-        // BlocProvider(
-        //   create: (context) =>BookAppointmentCubit(),
-        // ),
+        BlocProvider(
+          create: (context) => sl<DoctorCubit>()..getDoctors(),
+        ),
+        BlocProvider(
+          create: (context) => sl<RecommendationCubit>()..getUserLocation()..getDoctors()..getSpecialization(),
+        ),
         BlocProvider(
           create: (context) => sl<AuthCubit>()..getUser(),
         ),
