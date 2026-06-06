@@ -1,47 +1,35 @@
 import 'package:doctor_app/core/theming/app_color.dart';
-import 'package:doctor_app/features/auth/presentation/controller/auth_cubit.dart';
-import 'package:doctor_app/features/home/home_view/home_screen.dart';
-import 'package:doctor_app/features/search/search_view/search_screen.dart';
+import 'package:doctor_app/features/home/presentation/screens/home/home_screen.dart';
 import 'package:doctor_app/message_scr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'core/di/dependey.dart';
-import 'core/utils/di/injection_container.dart';
-import 'features/home/logic/cubit/home_cubit.dart';
-import 'features/my_appointment/logic/my_appointment_cubit.dart';
-import 'features/my_appointment/view/my_appointment_screen.dart';
+import 'features/book_appointment/presentation/screen/my_appointment/my_appointment_screen.dart';
 import 'features/profile/screens/profile/profile_screen.dart';
-
-
+import 'features/search/search_view/search_screen.dart';
 
 class BottonNavBarView extends StatefulWidget {
-  const BottonNavBarView({super.key});
+  final int initialIndex;
+  const BottonNavBarView({super.key, this.initialIndex = 0});
 
   @override
   State<BottonNavBarView> createState() => _BottonNavBarViewState();
 }
 
 class _BottonNavBarViewState extends State<BottonNavBarView> {
+  @override
+  void initState() {
+    currentIndex=widget.initialIndex;
+    super.initState();
+  }
   final List<Widget> screens = [
-    BlocProvider(
-      key: const ValueKey('home'),
-      create: (context) => getIt<HomeCubit>()..loadHome(),
-      child: const HomeScreen(),
-    ),
+    const HomeScreen(),
     const MessageScr(),
-    BlocProvider(
-      key: const ValueKey('search'),
-      create: (context) => getIt<HomeCubit>()..loadHome(),
-      child: SearchScreen(),
-    ),
-    BlocProvider(
-      create: (context) => getIt<MyAppointmentCubit>()..emitMyAppointment(),
-      child: MyAppointmentScreen(),
-    ),
+    SearchScreen(),
+  MyAppointmentScreen(),
+
     ProfileScreen(),
   ];
-  int currentIndex = 0;
+ late int currentIndex ;
 
   @override
   Widget build(BuildContext context) {
