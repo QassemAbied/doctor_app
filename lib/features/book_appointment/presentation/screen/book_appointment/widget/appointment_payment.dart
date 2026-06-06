@@ -10,7 +10,7 @@ import '../../../../../../core/theming/app_styles.dart';
 import '../../../../../../core/utils/spacing.dart';
 import '../../../controller/book_appointment_cubit.dart';
 import '../../../controller/book_appointment_state.dart';
-import 'custom_texts_appointment.dart';
+import '../../shared_widget/custom_texts_appointment.dart';
 
 class AppointmentPayments extends StatelessWidget {
   const AppointmentPayments({super.key});
