@@ -1,29 +1,28 @@
 import 'package:doctor_app/botton_nav_bar.dart';
 import 'package:doctor_app/core/utils/app_router/routes.dart';
-import 'package:doctor_app/features/apponitments/logic/appiotment_store_cubit.dart';
-import 'package:doctor_app/features/apponitments/view/appointments_screen.dart';
 import 'package:doctor_app/features/auth/domain/entities/user_entity.dart';
 import 'package:doctor_app/features/auth/presentation/screens/forget_possword/forget_password_screen.dart';
 import 'package:doctor_app/features/auth/presentation/screens/sign_in/login_scre.dart';
 import 'package:doctor_app/features/auth/presentation/controller/auth_cubit.dart';
 import 'package:doctor_app/features/auth/presentation/screens/update_password/update_password_screen.dart';
-import 'package:doctor_app/features/details_doctor/view/details_doctors_screen.dart';
-import 'package:doctor_app/features/home/home_view/home_screen.dart';
-import 'package:doctor_app/features/home/logic/cubit/home_cubit.dart';
-import 'package:doctor_app/features/my_appointment/logic/my_appointment_cubit.dart';
-import 'package:doctor_app/features/my_appointment/view/my_appointment_screen.dart';
+import 'package:doctor_app/features/details_doctor/presentation/screen/details_doctors_screen.dart';
+import 'package:doctor_app/features/home/presentation/screens/home/home_screen.dart';
+import 'package:doctor_app/features/home/presentation/screens/recommendation_doctor/recommendation_doctor_screen.dart';
+import 'package:doctor_app/features/home/presentation/screens/specialization/specialization_screen.dart';
 import 'package:doctor_app/features/onboarding/onboarding_scre.dart';
 import 'package:doctor_app/features/search/search_view/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../features/auth/presentation/screens/sign_up/sign_up_screen.dart';
-import '../../../features/details_doctor/data/models/details_doctors_models.dart';
+import '../../../features/book_appointment/domain/entities/appointment_params.dart';
+import '../../../features/book_appointment/presentation/controller/book_appointment_cubit.dart';
+import '../../../features/book_appointment/presentation/screen/book_appointment/book_appointment_screen.dart';
+import '../../../features/book_appointment/presentation/screen/done_appointment/done_appointment.dart';
+import '../../../features/home/domain/entities/doctor_entity.dart';
 import '../../../features/map_smiple.dart';
 import '../../../features/profile/screens/profile/profile_screen.dart';
 import '../../../features/profile/screens/update_profile/update_profile_screen.dart';
-import '../../di/dependey.dart';
 import '../di/injection_container.dart';
-
 
 class RouterApp {
   Route? generateRoute(RouteSettings settings) {
@@ -45,6 +44,10 @@ class RouterApp {
         {
           return MaterialPageRoute(builder: (_) => ForgetPasswordScreen());
         }
+      case Routes.specializationScreen:
+        {
+          return MaterialPageRoute(builder: (_) => SpecializationScreen());
+        }
       case Routes.updatePasswordScreen:
         {
           return MaterialPageRoute(
@@ -65,63 +68,71 @@ class RouterApp {
         }
 
       case Routes.bottonNavScreen:
+      final arg = settings.arguments as int? ?? 0;
         {
-          return MaterialPageRoute(builder: (_) => BottonNavBarView());
+          return MaterialPageRoute(builder: (_) => BottonNavBarView(initialIndex: arg,));
         }
       case Routes.mapSampleScreen:
         {
-          return MaterialPageRoute(builder: (_) => MapSample());
+          return MaterialPageRoute(builder: (_) => const MapSample());
         }
       case Routes.homeScreen:
         {
-          return MaterialPageRoute(
-            builder: (_) => MultiBlocProvider(
-              providers: [
-                BlocProvider(create: (context) => getIt<HomeCubit>()),
-                // BlocProvider(
-                //   create: (context) => getIt<ProfileCubit>()..emitProfile(),
-                // ),
-              ],
-              child: HomeScreen(),
-            ),
-          );
+          return MaterialPageRoute(builder: (_) => HomeScreen());
         }
       case Routes.searchScreen:
         {
           return MaterialPageRoute(builder: (_) => SearchScreen());
         }
+      case Routes.recommendationDoctorScreen:
+        final isShow = settings.arguments as bool;
+        {
+          return MaterialPageRoute(
+            builder: (_) => RecommendationDoctorScreen(isShow: isShow),
+          );
+        }
       case Routes.detailsDoctorsScreen:
-        final id = settings.arguments as int;
+        final id = settings.arguments as String;
         {
           return MaterialPageRoute(
-            builder: (_) => DetailsDoctorsScreen(idDoctors: id),
+            builder: (_) =>
+                DetailsDoctorsScreen(key: ValueKey(id), doctorId: id),
           );
         }
-      case Routes.appointmentsScreen:
-        final dataForDoctors = settings.arguments as DataForDoctors;
+
+      case Routes.bookAppointmentScreen:
         {
-          return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-              create: (context) => getIt<AppointmentStoreCubit>(),
-              child: AppointmentsScreen(dataForDoctors: dataForDoctors),
-            ),
-          );
-        }
-      case Routes.myAppointmentsScreen:
-        {
+          final dataForDoctors = settings.arguments as DoctorEntity;
           return MaterialPageRoute(
             builder: (context) => BlocProvider(
-              create: (context) =>
-                  getIt<MyAppointmentCubit>()..emitMyAppointment(),
-              child: MyAppointmentScreen(),
+              create: (context) => sl<BookAppointmentCubit>(),
+              child: BookAppointmentScreen(dataForDoctors: dataForDoctors),
             ),
           );
         }
+      case Routes.doneAppointments:
+        final args = settings.arguments as Map<String, dynamic>;
+
+        final appointmentParams =
+            args['appointmentParams'] as AppointmentParams;
+        final cubit = args['cubit'] as BookAppointmentCubit;
+        final button = args['button'] as Widget;
+        final showState = args['showState'] as bool;
+        final listener = args['listener'] as Widget;
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider.value(
+            value: cubit,
+            child: DoneAppointmentScreen(
+              appointmentParams: appointmentParams,
+              showState: showState,
+              listener: listener,
+              child: button,
+            ),
+          ),
+        );
       case Routes.profilesScreen:
         {
-          return MaterialPageRoute(
-            builder: (_) => ProfileScreen(),
-          );
+          return MaterialPageRoute(builder: (_) => ProfileScreen());
         }
       case Routes.updateProfileScreen:
         final profileResponse = settings.arguments as UserEntity;
