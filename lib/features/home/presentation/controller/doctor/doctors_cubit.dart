@@ -6,7 +6,8 @@ import 'doctors_state.dart';
 class DoctorCubit extends Cubit<DoctorState> {
   final GetDoctorsUseCase _getDoctorsUseCase;
 
-  DoctorCubit(this._getDoctorsUseCase) : super(DoctorInitial());
+  DoctorCubit(this._getDoctorsUseCase,)
+    : super(DoctorInitial());
 
   List<DoctorEntity> allDoctors = [];
 
@@ -37,4 +38,6 @@ class DoctorCubit extends Cubit<DoctorState> {
     if (isClosed) return;
     emit(DoctorSuccess(filteredDoctors));
   }
+
+
 }
