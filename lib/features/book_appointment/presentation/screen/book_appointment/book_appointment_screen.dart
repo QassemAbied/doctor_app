@@ -1,7 +1,7 @@
 import 'package:doctor_app/core/utils/spacing.dart';
 import 'package:doctor_app/features/book_appointment/presentation/screen/book_appointment/widget/appointment_payment.dart';
 import 'package:doctor_app/features/book_appointment/presentation/screen/book_appointment/widget/appointment_summary.dart';
-import 'package:doctor_app/features/book_appointment/presentation/screen/book_appointment/widget/appointments_date.dart';
+import 'package:doctor_app/features/book_appointment/presentation/screen/shared_widget/appointments_date.dart';
 import 'package:doctor_app/features/book_appointment/presentation/screen/book_appointment/widget/stepper_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,11 +27,14 @@ class BookAppointmentScreen extends StatelessWidget {
                 controller: context.read<BookAppointmentCubit>().pageController,
                 onPageChanged: (value) {
                   context.read<BookAppointmentCubit>().selectTapBar(value);
-
                 },
-                physics:  BouncingScrollPhysics(),
+                physics: BouncingScrollPhysics(),
                 children: [
-                  AppointmentsDate(),
+                  AppointmentsDate(
+                    onPressed: () {
+                      context.read<BookAppointmentCubit>().selectTapBar(1);
+                    },
+                  ),
                   AppointmentPayments(),
                   AppointmentSummary(dataForDoctors: dataForDoctors),
                 ],
