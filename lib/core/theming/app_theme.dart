@@ -132,6 +132,15 @@ class AppTheme {
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           ),
+          textStyle: WidgetStatePropertyAll(
+            AppTextStyle.styleBold16(ColorManager.primaryColor, context),
+          ),
+          elevation: WidgetStatePropertyAll(0),
+          backgroundColor: WidgetStatePropertyAll(ColorManager.whiteColor),
+          padding: WidgetStatePropertyAll(
+            const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
+          ),
+
         ),
       ),
 
@@ -154,9 +163,7 @@ class AppTheme {
         space: 10,
         indent: 10,
         endIndent: 10,
-
       ),
-
 
       // ================= ICON =================
       iconTheme: IconThemeData(color: ColorManager.grey90),
@@ -168,24 +175,38 @@ class AppTheme {
       radioTheme: RadioThemeData(
         fillColor: WidgetStateProperty.all(ColorManager.primaryColor),
         overlayColor: WidgetStateProperty.all(ColorManager.primaryColor),
-
-        ),
+      ),
       checkboxTheme: CheckboxThemeData(
         fillColor: WidgetStateProperty.all(ColorManager.primaryColor),
         overlayColor: WidgetStateProperty.all(ColorManager.primaryColor),
-        ),
+      ),
       switchTheme: SwitchThemeData(
         thumbColor: WidgetStateProperty.all(ColorManager.primaryColor),
         trackColor: WidgetStateProperty.all(ColorManager.primaryColor),
         overlayColor: WidgetStateProperty.all(ColorManager.primaryColor),
-        ),
+      ),
       sliderTheme: SliderThemeData(
         activeTrackColor: ColorManager.primaryColor,
         inactiveTrackColor: ColorManager.grey40,
         thumbColor: ColorManager.primaryColor,
+      ),
 
-      )
-
+      tabBarTheme: TabBarThemeData(
+        indicatorColor: ColorManager.primaryColor,
+        labelColor: ColorManager.primaryColor,
+        unselectedLabelColor: ColorManager.grey80,
+        labelStyle: AppTextStyle.styleBold16(
+          ColorManager.primaryColor,
+          context,
+        ),
+        unselectedLabelStyle: AppTextStyle.styleMedium16(
+          ColorManager.grey80,
+          context,
+        ),
+        indicatorSize: TabBarIndicatorSize.label,
+        labelPadding: const EdgeInsets.symmetric(horizontal: 16),
+        dividerColor: ColorManager.grey50,
+      ),
     );
   }
 }
