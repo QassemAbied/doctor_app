@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppTextField extends StatelessWidget {
   final String? hintText;
   final String? labelText;
-  final String? prefixIcon;
+  final Widget? prefixIcon;
   final TextInputType? textInputType;
   final TextEditingController? controller;
   final Widget? suffix;
