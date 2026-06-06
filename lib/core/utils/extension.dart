@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 extension Navigation on BuildContext {
   // 🔹 يفتح شاشة جديدة باستخدام اسم route
   // المستخدم يقدر يرجع للشاشة اللي قبلها (push عادي)
@@ -33,7 +34,7 @@ extension Navigation on BuildContext {
   Future<T?> pushNamedAndRemoveUntil<T>(String routeName, {Object? arguments}) {
     return Navigator.of(this).pushNamedAndRemoveUntil<T>(
       routeName,
-          (route) => false,
+      (route) => false,
       arguments: arguments,
     );
   }
@@ -63,14 +64,8 @@ extension Navigation on BuildContext {
   }
 }
 
-
-
-
-
-
-
-
-
 extension StringExtension on String? {
   bool isNullOrEmpty() => this == null || this == "";
 }
+
+
