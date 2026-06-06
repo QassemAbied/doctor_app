@@ -1,3 +1,4 @@
+import '../../features/book_appointment/domain/entities/appointment_entity.dart';
 import '../../features/home/domain/entities/doctor_entity.dart';
 import '../../features/home/domain/entities/specialization_entity.dart';
 
@@ -20,5 +21,11 @@ class DummyData {
   );
 
   static DoctorEntity fakeDetailsDoctor = DoctorEntity.fake();
+  static List<AppointmentEntity>
+  fakeAppointments = List.generate(
+    6,
+        (index) => AppointmentEntity.fake(),
+  );
+
 
 }
