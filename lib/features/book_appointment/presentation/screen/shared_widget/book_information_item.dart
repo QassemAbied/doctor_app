@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../../../../core/theming/app_color.dart';
-import '../../../../../../core/theming/app_styles.dart';
-import '../../../../../../core/utils/spacing.dart';
+import '../../../../../core/theming/app_color.dart';
+import '../../../../../core/theming/app_styles.dart';
+import '../../../../../core/utils/spacing.dart';
 
 class BookInformationItem extends StatelessWidget {
   final String title1;

@@ -2,35 +2,23 @@ import 'package:doctor_app/core/common_widgets/custom_elevated_botton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import '../../../../../../core/constants/app_images.dart';
-import '../../../../../../core/theming/app_color.dart';
-import '../../../../../../core/theming/app_styles.dart';
-import '../../../../../../core/utils/eunm.dart';
-import '../../../../../../core/utils/spacing.dart';
-import '../../../controller/book_appointment_cubit.dart';
-import '../../../controller/book_appointment_state.dart';
+import '../../../../../core/constants/app_images.dart';
+import '../../../../../core/theming/app_color.dart';
+import '../../../../../core/theming/app_styles.dart';
+import '../../../../../core/utils/eunm.dart';
+import '../../../../../core/utils/spacing.dart';
+import '../../controller/book_appointment_cubit.dart';
+import '../../controller/book_appointment_state.dart';
 import 'custom_texts_appointment.dart';
 
 class AppointmentsDate extends StatelessWidget {
-  AppointmentsDate({super.key});
+  final VoidCallback onPressed;
+  const AppointmentsDate({super.key, required this.onPressed});
 
-  List<DateTime> showDate() {
-    final now = DateTime.now();
-    return List.generate(30, (i) => now.add(Duration(days: i)));
-  }
-
-  final List<String> timeAppointments = [
-    '08:00 AM',
-    '08:30 AM',
-    '09:00 AM',
-    '09:30 AM',
-    '10:00 AM',
-    '11:00 AM',
-  ];
 
   @override
   Widget build(BuildContext context) {
-    List<DateTime> date = showDate();
+    List<DateTime> date = context.read<BookAppointmentCubit>().showDate();
     return BlocBuilder<BookAppointmentCubit, BookAppointmentState>(
       builder: (context, state) {
         final cubit = context.read<BookAppointmentCubit>();
@@ -107,7 +95,7 @@ class AppointmentsDate extends StatelessWidget {
                 final isSelected = cubit.indexTime == index;
                 return GestureDetector(
                   onTap: () {
-                    cubit.selectTime(index, timeAppointments[index]);
+                    cubit.selectTime(index, cubit.timeList[index]);
                   },
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 250),
@@ -121,14 +109,14 @@ class AppointmentsDate extends StatelessWidget {
                     ),
                     child: Center(
                       child: buildText2(
-                        timeAppointments[index],
+                        cubit.timeList[index],
                         context,
                         isSelected,
                       ),
                     ),
                   ),
                 );
-              }, childCount: timeAppointments.length),
+              }, childCount: cubit.timeList.length),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 10,
@@ -190,9 +178,7 @@ class AppointmentsDate extends StatelessWidget {
             SliverToBoxAdapter(
               child: CustomElevatedButton(
                 buttonName: 'Book Appointment',
-                onPressed: () {
-                  cubit.selectTapBar(1);
-                },
+                onPressed: onPressed,
               ),
             ),
           ],

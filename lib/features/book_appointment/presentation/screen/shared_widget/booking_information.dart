@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../../../../../../core/constants/app_svgs.dart';
-import '../../../../../../core/utils/spacing.dart';
-import '../../../../domain/entities/appointment_params.dart';
+import '../../../../../core/constants/app_svgs.dart';
+import '../../../../../core/utils/spacing.dart';
+import '../../../domain/entities/appointment_params.dart';
 import 'book_information_item.dart';
 import 'custom_texts_appointment.dart';
 
