@@ -1,26 +1,33 @@
+import '../../../home/domain/mapper/doctor_mapper.dart';
 import '../../data/model/appointment_model.dart';
-import '../../domain/entities/appointment_entity.dart';
+import '../entities/appointment_entity.dart';
 
-extension AppointmentMapper on AppointmentModel {
-  AppointmentEntity toEntity() {
+class AppointmentMapper {
+  static AppointmentEntity toEntity(AppointmentModel model) {
     return AppointmentEntity(
-      id: id,
+      id: model.id,
 
-      doctorId: doctorId,
+      doctorId: model.doctorId,
 
-      userId: userId,
+      userId: model.userId,
 
-      appointmentDate: appointmentDate,
+      appointmentDate: model.appointmentDate,
 
-      appointmentTime: appointmentTime,
+      appointmentTime: model.appointmentTime,
 
-      appointmentType: appointmentType,
+      appointmentType: model.appointmentType,
 
-      paymentMethod: paymentMethod,
+      paymentMethod: model.paymentMethod,
 
-      price: price,
+      price: model.price,
 
-      status: status,
+      status: model.status,
+
+      doctor: DoctorMapper.toEntity(model.doctor),
     );
+  }
+
+  static List<AppointmentEntity> toEntityList(List<AppointmentModel> models) {
+    return models.map((e) => toEntity(e)).toList();
   }
 }
