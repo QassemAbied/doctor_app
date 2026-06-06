@@ -37,12 +37,12 @@ class CustomNetworkImage extends StatelessWidget {
       placeholder: (context, url) =>
           _ShimmerBox(width: width, height: height, borderRadius: borderRadius),
 
-      errorWidget: (context, url, error) => Expanded(
-        child: _ErrorWidget(
-          onRetry: () {
-            (context as Element).markNeedsBuild();
-          },
-        ),
+      errorWidget:
+          (context, url, error) => _ErrorWidget(
+        onRetry: () {
+          (context as Element)
+              .markNeedsBuild();
+        },
       ),
     );
 
@@ -52,7 +52,10 @@ class CustomNetworkImage extends StatelessWidget {
     );
 
     if (enableHero && heroTag != null) {
-      image = Hero(tag: heroTag!, child: image);
+      image = Hero(tag: heroTag!,
+          transitionOnUserGestures:
+          true,
+          child: image);
     }
 
     return image;
