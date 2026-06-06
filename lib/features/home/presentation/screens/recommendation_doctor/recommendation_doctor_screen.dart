@@ -5,9 +5,13 @@ import 'package:doctor_app/features/home/presentation/screens/recommendation_doc
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/common_widgets/custom_text_filed.dart';
+import '../../../../../core/theming/app_color.dart';
+import '../../../../../core/theming/app_styles.dart';
+import 'widget/neabry_doctor_widget.dart';
 
 class RecommendationDoctorScreen extends StatefulWidget {
-  const RecommendationDoctorScreen({super.key});
+  const RecommendationDoctorScreen({super.key,  this.isShow= false});
+ final bool isShow;
 
   @override
   State<RecommendationDoctorScreen> createState() =>
@@ -21,14 +25,17 @@ class _RecommendationDoctorScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Recommendation Doctor')),
+      appBar:widget.isShow?
+      AppBar(title: Text('Recommendation Doctor')):null,
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
+                crossAxisAlignment:  CrossAxisAlignment.start,
                 children: [
+
                   Row(
                     children: [
                       Expanded(
@@ -56,6 +63,15 @@ class _RecommendationDoctorScreenState
                     ],
                   ),
                   verticalSpace(20),
+                  widget.isShow?  NearbyDoctorWidget(): SizedBox.shrink(),
+                  verticalSpace(20),
+                  Text(
+                    'All Doctors',
+                    style: AppTextStyle.styleSemiBold18(
+                      ColorManager.textPrimary,
+                      context,
+                    ),
+                  ),
                 ],
               ),
             ),
