@@ -1,3 +1,5 @@
+import '../../domain/entities/appointment_entity.dart';
+
 class BookAppointmentState {}
 
 class BookAppointmentInitial extends BookAppointmentState {}
@@ -15,4 +17,30 @@ class BookAppointmentSuccess extends BookAppointmentState {}
 class BookAppointmentFailure extends BookAppointmentState {
   final String message;
   BookAppointmentFailure(this.message);
+}
+
+
+class AppointmentLoading extends BookAppointmentState {}
+
+class AppointmentSuccess extends BookAppointmentState {
+  final List<AppointmentEntity> appointments;
+  AppointmentSuccess(this.appointments);
+}
+
+class AppointmentFailure extends BookAppointmentState {
+  final String message;
+ AppointmentFailure(this.message);
+}
+
+
+
+class RescheduleAppointmentLoading extends BookAppointmentState {}
+
+class RescheduleAppointmentSuccess extends BookAppointmentState {
+
+}
+
+class RescheduleAppointmentFailure extends BookAppointmentState {
+  final String message;
+  RescheduleAppointmentFailure(this.message);
 }
