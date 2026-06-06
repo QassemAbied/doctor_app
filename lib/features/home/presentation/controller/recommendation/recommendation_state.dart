@@ -42,3 +42,8 @@ class RecommendationSpecializationError extends RecommendationState {
   final String message;
   RecommendationSpecializationError(this.message);
 }
+
+
+
+
+
