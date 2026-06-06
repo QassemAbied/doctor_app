@@ -5,16 +5,30 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../core/common_widgets/custom_elevated_botton.dart';
 import '../../../../../core/constants/app_svgs.dart';
 import '../../../../../core/utils/spacing.dart';
-import '../../../../details_doctor/presentation/screen/widgets/doctor_data.dart';
+import '../../../../../core/common_widgets/custom_doctor_data.dart';
 import '../../../domain/entities/appointment_params.dart';
 import '../../controller/book_appointment_cubit.dart';
-import '../book_appointment/widget/booking_information.dart';
-import '../book_appointment/widget/custom_texts_appointment.dart';
+import '../shared_widget/booking_information.dart';
+import '../shared_widget/custom_texts_appointment.dart';
 
 class DoneAppointmentScreen extends StatelessWidget {
   final AppointmentParams appointmentParams;
 
-  const DoneAppointmentScreen({super.key, required this.appointmentParams});
+  final Widget child;
+
+  final bool showState;
+  final Widget listener;
+
+  const DoneAppointmentScreen({
+    super.key,
+
+    required this.appointmentParams,
+
+    required this.child,
+
+    required this.showState,
+    required this.listener,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +39,7 @@ class DoneAppointmentScreen extends StatelessWidget {
         slivers: [
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 30, horizontal: 16),
+              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 16),
 
               child: Column(
                 children: [
@@ -33,10 +47,9 @@ class DoneAppointmentScreen extends StatelessWidget {
 
                   verticalSpace(20),
 
-                  buildText(
-                    'Booking Confirmed',
-                    context,
-                  ),
+                  showState
+                      ? buildText('Booking Confirmed', context)
+                      : buildText('Booking has been rescheduled', context),
 
                   verticalSpace(40),
 
@@ -47,28 +60,28 @@ class DoneAppointmentScreen extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
 
-                    child: buildText('Doctor Information',
-                      context
-                    ),
+                    child: buildText('Doctor Information', context),
                   ),
 
                   verticalSpace(10),
 
-                  DoctorsDataWidget(doctor: appointmentParams.doctor),
+                  CustomDoctorsDataWidget(doctor: appointmentParams.doctor),
 
                   verticalSpace(20),
 
-                  CustomElevatedButton(
-                    buttonName: 'Done',
+                  showState
+                      ? CustomElevatedButton(
+                          buttonName: 'Done',
 
-                    onPressed: () {
-                      context.read<BookAppointmentCubit>().bookAppointment(
-                        appointmentParams,
-                      );
-                    },
-                  ),
-                  DoneAppointmentBlocListener(),
+                          onPressed: () {
+                            context
+                                .read<BookAppointmentCubit>()
+                                .bookAppointment(appointmentParams);
+                          },
+                        )
+                      : child,
 
+                  showState ? const DoneAppointmentBlocListener() : listener,
                 ],
               ),
             ),
