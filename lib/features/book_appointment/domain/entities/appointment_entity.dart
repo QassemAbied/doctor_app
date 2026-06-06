@@ -1,3 +1,6 @@
+import '../../../../core/utils/eunm.dart';
+import '../../../home/domain/entities/doctor_entity.dart';
+
 class AppointmentEntity {
   final String id;
 
@@ -15,7 +18,11 @@ class AppointmentEntity {
 
   final double price;
 
-  final String status;
+  final Status status;
+  final DoctorEntity doctor;
+  bool get isCompleted {
+    return DateTime.parse(appointmentDate).isBefore(DateTime.now());
+  }
 
   const AppointmentEntity({
     required this.id,
@@ -35,5 +42,21 @@ class AppointmentEntity {
     required this.price,
 
     required this.status,
+    required this.doctor,
   });
+  factory AppointmentEntity.fake() {
+    return AppointmentEntity(
+      id: '',
+      price: 250,
+
+      doctorId: '',
+      userId: '',
+      appointmentDate: DateTime.now().add(Duration(days: 1)).toString(),
+      appointmentTime: '09:00 AM',
+      appointmentType: 'vyuhijohiguiyf',
+      paymentMethod: '',
+      status: Status.upcoming,
+      doctor: DoctorEntity.fake(),
+    );
+  }
 }
