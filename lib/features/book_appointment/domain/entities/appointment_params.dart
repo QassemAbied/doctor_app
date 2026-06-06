@@ -53,3 +53,25 @@ class AppointmentParams {
     };
   }
 }
+
+class RescheduleAppointmentParams{
+  final String id;
+  final String appointmentDate;
+  final String appointmentTime;
+  final String appointmentType;
+
+  const RescheduleAppointmentParams({
+    required this.id,
+    required this.appointmentDate,
+    required this.appointmentTime,
+    required this.appointmentType,
+  });
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'appointment_date': appointmentDate,
+      'appointment_time': appointmentTime,
+      'appointment_type': appointmentType,
+    };
+  }
+}
