@@ -8,12 +8,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../../../../core/common_widgets/custom_elevated_botton.dart';
 import '../../../../../../core/utils/spacing.dart';
-import '../../../../../details_doctor/presentation/screen/widgets/doctor_data.dart';
+import '../../../../../../core/common_widgets/custom_doctor_data.dart';
 import '../../../controller/book_appointment_cubit.dart';
 import 'appoint_price.dart';
-import 'book_information_item.dart';
-import 'booking_information.dart';
-import 'custom_texts_appointment.dart';
+import '../../shared_widget/book_information_item.dart';
+import '../../shared_widget/booking_information.dart';
+import '../../shared_widget/custom_texts_appointment.dart';
 
 class AppointmentSummary extends StatelessWidget {
   final DoctorEntity? dataForDoctors;
@@ -32,7 +32,7 @@ class AppointmentSummary extends StatelessWidget {
           .selectedDate
           .toString(),
 
-      appointmentTime: context.read<BookAppointmentCubit>().timeAppointments,
+      appointmentTime: context.read<BookAppointmentCubit>().selectedTime,
 
       appointmentType: context.read<BookAppointmentCubit>().selectedType.name,
 
@@ -57,7 +57,7 @@ class AppointmentSummary extends StatelessWidget {
               verticalSpace(20),
               buildText('Doctor Information', context),
               verticalSpace(20),
-              DoctorsDataWidget(doctor: dataForDoctors!),
+              CustomDoctorsDataWidget(doctor: dataForDoctors!),
               verticalSpace(20),
               buildText('Payment Information', context),
               verticalSpace(20),
@@ -84,7 +84,12 @@ class AppointmentSummary extends StatelessWidget {
                   context.pushNamed(
                     Routes.doneAppointments,
 
-                    arguments: appointmentParams,
+                    arguments: {
+                      'appointmentParams': appointmentParams,
+                      'button': const SizedBox.shrink(),
+                      'showState': true,
+                      'listener': const SizedBox.shrink(),
+                    },
                   );
                 },
               ),
