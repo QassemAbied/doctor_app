@@ -1,7 +1,9 @@
 import 'package:doctor_app/features/auth/presentation/controller/auth_cubit.dart';
+import 'package:doctor_app/features/chat/presentation/controller/chat_cubit.dart';
 import 'package:doctor_app/features/home/presentation/controller/doctor/doctors_cubit.dart';
 import 'package:doctor_app/features/home/presentation/controller/recommendation/recommendation_cubit.dart';
 import 'package:doctor_app/features/home/presentation/controller/specialization/specialization_cubit.dart';
+import 'package:doctor_app/features/notification/presentation/controller/notification_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../core/services/shared_pref/shared_pref_keys.dart';
@@ -27,6 +29,12 @@ class DoctorApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => sl<RecommendationCubit>()..getUserLocation()..getDoctors()..getSpecialization(),
+        ),
+        BlocProvider(
+          create: (context) => sl<NotificationCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => sl<ChatCubit>()..getAllChats(),
         ),
         BlocProvider(
           create: (context) => sl<AuthCubit>()..getUser(),
