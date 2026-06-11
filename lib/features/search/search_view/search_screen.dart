@@ -1,6 +1,6 @@
 import 'package:doctor_app/features/home/presentation/screens/recommendation_doctor/recommendation_doctor_screen.dart';
 import 'package:flutter/material.dart';
-import '../../map_smiple.dart';
+import '../../../core/common_widgets/map_smiple.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});

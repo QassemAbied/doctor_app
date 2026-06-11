@@ -2,6 +2,7 @@ import 'package:doctor_app/core/services/shared_pref/shared_pref_keys.dart';
 import 'package:doctor_app/core/services/shared_pref/shared_pref_helpers.dart';
 import 'package:doctor_app/core/services/deep_links_services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'core/services/notification/local_notification.dart';
 import 'core/utils/app_router/router_app.dart';
@@ -12,10 +13,10 @@ import 'features/doctor_app.dart';
 import 'package:timezone/data/latest.dart' as tz;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   tz.initializeTimeZones();
   await SupAbaseHelper.init();
  await LocalNotification.init();
-
   await init();
  await DeepLinkService().init();
   await checkLoggedInUser();

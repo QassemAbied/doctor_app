@@ -19,7 +19,7 @@ import '../../../features/book_appointment/presentation/controller/book_appointm
 import '../../../features/book_appointment/presentation/screen/book_appointment/book_appointment_screen.dart';
 import '../../../features/book_appointment/presentation/screen/done_appointment/done_appointment.dart';
 import '../../../features/home/domain/entities/doctor_entity.dart';
-import '../../../features/map_smiple.dart';
+import '../../common_widgets/map_smiple.dart';
 import '../../../features/profile/screens/profile/profile_screen.dart';
 import '../../../features/profile/screens/update_profile/update_profile_screen.dart';
 import '../di/injection_container.dart';
