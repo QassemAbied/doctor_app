@@ -8,6 +8,7 @@ import '../../../../../core/utils/extension.dart';
 import '../../../domain/entities/appointment_params.dart';
 import '../../controller/book_appointment_cubit.dart';
 import '../shared_widget/appointments_date.dart';
+import '../shared_widget/shared_notification_appointment.dart';
 import 'widget/update_appoimtment_bloc_listener.dart';
 
 class RescheduleScreen extends StatelessWidget {
@@ -57,7 +58,7 @@ class RescheduleScreen extends StatelessWidget {
                 'button': CustomElevatedButton(
                   buttonName: 'Done',
 
-                  onPressed: () {
+                  onPressed: () async {
                     context.read<BookAppointmentCubit>().rescheduleAppointment(
                       RescheduleAppointmentParams(
                         id: id,
@@ -65,6 +66,11 @@ class RescheduleScreen extends StatelessWidget {
                         appointmentTime: appointmentParams.appointmentTime,
                         appointmentType: appointmentParams.appointmentType,
                       ),
+                    );
+                    await AppointmentNotificationHelper.showNotification(
+                      context: context,
+                      appointmentParams: appointmentParams,
+                      title1: 'Appointment Rescheduled',
                     );
                   },
                 ),
