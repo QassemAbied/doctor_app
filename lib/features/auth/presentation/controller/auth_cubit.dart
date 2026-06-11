@@ -6,6 +6,7 @@ import 'package:doctor_app/features/auth/domain/use_case/sign_out_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import '../../../../core/helpers/app_regex.dart';
 import '../../domain/entities/sign_up_params.dart';
+import '../../domain/entities/user_entity.dart';
 import '../../domain/use_case/forget_password_usecase.dart';
 import '../../domain/use_case/sign_in_usecase.dart';
 import '../../domain/use_case/sign_up_usecase.dart';
@@ -120,12 +121,16 @@ class AuthCubit extends Cubit<AuthState> {
       (r) => emit(SignOutSuccess()),
     );
   }
+  UserEntity? userEntity;
   Future<void> getUser() async {
     emit(GetUserDataLoading());
     final res = await _getUserUesCase();
     res.fold(
       (l) => emit(GetUserDataFailure(l.message)),
-      (r) => emit(GetUserDataSuccess(r)),
+      (data) {
+      userEntity= data;
+        emit(GetUserDataSuccess(data));
+      },
     );
   }
   Future<void> updateUser(UpdateUserParams updateUserParams) async {
