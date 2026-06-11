@@ -24,20 +24,36 @@ jobs:
         with:
           channel: stable
 
-
       - name: Flutter pub get
         run: flutter pub get
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.2.3"
-          bundler-cache: true
+          ruby-version: "3.1"
+          bundler-cache: false
           working-directory: android
+
+      - name: Install gems
+        run: |
+          rm -rf vendor/bundle
+          bundle config set path vendor/bundle
+          bundle install --jobs 4 --retry 3
+        working-directory: android
 
       - name: Check installed gems
         run: |
           bundle list | grep faraday
+        working-directory: android
+
+      - name: Verify Faraday
+        run: |
+          bundle exec ruby -e "require 'faraday'; require 'faraday/net_http_persistent'; puts 'Faraday OK'"
+        working-directory: android
+
+      - name: Fastlane Version
+        run: |
+          bundle exec fastlane --version
         working-directory: android
 
       - name: Build and Distribute App

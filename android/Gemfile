@@ -1,9 +1,7 @@
 source "https://rubygems.org"
 
-gem "fastlane", "~> 2.225"
+gem "fastlane", "~> 2.236.1"
 gem "nokogiri", ">= 1.15.0"
-
-gem "faraday-net_http_persistent"
 
 plugins_path = File.join(File.dirname(__FILE__), "fastlane", "Pluginfile")
 eval_gemfile(plugins_path) if File.exist?(plugins_path)
