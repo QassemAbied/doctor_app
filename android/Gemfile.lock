@@ -249,6 +249,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  faraday-net_http_persistent
   fastlane (~> 2.225)
   fastlane-plugin-firebase_app_distribution
   nokogiri (>= 1.15.0)
