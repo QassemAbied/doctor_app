@@ -4,6 +4,7 @@ import 'package:doctor_app/message_scr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'features/book_appointment/presentation/screen/my_appointment/my_appointment_screen.dart';
+import 'features/chat/presentation/screen/message_screen.dart';
 import 'features/profile/screens/profile/profile_screen.dart';
 import 'features/search/search_view/search_screen.dart';
 
@@ -23,7 +24,7 @@ class _BottonNavBarViewState extends State<BottonNavBarView> {
   }
   final List<Widget> screens = [
     const HomeScreen(),
-    const MessageScr(),
+    MessagesScreen(),
     SearchScreen(),
   MyAppointmentScreen(),
 
