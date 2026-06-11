@@ -1,4 +1,5 @@
 import 'package:doctor_app/features/book_appointment/presentation/screen/done_appointment/widget/done_appointment_bloc_listener.dart';
+import 'package:doctor_app/features/book_appointment/presentation/screen/shared_widget/shared_notification_appointment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -73,10 +74,15 @@ class DoneAppointmentScreen extends StatelessWidget {
                       ? CustomElevatedButton(
                           buttonName: 'Done',
 
-                          onPressed: () {
-                            context
+                          onPressed: () async {
+                            await context
                                 .read<BookAppointmentCubit>()
                                 .bookAppointment(appointmentParams);
+                            await AppointmentNotificationHelper.showNotification(
+                              context: context,
+                              appointmentParams: appointmentParams,
+                              title1: 'Appointment Confirmed',
+                            );
                           },
                         )
                       : child,
