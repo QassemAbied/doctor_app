@@ -93,9 +93,11 @@ class RecommendationCubit extends Cubit<RecommendationState> {
     try {
       final position = await _locationService.getCurrentUserLocation();
 
-      userLat = 29.072843057462567;
-
-      userLng = 31.1378399269375;
+      // userLat = 29.072843057462567;
+      //
+      // userLng = 31.1378399269375;
+      userLat = position.latitude;
+      userLng = position.longitude;
       sortNearestDoctors();
       emit(RecommendationSuccess(allDoctors));
       print(userLat);
