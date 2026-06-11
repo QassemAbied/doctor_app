@@ -68,9 +68,11 @@ class RouterApp {
         }
 
       case Routes.bottonNavScreen:
-      final arg = settings.arguments as int? ?? 0;
+        final arg = settings.arguments as int? ?? 0;
         {
-          return MaterialPageRoute(builder: (_) => BottonNavBarView(initialIndex: arg,));
+          return MaterialPageRoute(
+            builder: (_) => BottonNavBarView(initialIndex: arg),
+          );
         }
       case Routes.mapSampleScreen:
         {
@@ -132,7 +134,12 @@ class RouterApp {
         );
       case Routes.profilesScreen:
         {
-          return MaterialPageRoute(builder: (_) => ProfileScreen());
+          return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+              create: (context) => sl<AuthCubit>()..getUser(),
+              child: ProfileScreen(),
+            ),
+          );
         }
       case Routes.updateProfileScreen:
         final profileResponse = settings.arguments as UserEntity;
