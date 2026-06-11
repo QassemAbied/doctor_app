@@ -35,7 +35,10 @@ class HomeScreen extends StatelessWidget {
                     RowTextTextButton(
                       text: 'Recommendation Doctor',
                       tap: () {
-                        context.pushNamed(Routes.recommendationDoctorScreen, arguments: true);
+                        context.pushNamed(
+                          Routes.recommendationDoctorScreen,
+                          arguments: true,
+                        );
                       },
                     ),
                   ],
