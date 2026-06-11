@@ -136,20 +136,27 @@ class BookAppointmentCubit extends Cubit<BookAppointmentState> {
   }
 
   Future<void> bookAppointment(AppointmentParams params) async {
-    emit(BookAppointmentLoading());
+    if (!isClosed) {
+      emit(BookAppointmentLoading());
+    }
 
     final response = await _appointmentUseCase(params);
+
     response.fold(
       (failure) {
         print(failure.message);
 
-        emit(BookAppointmentFailure(failure.message));
+        if (!isClosed) {
+          emit(BookAppointmentFailure(failure.message));
+        }
       },
 
       (success) {
         print('success');
 
-        emit(BookAppointmentSuccess());
+        if (!isClosed) {
+          emit(BookAppointmentSuccess());
+        }
       },
     );
   }
@@ -170,7 +177,6 @@ class BookAppointmentCubit extends Cubit<BookAppointmentState> {
       },
     );
   }
-
 
   Future<void> cancelAppointment(String id) async {
     await _cancelAppointmentUseCase(id);
