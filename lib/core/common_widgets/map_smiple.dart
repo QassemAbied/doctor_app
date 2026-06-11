@@ -12,7 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../core/common_widgets/custom_text_filed.dart';
+import 'custom_text_filed.dart';
 
 class MapSample extends StatefulWidget {
   const MapSample({super.key});
