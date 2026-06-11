@@ -79,16 +79,25 @@ class AppointmentSummary extends StatelessWidget {
                 buttonName: 'Book Now',
 
                 onPressed: () {
-                  context.pop();
+                  final cubit = context.read<BookAppointmentCubit>();
+
+                 // Navigator.pop(context);
 
                   context.pushNamed(
+
+
                     Routes.doneAppointments,
 
                     arguments: {
                       'appointmentParams': appointmentParams,
+
                       'button': const SizedBox.shrink(),
+
                       'showState': true,
-                      'listener': const SizedBox.shrink(),
+
+                      'listener':   SizedBox.shrink(),
+
+                      'cubit': cubit,
                     },
                   );
                 },
