@@ -9,13 +9,20 @@ plugins {
 }
 
 android {
+
     namespace = "com.example.doctor_app"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+
+        isCoreLibraryDesugaringEnabled = true
+
+        sourceCompatibility =
+            JavaVersion.VERSION_17
+
+        targetCompatibility =
+            JavaVersion.VERSION_17
     }
 
     kotlinOptions {
@@ -23,7 +30,7 @@ android {
     }
 
     defaultConfig {
-
+        multiDexEnabled = true
 
 
 
@@ -63,4 +70,10 @@ android {
 
 flutter {
     source = "../.."
+}
+dependencies {
+
+    coreLibraryDesugaring(
+        "com.android.tools:desugar_jdk_libs:2.1.4"
+    )
 }
