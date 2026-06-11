@@ -1,6 +1,5 @@
 import 'package:doctor_app/core/theming/app_color.dart';
 import 'package:doctor_app/features/home/presentation/screens/home/home_screen.dart';
-import 'package:doctor_app/message_scr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'features/book_appointment/presentation/screen/my_appointment/my_appointment_screen.dart';
