@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "fastlane", "~> 2.230"
+gem "fastlane", "~> 2.225"
 gem "nokogiri", ">= 1.15.0"
 
 plugins_path = File.join(File.dirname(__FILE__), "fastlane", "Pluginfile")
