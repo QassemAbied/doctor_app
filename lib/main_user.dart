@@ -13,7 +13,12 @@ import 'features/doctor_app.dart';
 import 'package:timezone/data/latest.dart' as tz;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: ".env");
+  try {
+    await dotenv.load(fileName: ".env");
+    debugPrint("ENV LOADED");
+  } catch (e) {
+    debugPrint("ENV ERROR: $e");
+  }
   tz.initializeTimeZones();
   await SupAbaseHelper.init();
  await LocalNotification.init();
@@ -21,6 +26,8 @@ void main() async {
  await DeepLinkService().init();
   await checkLoggedInUser();
   await isOnBoarding();
+  print("SUPABASE_URL = ${dotenv.env['SUPABASE_URL']}");
+  print("SUPABASE_ANON_KEY = ${dotenv.env['SUPABASE_ANON_KEY']}");
   runApp(DoctorApp(routerApp: RouterApp()));
 
 
