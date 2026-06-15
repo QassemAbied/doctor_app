@@ -10,13 +10,15 @@ class SendMessageUseCase {
 
   Future<Either<Failure, void>> call({
     required String receiverId,
-
-    required String message,
+    String? audioUrl,
+    String? message,
+    String? imageUrl,
   }) async {
     return await repository.sendMessage(
       receiverId: receiverId,
-
+      audioUrl: audioUrl,
       message: message,
+      imageUrl: imageUrl,
     );
   }
 }
