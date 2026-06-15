@@ -1,11 +1,16 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
 
+import '../../../features/notification/domain/entity/local_notification_params.dart';
+import '../../../features/notification/domain/use_case/add_local_notification_usecase.dart';
+import '../../utils/app_router/navigator_service.dart';
+import '../../utils/app_router/routes.dart';
+import '../../utils/di/injection_container.dart';
 
 class LocalNotification {
   static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
-  static void onTap(NotificationResponse notificationResponse) {}
+  //static void onTap(NotificationResponse notificationResponse) {}
   static Future<void> init() async {
     InitializationSettings initializationSettings = InitializationSettings(
       android: AndroidInitializationSettings('@mipmap/ic_launcher'),
@@ -26,8 +31,7 @@ class LocalNotification {
   static Future showNotification({
     required String title,
     required String body,
-  })
-  async {
+  }) async {
     await flutterLocalNotificationsPlugin.show(
       id: 0,
       title: title,
@@ -50,7 +54,7 @@ class LocalNotification {
     required String title,
     required String body,
     required tz.TZDateTime scheduledDate,
-    required int id
+    required int id,
   }) async {
     await flutterLocalNotificationsPlugin.zonedSchedule(
       id: id,
@@ -59,11 +63,7 @@ class LocalNotification {
 
       body: body,
 
-      scheduledDate:scheduledDate,
-      // tz.TZDateTime.now(
-      //   tz.local,
-      // ).add(const Duration(seconds: 10)),
-
+      scheduledDate: scheduledDate,
       notificationDetails: const NotificationDetails(
         android: AndroidNotificationDetails(
           'appointment_channel',
@@ -72,9 +72,24 @@ class LocalNotification {
           priority: Priority.high,
         ),
       ),
-
+      payload: '$title|$body',
       androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
     );
   }
 
+  static Future<void> onTap(NotificationResponse notificationResponse) async {
+    print('Notification Clicked => ${notificationResponse.payload}');
+    final payload = notificationResponse.payload;
+
+    if (payload == null) return;
+
+    final parts = payload.split('|');
+
+    await sl<AddLocalNotificationUseCase>()(
+      LocalNotificationParams(title: parts[0], body: parts[1], isRead: false),
+    );
+    navigatorKey.currentState?.pushNamed(
+      Routes.notificationScreen,
+    );
+  }
 }
