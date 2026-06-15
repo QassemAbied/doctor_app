@@ -5,7 +5,7 @@ extension MessageModelMapper on MessageModel {
   MessageEntity toEntity() {
     return MessageEntity(
       id: id,
-
+      audio: audio,
       senderId: senderId,
 
       receiverId: receiverId,
