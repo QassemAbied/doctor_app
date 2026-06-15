@@ -52,7 +52,7 @@ class NotificationCubit extends Cubit<NotificationState> {
     required tz.TZDateTime scheduledDate,
     required int id,
   }) async {
-    await addNotificationUseCase(params);
+  //  await addNotificationUseCase(params);
     await LocalNotification.showScheduleNotification(
       title: params.title,
       body: params.body,
@@ -60,7 +60,7 @@ class NotificationCubit extends Cubit<NotificationState> {
       id: id,
     );
 
-    await getNotifications();
+   // await getNotifications();
   }
 
   Future<void> markAsReadNotification(String id) async {
