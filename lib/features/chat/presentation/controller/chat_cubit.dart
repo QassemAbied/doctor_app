@@ -22,15 +22,17 @@ class ChatCubit extends Cubit<ChatState> {
 
   Future<void> sendMessage({
     required String receiverId,
-
-    required String message,
+    String? audioUrl,
+    String? message,
+    String? imageUrl,
   }) async {
     emit(ChatSendMessageLoading());
 
     final response = await sendMessageUseCase(
       receiverId: receiverId,
-
+      audioUrl: audioUrl,
       message: message,
+      imageUrl: imageUrl
     );
 
     response.fold(
