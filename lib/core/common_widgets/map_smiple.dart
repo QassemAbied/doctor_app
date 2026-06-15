@@ -108,7 +108,7 @@ class MapSampleState extends State<MapSample> {
               ),
 
               Positioned(
-                top: 50,
+                top: 20,
                 left: 16,
                 right: 16,
                 child: Material(
