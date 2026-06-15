@@ -21,10 +21,8 @@ class ListViewForDoctor extends StatelessWidget {
         final data = state is DoctorSuccess
             ? state.doctors
             : DummyData.fakeDoctors;
-        if (! isLoading && data.isEmpty) {
-          return SliverToBoxAdapter(
-            child: EmptyDoctorsWidget(),
-          );
+        if (!isLoading && data.isEmpty) {
+          return SliverToBoxAdapter(child: EmptyDoctorsWidget());
         }
 
         return SliverSkeletonizer(
@@ -35,7 +33,12 @@ class ListViewForDoctor extends StatelessWidget {
             sliver: SliverList.builder(
               itemCount: data.length,
               itemBuilder: (context, index) {
-                return ItemForDoctorWidget(doctors: data, index: index);
+                return ItemForDoctorWidget(
+                  doctors: data,
+                  index: index,
+                  heroTag: 'doctor_${data[index].id}',
+                  enableHero: true,
+                );
               },
             ),
           ),

@@ -11,14 +11,18 @@ import '../../../../../../core/utils/spacing.dart';
 class ItemForDoctorWidget extends StatelessWidget {
   final List<DoctorEntity>? doctors;
   final int index;
+  final String? heroTag;
+  final bool enableHero;
+
   const ItemForDoctorWidget({
     super.key,
     required this.doctors,
-    required this.index,
+    required this.index, required this.heroTag, required this.enableHero,
   });
 
   @override
   Widget build(BuildContext context) {
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: GestureDetector(
@@ -42,8 +46,8 @@ class ItemForDoctorWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     )
                   : CustomNetworkImage(
-                      heroTag: doctors?[index].id,
-                      enableHero: true,
+                      heroTag: heroTag,
+                      enableHero: enableHero,
                       imageUrl: doctors?[index].image ?? '',
                       height: 100,
                       width: 100,
