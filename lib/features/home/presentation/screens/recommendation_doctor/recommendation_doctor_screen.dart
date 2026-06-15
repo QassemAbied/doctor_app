@@ -76,7 +76,7 @@ class _RecommendationDoctorScreenState
               ),
             ),
           ),
-          SearchItemsWidget(),
+          SearchItemsWidget(isShow: false,),
         ],
       ),
     );
