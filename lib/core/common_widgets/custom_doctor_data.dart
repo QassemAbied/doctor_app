@@ -74,7 +74,7 @@ class CustomDoctorsDataWidget extends StatelessWidget {
               children: [
                 CustomNetworkImage(
                   enableHero: true,
-                  heroTag: 'doctor_image${doctor.id}',
+                  heroTag: 'doctor_${doctor.id}',
                   imageUrl: doctor.image,
                   width: 95,
                   height: 95,
