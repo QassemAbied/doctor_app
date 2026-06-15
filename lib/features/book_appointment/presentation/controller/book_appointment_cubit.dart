@@ -144,16 +144,12 @@ class BookAppointmentCubit extends Cubit<BookAppointmentState> {
 
     response.fold(
       (failure) {
-        print(failure.message);
-
         if (!isClosed) {
           emit(BookAppointmentFailure(failure.message));
         }
       },
 
       (success) {
-        print('success');
-
         if (!isClosed) {
           emit(BookAppointmentSuccess());
         }
@@ -167,12 +163,10 @@ class BookAppointmentCubit extends Cubit<BookAppointmentState> {
     final response = await _myAppointmentUseCase();
     response.fold(
       (failure) {
-        print(failure.message);
         emit(AppointmentFailure(failure.message));
       },
       (data) {
         appointmentEntity = data;
-        print('success');
         emit(AppointmentSuccess(appointmentEntity));
       },
     );
@@ -190,11 +184,9 @@ class BookAppointmentCubit extends Cubit<BookAppointmentState> {
 
     response.fold(
       (failure) {
-        print(failure.message);
         emit(RescheduleAppointmentFailure(failure.message));
       },
       (success) {
-        print('success');
         emit(RescheduleAppointmentSuccess());
       },
     );
