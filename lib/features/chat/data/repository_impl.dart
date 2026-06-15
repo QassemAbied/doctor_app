@@ -16,14 +16,16 @@ class ChatRepositoryImpl implements ChatRepository {
   @override
   Future<Either<Failure, void>> sendMessage({
     required String receiverId,
-
-    required String message,
+    String? audioUrl,
+    String? message,
+    String? imageUrl,
   }) async {
     try {
       await remoteDataSource.sendMessage(
         receiverId: receiverId,
-
+        audioUrl: audioUrl,
         message: message,
+        imageUrl: imageUrl,
       );
 
       return const Right(null);

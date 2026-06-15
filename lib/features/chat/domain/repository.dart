@@ -7,8 +7,9 @@ import 'entities/message_entity.dart';
 abstract class ChatRepository {
   Future<Either<Failure, void>> sendMessage({
     required String receiverId,
-
-    required String message,
+    String? audioUrl,
+    String? message,
+    String? imageUrl,
   });
 
   Stream<List<MessageEntity>> getMessages(String receiverId);
