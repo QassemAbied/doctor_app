@@ -7,11 +7,11 @@ import '../../home/widgets/empty_doctor_widget.dart';
 import '../../home/widgets/item_for_doctor_widget.dart';
 
 class SearchItemsWidget extends StatelessWidget {
-  const SearchItemsWidget({super.key});
-
+  const SearchItemsWidget({super.key, this.isShow = false});
+  final bool isShow;
   @override
   Widget build(BuildContext context) {
-    return  BlocBuilder<RecommendationCubit, RecommendationState>(
+    return BlocBuilder<RecommendationCubit, RecommendationState>(
       builder: (context, state) {
         if (state is RecommendationLoading) {
           return const SliverToBoxAdapter(
@@ -44,7 +44,19 @@ class SearchItemsWidget extends StatelessWidget {
             itemCount: data.length,
 
             itemBuilder: (context, index) {
-              return ItemForDoctorWidget(doctors: data, index: index);
+              return isShow
+                  ? ItemForDoctorWidget(
+                      doctors: data,
+                      index: index,
+                      heroTag: 'doctor_${data[index].id}',
+                      enableHero: true,
+                    )
+                  : ItemForDoctorWidget(
+                      doctors: data,
+                      index: index,
+                      heroTag: null,
+                      enableHero: false,
+                    );
             },
           ),
         );
