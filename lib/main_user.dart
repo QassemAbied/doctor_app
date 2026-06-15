@@ -11,42 +11,33 @@ import 'core/helpers/supabase_helper.dart';
 import 'core/utils/di/injection_container.dart';
 import 'features/doctor_app.dart';
 import 'package:timezone/data/latest.dart' as tz;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  try {
-    await dotenv.load(fileName: ".env");
-    debugPrint("ENV LOADED");
-  } catch (e) {
-    debugPrint("ENV ERROR: $e");
-  }
+  await dotenv.load(fileName: ".env");
   tz.initializeTimeZones();
   await SupAbaseHelper.init();
- await LocalNotification.init();
+  await LocalNotification.init();
   await init();
- await DeepLinkService().init();
+  await DeepLinkService().init();
   await checkLoggedInUser();
   await isOnBoarding();
-  print("SUPABASE_URL = ${dotenv.env['SUPABASE_URL']}");
-  print("SUPABASE_ANON_KEY = ${dotenv.env['SUPABASE_ANON_KEY']}");
   runApp(DoctorApp(routerApp: RouterApp()));
-
-
 }
+
 Future isOnBoarding() async {
   bool? isOnBoarding = await SharedPrefHelper.getBool(
     SharedPrefKeys.isOnBoarding,
   );
-  if(isOnBoarding==true){
-    checkIsOnBoarding=false;
-  }else{
-    checkIsOnBoarding=true;
+  if (isOnBoarding == true) {
+    checkIsOnBoarding = false;
+  } else {
+    checkIsOnBoarding = true;
   }
 }
-Future checkLoggedInUser() async {
-  String? userToken = await SharedPrefHelper.getString(
-    SharedPrefKeys.userId,
-  );
 
+Future checkLoggedInUser() async {
+  String? userToken = await SharedPrefHelper.getString(SharedPrefKeys.userId);
 
   if (!userToken.isNullOrEmpty()) {
     isLoggedInUser = true;
