@@ -5,6 +5,7 @@ class ChatEntity {
 
   final String image;
 
+
   final String lastMessage;
 
   final String time;
