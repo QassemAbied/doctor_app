@@ -11,10 +11,17 @@ class ChatRemoteDataSourceImpl implements ChatRemoteDataSource {
   @override
   Future<void> sendMessage({
     required String receiverId,
+    String? audioUrl,
 
-    required String message,
+    String? message,
+    String? imageUrl,
   }) async {
-    await _chatService.sendMessage(receiverId: receiverId, message: message);
+    await _chatService.sendMessage(
+      receiverId: receiverId,
+      message: message,
+      imageUrl: imageUrl,
+      audioUrl: audioUrl,
+    );
   }
 
   @override
