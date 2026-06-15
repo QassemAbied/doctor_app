@@ -11,7 +11,8 @@ class AppointmentNotificationHelper {
     required BuildContext context,
     required AppointmentParams appointmentParams,
     required String title1,
-  }) async {
+  })
+  async {
     final notificationCubit = context.read<NotificationCubit>();
 
     final authCubit = context.read<AuthCubit>();
@@ -53,6 +54,11 @@ class AppointmentNotificationHelper {
     );
   }
 
+
+
+
+
+
   static tz.TZDateTime _generateScheduledDate(
     AppointmentParams appointmentParams,
   ) {
@@ -91,7 +97,6 @@ class AppointmentNotificationHelper {
       hour,
       minute,
     );
-
     return tz.TZDateTime.from(
       appointmentDateTime.subtract(const Duration(hours: 1)),
 
