@@ -7,7 +7,6 @@ class SupAbaseHelper {
         url:  dotenv.env['SUPABASE_URL']!,
         anonKey:  dotenv.env['SUPABASE_ANON_KEY']!,
     );
-    print(dotenv.env['SUPABASE_URL']);
-    print(dotenv.env['SUPABASE_ANON_KEY']);
+
   }
 }
