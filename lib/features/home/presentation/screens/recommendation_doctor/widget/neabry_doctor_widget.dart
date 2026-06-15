@@ -60,10 +60,6 @@ class NearbyDoctorWidget extends StatelessWidget {
                     width: 80,
 
                     fit: BoxFit.fill,
-
-                    heroTag: doctor.id,
-
-                    enableHero: true,
                   ),
 
                   title: Text(
