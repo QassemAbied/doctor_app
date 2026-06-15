@@ -7,7 +7,7 @@ import '../../../../core/theming/app_color.dart';
 import '../../../../core/theming/app_styles.dart';
 import '../../../../core/utils/spacing.dart';
 import '../controller/chat_cubit.dart';
-import 'chat_screen.dart';
+import 'chat/chat_screen.dart';
 
 class MessagesScreen extends StatefulWidget {
   const MessagesScreen({super.key});
