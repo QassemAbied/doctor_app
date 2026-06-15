@@ -56,7 +56,7 @@ class DoctorBySpecializationScreen extends StatelessWidget {
                 itemCount: doctors.length,
 
                 itemBuilder: (context, index) {
-                  return ItemForDoctorWidget(doctors: doctors, index: index);
+                  return ItemForDoctorWidget(doctors: doctors, index: index, heroTag: null, enableHero: false,);
                 },
               ),
             );
