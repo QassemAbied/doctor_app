@@ -8,7 +8,7 @@ class Routes {
   static const String detailsDoctorsScreen = "/detailsDoctors";
   static const String mapSampleScreen = "/mapSample";
   static const String recommendationDoctorScreen = "/recommendationDoctorScreen";
-
+  static const String notificationScreen = "/notificationScreen";
   static const String appointmentsScreen = "/appointments";
   static const String myAppointmentsScreen = "/myAppointment";
 

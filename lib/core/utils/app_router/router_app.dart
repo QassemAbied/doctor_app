@@ -10,7 +10,6 @@ import 'package:doctor_app/features/home/presentation/screens/home/home_screen.d
 import 'package:doctor_app/features/home/presentation/screens/recommendation_doctor/recommendation_doctor_screen.dart';
 import 'package:doctor_app/features/home/presentation/screens/specialization/specialization_screen.dart';
 import 'package:doctor_app/features/onboarding/onboarding_scre.dart';
-import 'package:doctor_app/features/search/search_view/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../features/auth/presentation/screens/sign_up/sign_up_screen.dart';
@@ -19,6 +18,7 @@ import '../../../features/book_appointment/presentation/controller/book_appointm
 import '../../../features/book_appointment/presentation/screen/book_appointment/book_appointment_screen.dart';
 import '../../../features/book_appointment/presentation/screen/done_appointment/done_appointment.dart';
 import '../../../features/home/domain/entities/doctor_entity.dart';
+import '../../../features/notification/presentation/screen/notification_screen.dart';
 import '../../common_widgets/map_smiple.dart';
 import '../../../features/profile/screens/profile/profile_screen.dart';
 import '../../../features/profile/screens/update_profile/update_profile_screen.dart';
@@ -82,15 +82,17 @@ class RouterApp {
         {
           return MaterialPageRoute(builder: (_) => HomeScreen());
         }
-      case Routes.searchScreen:
-        {
-          return MaterialPageRoute(builder: (_) => SearchScreen());
-        }
       case Routes.recommendationDoctorScreen:
         final isShow = settings.arguments as bool;
         {
           return MaterialPageRoute(
             builder: (_) => RecommendationDoctorScreen(isShow: isShow),
+          );
+        }
+      case Routes.notificationScreen:
+        {
+          return MaterialPageRoute(
+            builder: (_) => NotificationScreen(),
           );
         }
       case Routes.detailsDoctorsScreen:
