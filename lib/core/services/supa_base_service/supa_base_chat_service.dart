@@ -10,51 +10,57 @@ class SupABaseChatService {
 
   Future<void> sendMessage({
     required String receiverId,
-
-    required String message,
+    String? message,
+    String? imageUrl,
+    String? audioUrl,
   }) async {
     try {
       final currentUser = instance.auth.currentUser;
 
-      if (currentUser == null) {
-        return;
-      }
+      if (currentUser == null) return;
 
       await instance.from('messages').insert({
         'sender_id': currentUser.id,
-
         'receiver_id': receiverId,
-
         'message': message,
+        'image': imageUrl,
+        'audio': audioUrl,
       });
+      print('====================');
+      print('SEND MESSAGE CALLED');
+      print('message: $message');
+      print('image: $imageUrl');
+      print('====================');
     } catch (e) {
       if (kDebugMode) {
-        print(
-          'SEND MESSAGE ERROR => '
-          '$e',
-        );
+        print('SEND MESSAGE ERROR => $e');
       }
     }
   }
-
   Stream<List<MessageModel>> getMessages(String receiverId) {
     final currentUser = instance.auth.currentUser;
 
-    final response = instance
+    return instance
         .from('messages')
         .stream(primaryKey: ['id'])
-        .order('created_at');
-    return response.map((data) {
-      return data
+        .order('created_at')
+        .map((data) {
+      final messages = data
           .map<MessageModel>((e) => MessageModel.fromJson(e))
           .where(
             (message) =>
-                (message.senderId == currentUser!.id &&
-                    message.receiverId == receiverId) ||
-                (message.senderId == receiverId &&
-                    message.receiverId == currentUser.id),
-          )
+        (message.senderId == currentUser!.id &&
+            message.receiverId == receiverId) ||
+            (message.senderId == receiverId &&
+                message.receiverId == currentUser.id),
+      )
           .toList();
+
+      final uniqueMessages = {
+        for (final msg in messages) msg.id: msg,
+      }.values.toList();
+
+      return uniqueMessages;
     });
   }
 
