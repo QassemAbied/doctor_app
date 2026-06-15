@@ -13,7 +13,8 @@ class MessageModel {
   final String receiverId;
 
   final String? message;
-
+  @JsonKey(name: 'audio')
+  final String? audio;
   final String? image;
 
   @JsonKey(name: 'created_at')
@@ -30,7 +31,7 @@ class MessageModel {
 
     this.image,
 
-    required this.createdAt,
+    required this.createdAt, this.audio,
   });
 
   factory MessageModel.fromJson(Map<String, dynamic> json) =>

@@ -13,6 +13,7 @@ MessageModel _$MessageModelFromJson(Map<String, dynamic> json) => MessageModel(
   message: json['message'] as String?,
   image: json['image'] as String?,
   createdAt: DateTime.parse(json['created_at'] as String),
+  audio: json['audio'] as String?,
 );
 
 Map<String, dynamic> _$MessageModelToJson(MessageModel instance) =>
@@ -21,6 +22,7 @@ Map<String, dynamic> _$MessageModelToJson(MessageModel instance) =>
       'sender_id': instance.senderId,
       'receiver_id': instance.receiverId,
       'message': instance.message,
+      'audio': instance.audio,
       'image': instance.image,
       'created_at': instance.createdAt.toIso8601String(),
     };
