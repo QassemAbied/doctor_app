@@ -8,6 +8,7 @@ class MessageEntity {
   final String? message;
 
   final String? image;
+  final String? audio;
 
   final DateTime createdAt;
 
@@ -19,6 +20,7 @@ class MessageEntity {
     required this.receiverId,
 
     this.message,
+    this.audio,
 
     this.image,
 
