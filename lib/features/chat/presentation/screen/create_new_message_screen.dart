@@ -10,7 +10,7 @@ import '../../../home/domain/entities/doctor_entity.dart';
 import '../../../home/presentation/controller/doctor/doctors_cubit.dart';
 import '../../../home/presentation/controller/doctor/doctors_state.dart';
 import '../../../home/presentation/screens/home/widgets/empty_doctor_widget.dart';
-import 'chat_screen.dart';
+import 'chat/chat_screen.dart';
 
 class CreateNewMessageScreen extends StatelessWidget {
   const CreateNewMessageScreen({super.key});
