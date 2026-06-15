@@ -9,6 +9,7 @@ import 'features/search/search_view/search_screen.dart';
 
 class BottonNavBarView extends StatefulWidget {
   final int initialIndex;
+
   const BottonNavBarView({super.key, this.initialIndex = 0});
 
   @override
@@ -18,18 +19,18 @@ class BottonNavBarView extends StatefulWidget {
 class _BottonNavBarViewState extends State<BottonNavBarView> {
   @override
   void initState() {
-    currentIndex=widget.initialIndex;
+    currentIndex = widget.initialIndex;
     super.initState();
   }
+
   final List<Widget> screens = [
     const HomeScreen(),
     MessagesScreen(),
     SearchScreen(),
-  MyAppointmentScreen(),
-
+    MyAppointmentScreen(),
     ProfileScreen(),
   ];
- late int currentIndex ;
+  late int currentIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +51,7 @@ class _BottonNavBarViewState extends State<BottonNavBarView> {
 class CustomBottomNavBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
+
   const CustomBottomNavBar({
     super.key,
     required this.currentIndex,
