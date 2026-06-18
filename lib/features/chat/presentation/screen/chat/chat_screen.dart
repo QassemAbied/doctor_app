@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:doctor_app/core/common_widgets/dialog/custom_dialog_widget.dart';
 import 'package:doctor_app/core/services/supa_base_service/supa_base_storage.dart';
 import 'package:doctor_app/features/chat/presentation/controller/chat_cubit.dart';
 import 'package:doctor_app/features/chat/presentation/screen/chat/widget/chat_input_bar.dart';
@@ -31,7 +30,6 @@ class _ChatScreenState extends State<ChatScreen> {
 
   final VoiceRecorderService recorderService = VoiceRecorderService();
 
-  final ImagePickerService imagePickerService = ImagePickerService();
 
   File? selectedImage;
 
@@ -50,17 +48,9 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Future<void> pickImage() async {
-    final image = await imagePickerService.pickImage();
+    final image = await ImagePickerService.pickImage(context);
 
-    if (image == null) {
-      if (!mounted) return;
-
-      CustomDialogWidget.showSnackBar(
-        context,
-        'Image size must not exceed 1MB',
-      );
-      return;
-    }
+    if (image == null) return ;
 
     setState(() {
       selectedImage = image;
