@@ -35,7 +35,7 @@ class BookAppointmentScreen extends StatelessWidget {
                       context.read<BookAppointmentCubit>().selectTapBar(1);
                     },
                   ),
-                  AppointmentPayments(),
+                  AppointmentPayments(dataForDoctors: dataForDoctors,),
                   AppointmentSummary(dataForDoctors: dataForDoctors),
                 ],
               ),
