@@ -6,7 +6,6 @@ import '../../../../../../core/utils/spacing.dart';
 import '../../../controller/book_appointment_cubit.dart';
 import '../../../controller/book_appointment_state.dart';
 
-
 class StepperWidget extends StatelessWidget {
   const StepperWidget({super.key});
 
@@ -43,14 +42,21 @@ class StepperWidget extends StatelessWidget {
             horizontalSpace(15),
             buildDivider(index == 2),
             horizontalSpace(5),
-            stepperContainerWidget(
-              () {
-                cubit.selectTapBar(2);
-              },
-              '3',
-              index == 2,
-              context: context,
-            ),
+            state is StripeAppointmentSuccess
+                ? stepperContainerWidget(
+                    () {
+                      cubit.selectTapBar(2);
+                    },
+                    '3',
+                    index == 2,
+                    context: context,
+                  )
+                : stepperContainerWidget(
+                    () {},
+                    '3',
+                    index == 2,
+                    context: context,
+                  ),
           ],
         );
       },
