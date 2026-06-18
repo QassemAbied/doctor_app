@@ -1,30 +1,54 @@
 import 'package:bloc/bloc.dart';
-import 'package:doctor_app/features/home/presentation/controller/recommendation/recommendation_state.dart';
+import 'package:flutter/widgets.dart';
 
 import '../../../../../core/services/location/location_service.dart';
 import '../../../domain/entities/doctor_entity.dart';
 import '../../../domain/entities/specialization_entity.dart';
 import '../../../domain/use_case/doctor_usecase.dart';
 import '../../../domain/use_case/get_specialization_usecase.dart';
+import 'recommendation_state.dart';
 
-class RecommendationCubit extends Cubit<RecommendationState> {
+class RecommendationCubit extends Cubit<RecommendationState>
+    with WidgetsBindingObserver {
   final GetDoctorsUseCase _getDoctorsUseCase;
   final LocationService _locationService;
-
   final GetSpecializationUseCase _getSpecializationUseCase;
 
   RecommendationCubit(
     this._getDoctorsUseCase,
     this._getSpecializationUseCase,
     this._locationService,
-  ) : super(RecommendationInitial());
+  ) : super(RecommendationInitial()) {
+    WidgetsBinding.instance.addObserver(this);
+  }
+
   List<DoctorEntity> allDoctors = [];
   List<DoctorEntity> filteredDoctors = [];
   List<DoctorEntity> searchDoctors = [];
+
+  int selectIndex = 0;
+
+  List<SpecializationEntity> categories = [];
+
+  double? userLat;
+  double? userLng;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      getUserLocation();
+    }
+  }
+
+  @override
+  Future<void> close() {
+    WidgetsBinding.instance.removeObserver(this);
+    return super.close();
+  }
+
   Future<void> searchDoctorsByName({required String query}) async {
     if (query.isEmpty) {
       emit(RecommendationSuccess(allDoctors));
-
       return;
     }
 
@@ -45,66 +69,77 @@ class RecommendationCubit extends Cubit<RecommendationState> {
           .where((doctor) => doctor.specializationId == specializationId)
           .toList();
     }
+
     if (isClosed) return;
+
     emit(RecommendationSuccess(filteredDoctors));
   }
 
   Future<void> getDoctors() async {
     if (isClosed) return;
+
     emit(RecommendationLoading());
 
     final response = await _getDoctorsUseCase();
 
-    response.fold((l) => emit(RecommendationError(l.message)), (r) {
-      allDoctors = r;
+    response.fold(
+      (l) {
+        emit(RecommendationError(l.message));
+      },
+      (r) {
+        allDoctors = r;
 
-      filteredDoctors = r;
-      if (userLat != null && userLng != null) {
-        sortNearestDoctors();
-      }
+        filteredDoctors = r;
 
-      if (isClosed) return;
-      emit(RecommendationSuccess(allDoctors));
-    });
+        if (userLat != null && userLng != null) {
+          sortNearestDoctors();
+        }
+
+        if (isClosed) return;
+
+        emit(RecommendationSuccess(allDoctors));
+      },
+    );
   }
 
-  int selectIndex = 0;
-  List<SpecializationEntity> categories = [];
   void changeIndex(int index) {
     selectIndex = index;
+
     emit(RecommendationSpecializationSuccess(categories));
   }
 
   Future<void> getSpecialization() async {
     emit(RecommendationSpecializationLoading());
-    final response = await _getSpecializationUseCase();
-    response.fold((l) => emit(RecommendationSpecializationError(l.message)), (
-      data,
-    ) {
-      categories = data;
-      emit(RecommendationSpecializationSuccess(categories));
-    });
-  }
 
-  double? userLat;
-  double? userLng;
+    final response = await _getSpecializationUseCase();
+
+    response.fold(
+      (l) {
+        emit(RecommendationSpecializationError(l.message));
+      },
+      (data) {
+        categories = data;
+
+        emit(RecommendationSpecializationSuccess(categories));
+      },
+    );
+  }
 
   Future<void> getUserLocation() async {
     try {
+
       final position = await _locationService.getCurrentUserLocation();
 
-      // userLat = 29.072843057462567;
-      //
-      // userLng = 31.1378399269375;
       userLat = position.latitude;
       userLng = position.longitude;
-      sortNearestDoctors();
-      emit(RecommendationSuccess(allDoctors));
-      print(userLat);
 
-      print(userLng);
+      if (allDoctors.isNotEmpty) {
+        sortNearestDoctors();
+      }
+
+      emit(RecommendationSuccess(allDoctors));
     } catch (e) {
-      print(e.toString());
+      emit(RecommendationError(e.toString()));
     }
   }
 
@@ -118,6 +153,10 @@ class RecommendationCubit extends Cubit<RecommendationState> {
   }
 
   void sortNearestDoctors() {
+    if (userLat == null || userLng == null) {
+      return;
+    }
+
     allDoctors.sort((a, b) {
       final distanceA = calculateDistance(a);
 
