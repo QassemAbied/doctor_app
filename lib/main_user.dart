@@ -1,9 +1,11 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:doctor_app/core/services/shared_pref/shared_pref_keys.dart';
 import 'package:doctor_app/core/services/shared_pref/shared_pref_helpers.dart';
 import 'package:doctor_app/core/services/deep_links_services.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'core/services/notification/local_notification.dart';
 import 'core/utils/app_router/router_app.dart';
 import 'core/utils/extension.dart';
@@ -17,12 +19,22 @@ void main() async {
   await dotenv.load(fileName: ".env");
   tz.initializeTimeZones();
   await SupAbaseHelper.init();
-  await LocalNotification.init();
+  if (!kIsWeb) {
+    await LocalNotification.init();
+  }
+  Stripe.publishableKey = dotenv.env['STRIPE_PUBLISHABLE_KEY']!;
+  await Stripe.instance.applySettings();
   await init();
   await DeepLinkService().init();
   await checkLoggedInUser();
   await isOnBoarding();
-  runApp(DoctorApp(routerApp: RouterApp()));
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+
+      builder: (context) => DoctorApp(routerApp: RouterApp()),
+    ),
+  );
 }
 
 Future isOnBoarding() async {
