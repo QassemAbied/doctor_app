@@ -1,9 +1,7 @@
 import 'dart:io';
-
-import 'package:doctor_app/core/common_widgets/dialog/custom_dialog_widget.dart';
 import 'package:doctor_app/core/services/supa_base_service/supa_base_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import '../../../../../core/services/image/image_picker_service.dart';
 
 class UpdateImageProfileWidget extends StatefulWidget {
   final String? imageUrl;
@@ -27,6 +25,20 @@ class _UpdateImageProfileWidgetState extends State<UpdateImageProfileWidget> {
     imageUrl = widget.imageUrl;
 
     super.initState();
+  }
+
+  Future<void> selectImage() async {
+    final image = await ImagePickerService.pickImage(context);
+
+    if (image == null) return;
+
+    _image = image;
+
+    setState(() {});
+
+    imageUrl = await SupABaseStorage().uploadImage(_image!);
+
+    widget.onImageUploaded(imageUrl!);
   }
 
   @override
@@ -76,25 +88,5 @@ class _UpdateImageProfileWidgetState extends State<UpdateImageProfileWidget> {
         ],
       ),
     );
-  }
-
-  Future<void> selectImage() async {
-    final ImagePicker picker = ImagePicker();
-
-    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-
-    if (image != null) {
-      if (await image.length() > 1024 * 1024) {
-        if (!mounted) return;
-        return CustomDialogWidget.showSnackBar(context, 'Image size must not exceed 1MB');
-      }
-      _image = File(image.path);
-
-      setState(() {});
-
-      imageUrl = await SupABaseStorage().uploadImage(_image!);
-
-      widget.onImageUploaded(imageUrl!);
-    }
   }
 }
