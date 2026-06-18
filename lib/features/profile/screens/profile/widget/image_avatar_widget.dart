@@ -18,42 +18,29 @@ class ImageAvatarWidget extends StatelessWidget {
             left: 0,
             right: 0,
             child: Center(
-              child: Stack(
-                children: [
-                  CircleAvatar(
-                    radius: 50,
-                    backgroundColor: Colors.grey,
-                    child: ClipOval(
-                      child: (userData.image != null &&
-                          userData.image!.isNotEmpty)
-                          ? Image.network(
-                        userData.image!,
-                        width: 100,
-                        height: 100,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Image.asset(
-                            'assets/images/avater.png',
-                            fit: BoxFit.cover,
-                          );
-                        },
-                      )
-                          : Image.asset(
+              child: CircleAvatar(
+                radius: 50,
+                backgroundColor: Colors.grey,
+                child: ClipOval(
+                  child: (userData.image != null &&
+                      userData.image!.isNotEmpty)
+                      ? Image.network(
+                    userData.image!,
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Image.asset(
                         'assets/images/avater.png',
                         fit: BoxFit.cover,
-                      ),
-                    ),
+                      );
+                    },
+                  )
+                      : Image.asset(
+                    'assets/images/avater.png',
+                    fit: BoxFit.cover,
                   ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: CircleAvatar(
-                      radius: 16,
-                      backgroundColor: Colors.blue,
-                      child: Icon(Icons.edit, size: 16, color: Colors.white),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           );
