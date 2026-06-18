@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:doctor_app/core/services/payment/payment_service.dart';
 import 'package:doctor_app/features/book_appointment/domain/entities/appointment_entity.dart';
 import 'package:doctor_app/features/book_appointment/domain/use_case/book_appointment_usecase.dart';
 import 'package:doctor_app/features/book_appointment/domain/use_case/reschedule_appointment_uescase.dart';
@@ -190,6 +191,19 @@ class BookAppointmentCubit extends Cubit<BookAppointmentState> {
         emit(RescheduleAppointmentSuccess());
       },
     );
+  }
+
+  Future makePayment({required int amount}) async {
+    emit(StripeAppointmentLoading());
+    try {
+      await PaymentService.makePayment(amount: amount);
+      print('Payment Success');
+      emit(StripeAppointmentSuccess());
+    } catch (e) {
+      print('Payment Error => $e');
+
+      emit(StripeAppointmentFailure(e.toString()));
+    }
   }
 
   @override

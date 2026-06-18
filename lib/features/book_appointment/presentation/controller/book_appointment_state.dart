@@ -44,3 +44,15 @@ class RescheduleAppointmentFailure extends BookAppointmentState {
   final String message;
   RescheduleAppointmentFailure(this.message);
 }
+
+
+class StripeAppointmentLoading extends BookAppointmentState {}
+
+class StripeAppointmentSuccess extends BookAppointmentState {
+
+}
+
+class StripeAppointmentFailure extends BookAppointmentState {
+  final String message;
+  StripeAppointmentFailure(this.message);
+}
