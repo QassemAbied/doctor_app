@@ -8,6 +8,7 @@ import '../../utils/app_router/routes.dart';
 import '../../utils/di/injection_container.dart';
 
 class LocalNotification {
+  static String? launchPayload;
   static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
   //static void onTap(NotificationResponse notificationResponse) {}
@@ -21,11 +22,13 @@ class LocalNotification {
       onDidReceiveBackgroundNotificationResponse: onTap,
       onDidReceiveNotificationResponse: onTap,
     );
-    await flutterLocalNotificationsPlugin
-        .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin
-        >()
-        ?.requestNotificationsPermission();
+
+    final details = await flutterLocalNotificationsPlugin
+        .getNotificationAppLaunchDetails();
+
+    if (details?.didNotificationLaunchApp ?? false) {
+      launchPayload = details?.notificationResponse?.payload;
+    }
   }
 
   static Future showNotification({
@@ -78,7 +81,6 @@ class LocalNotification {
   }
 
   static Future<void> onTap(NotificationResponse notificationResponse) async {
-    print('Notification Clicked => ${notificationResponse.payload}');
     final payload = notificationResponse.payload;
 
     if (payload == null) return;
@@ -88,8 +90,6 @@ class LocalNotification {
     await sl<AddLocalNotificationUseCase>()(
       LocalNotificationParams(title: parts[0], body: parts[1], isRead: false),
     );
-    navigatorKey.currentState?.pushNamed(
-      Routes.notificationScreen,
-    );
+    navigatorKey.currentState?.pushNamed(Routes.notificationScreen);
   }
 }
