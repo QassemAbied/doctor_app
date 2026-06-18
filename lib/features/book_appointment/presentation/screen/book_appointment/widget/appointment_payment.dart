@@ -1,5 +1,7 @@
 import 'package:doctor_app/core/common_widgets/custom_elevated_botton.dart';
+import 'package:doctor_app/core/common_widgets/dialog/custom_dialog_widget.dart';
 import 'package:doctor_app/core/utils/eunm.dart';
+import 'package:doctor_app/core/utils/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,80 +10,112 @@ import '../../../../../../core/constants/app_svgs.dart';
 import '../../../../../../core/theming/app_color.dart';
 import '../../../../../../core/theming/app_styles.dart';
 import '../../../../../../core/utils/spacing.dart';
+import '../../../../../home/domain/entities/doctor_entity.dart';
 import '../../../controller/book_appointment_cubit.dart';
 import '../../../controller/book_appointment_state.dart';
 import '../../shared_widget/custom_texts_appointment.dart';
 
 class AppointmentPayments extends StatelessWidget {
-  const AppointmentPayments({super.key});
-
+  const AppointmentPayments({super.key, this.dataForDoctors});
+  final DoctorEntity? dataForDoctors;
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<BookAppointmentCubit>();
-    return BlocBuilder<BookAppointmentCubit, BookAppointmentState>(
-      builder: (context, state) {
-        return CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  verticalSpace(20),
-                  buildText('Payment Option', context),
-                  verticalSpace(20),
-                  paymentWidget(
-                    context: context,
-                    value: CardType.credit,
-                    groupValue: cubit.cardType,
-                    onchange: () {
-                      cubit.selectPayment(CardType.credit);
-                    },
-                    title: 'Credit Card',
-                  ),
-                  AnimatedSize(
-                    duration: const Duration(milliseconds: 300),
-
-                    curve: Curves.easeInOut,
-
-                    child: cubit.cardType == CardType.credit
-                        ? buildCreditPayment(context)
-                        : const SizedBox(),
-                  ),
-
-                  verticalSpace(20),
-                  paymentWidget(
-                    context: context,
-                    value: CardType.bank,
-                    groupValue: cubit.cardType,
-                    onchange: () {
-                      cubit.selectPayment(CardType.bank);
-                    },
-                    title: 'Bank Transfer',
-                  ),
-                  verticalSpace(20),
-                  paymentWidget(
-                    context: context,
-                    value: CardType.paypal,
-                    groupValue: cubit.cardType,
-                    onchange: () {
-                      cubit.selectPayment(CardType.paypal);
-                    },
-                    title: 'Paypal',
-                  ),
-
-                  verticalSpace(20),
-                  CustomElevatedButton(
-                    buttonName: 'Continue',
-                    onPressed: () {
-                      cubit.selectTapBar(2);
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ],
-        );
+    return BlocListener<BookAppointmentCubit, BookAppointmentState>(
+      listener: (context, state) {
+        if (state is StripeAppointmentLoading) {
+          CustomDialogWidget.circleDialog(context);
+        }
+        if (state is StripeAppointmentSuccess) {
+          context.pop();
+        }
+        if (state is StripeAppointmentFailure) {
+          context.pop();
+          CustomDialogWidget.errorDialog(context, state.message);
+        }
       },
+      child: BlocBuilder<BookAppointmentCubit, BookAppointmentState>(
+        builder: (context, state) {
+          return CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    verticalSpace(20),
+                    buildText('Payment Option', context),
+                    verticalSpace(20),
+                    paymentWidget(
+                      context: context,
+                      value: CardType.credit,
+                      groupValue: cubit.cardType,
+                      onchange: () {
+                        cubit.selectPayment(CardType.credit);
+                      },
+                      title: 'Credit Card',
+                    ),
+                    AnimatedSize(
+                      duration: const Duration(milliseconds: 300),
+
+                      curve: Curves.easeInOut,
+
+                      child: cubit.cardType == CardType.credit
+                          ? buildCreditPayment(context)
+                          : const SizedBox(),
+                    ),
+
+                    verticalSpace(20),
+                    paymentWidget(
+                      context: context,
+                      value: CardType.bank,
+                      groupValue: cubit.cardType,
+                      onchange: () {
+                        cubit.selectPayment(CardType.bank);
+                        cubit.makePayment(amount: dataForDoctors!.price.toInt());
+                      },
+                      title: 'Stripe',
+                    ),
+                    verticalSpace(20),
+                    paymentWidget(
+                      context: context,
+                      value: CardType.paypal,
+                      groupValue: cubit.cardType,
+                      onchange: () {
+                        cubit.selectPayment(CardType.paypal);
+                      },
+                      title: 'Paypal',
+                    ),
+
+                    verticalSpace(20),
+
+                    state is StripeAppointmentSuccess
+                        ? CustomElevatedButton(
+                            buttonName: 'Continue',
+                            onPressed: () {
+                              cubit.selectTapBar(2);
+                            },
+                          )
+                        : SizedBox(
+                            width: double.infinity,
+                            height: 50,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: ColorManager.grey40,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              onPressed: null,
+                              child: Text('Continue'),
+                            ),
+                          ),
+                  ],
+                ),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 
