@@ -102,11 +102,11 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
     );
   }
 
-  @override
-  void dispose() {
-    widget.emailController!.dispose();
-    widget.passwordController!.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   widget.emailController!.dispose();
+  //   widget.passwordController!.dispose();
+  //   passwordController.dispose();
+  //   super.dispose();
+  // }
 }
