@@ -36,7 +36,7 @@ class ListViewForDoctor extends StatelessWidget {
                 return ItemForDoctorWidget(
                   doctors: data,
                   index: index,
-                  heroTag: 'doctor_${data[index].id}',
+                  heroTag: 'doctor_${data[index].id}_${data[index].name}',
                   enableHero: true,
                 );
               },
