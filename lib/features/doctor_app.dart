@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:doctor_app/features/auth/presentation/controller/auth_cubit.dart';
 import 'package:doctor_app/features/chat/presentation/controller/chat_cubit.dart';
 import 'package:doctor_app/features/home/presentation/controller/doctor/doctors_cubit.dart';
@@ -6,6 +7,7 @@ import 'package:doctor_app/features/home/presentation/controller/specialization/
 import 'package:doctor_app/features/notification/presentation/controller/notification_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../core/services/notification/local_notification.dart';
 import '../core/services/shared_pref/shared_pref_keys.dart';
 import '../core/theming/app_theme.dart';
 import '../core/utils/app_router/navigator_service.dart';
@@ -13,10 +15,31 @@ import '../core/utils/app_router/router_app.dart';
 import '../core/utils/app_router/routes.dart';
 import '../core/utils/di/injection_container.dart';
 
-class DoctorApp extends StatelessWidget {
+class DoctorApp extends StatefulWidget {
   final RouterApp routerApp;
   const DoctorApp({super.key, required this.routerApp});
 
+  @override
+  State<DoctorApp> createState() => _DoctorAppState();
+}
+
+class _DoctorAppState extends State<DoctorApp> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+
+      if (LocalNotification.launchPayload != null) {
+        navigatorKey.currentState?.pushNamed(
+          Routes.notificationScreen,
+        );
+
+        LocalNotification.launchPayload = null;
+      }
+
+    });
+
+  }
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -41,6 +64,9 @@ class DoctorApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        useInheritedMediaQuery: true,
+        locale: DevicePreview.locale(context),
+        builder: DevicePreview.appBuilder,
         navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme(context),
@@ -48,7 +74,7 @@ class DoctorApp extends StatelessWidget {
         isLoggedInUser
             ? Routes.bottonNavScreen
             : Routes.loginScreen ,
-        onGenerateRoute: routerApp.generateRoute,
+        onGenerateRoute: widget.routerApp.generateRoute,
       ),
     );
   }
