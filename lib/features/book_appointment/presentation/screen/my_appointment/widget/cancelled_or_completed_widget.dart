@@ -26,7 +26,7 @@ class CancelledOrCompletedWidget extends StatelessWidget {
                 doctor: appointments[index].doctor,
                 day: DateFormat(
                   'EEEE, dd MMM',
-                ).format(DateTime.parse(appointments[index].appointmentDate,)),
+                ).format(appointments[index].appointmentDate,),
                 time: appointments[index].appointmentTime,
 
                 notShowRate: false,
