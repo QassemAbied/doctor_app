@@ -1,11 +1,11 @@
 import 'package:doctor_app/core/constants/app_svgs.dart';
 import 'package:doctor_app/core/theming/app_color.dart';
-import 'package:doctor_app/core/theming/app_styles.dart';
 import 'package:doctor_app/features/auth/presentation/controller/auth_cubit.dart';
 import 'package:doctor_app/features/auth/presentation/controller/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/common_widgets/dialog/custom_dialog_widget.dart';
 import '../../../../../core/utils/app_router/routes.dart';
 import '../../../../../core/utils/extension.dart';
 import '../../../../../core/utils/spacing.dart';
@@ -61,49 +61,7 @@ class ListTitleListWidget extends StatelessWidget {
           image: AppSvgs.logout,
           text: 'Logout',
           onTap: () {
-            showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  title: Text(
-                    'Logout',
-                    style: AppTextStyle.styleBold16(
-                      ColorManager.textPrimary,
-                      context,
-                    ),
-                  ),
-                  content: Text(
-                    'You’ll need to enter your email and password next time you want to login',
-                    style: AppTextStyle.styleMedium14(
-                      ColorManager.textSecondary,
-                      context,
-                    ),
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        context.pop();
-                      },
-                      child: const Text('Cancel'),
-                    ),
-
-                    TextButton(
-                      onPressed: () {
-                        context.pop();
-                        context.read<AuthCubit>().signOut();
-                      },
-                      child: Text(
-                        'Logout',
-                        style: AppTextStyle.styleBold16(
-                          ColorManager.fillRed,
-                          context,
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              },
-            );
+            CustomDialogWidget.logOutDialog(context, );
           },
         ),
         verticalSpace(10),
