@@ -11,7 +11,10 @@ class Routes {
   static const String notificationScreen = "/notificationScreen";
   static const String appointmentsScreen = "/appointments";
   static const String myAppointmentsScreen = "/myAppointment";
-
+  static const String doctorHomeScreen = "/currentDoctor";
+  static const String doctorAppointmentsScreen = "/doctorAppointments";
+  static const String doctorPatientsScreen = "/doctorPatients";
+  static const String doctorProfileScreen = "/doctorProfile";
   static const String bookAppointmentScreen = "/BookAppointmentScreen";
   static const String doneAppointments = "/doneAppointments";
   static const String profilesScreen = "/profilesScreen";

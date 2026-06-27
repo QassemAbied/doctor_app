@@ -6,6 +6,9 @@ import 'package:doctor_app/features/auth/presentation/screens/sign_in/login_scre
 import 'package:doctor_app/features/auth/presentation/controller/auth_cubit.dart';
 import 'package:doctor_app/features/auth/presentation/screens/update_password/update_password_screen.dart';
 import 'package:doctor_app/features/details_doctor/presentation/screen/details_doctors_screen.dart';
+import 'package:doctor_app/features/doctor_profile/presentation/screen/doctor_appointment/doctor_appointment_screen.dart';
+import 'package:doctor_app/features/doctor_profile/presentation/screen/patients/doctor_patients_screen.dart';
+import 'package:doctor_app/features/doctor_profile/presentation/screen/doctor_profile/doctor_profile_screen.dart';
 import 'package:doctor_app/features/home/presentation/screens/home/home_screen.dart';
 import 'package:doctor_app/features/home/presentation/screens/recommendation_doctor/recommendation_doctor_screen.dart';
 import 'package:doctor_app/features/home/presentation/screens/specialization/specialization_screen.dart';
@@ -17,6 +20,7 @@ import '../../../features/book_appointment/domain/entities/appointment_params.da
 import '../../../features/book_appointment/presentation/controller/book_appointment_cubit.dart';
 import '../../../features/book_appointment/presentation/screen/book_appointment/book_appointment_screen.dart';
 import '../../../features/book_appointment/presentation/screen/done_appointment/done_appointment.dart';
+import '../../../features/doctor_profile/presentation/screen/doctor_home/doctor_home_screen.dart';
 import '../../../features/home/domain/entities/doctor_entity.dart';
 import '../../../features/notification/presentation/screen/notification_screen.dart';
 import '../../common_widgets/map_smiple.dart';
@@ -141,6 +145,30 @@ class RouterApp {
               create: (context) => sl<AuthCubit>()..getUser(),
               child: ProfileScreen(),
             ),
+          );
+        }
+        case Routes.doctorHomeScreen:
+          {
+            return MaterialPageRoute(
+              builder: (_) => DoctorHomeScreen(),
+            );
+          }
+      case Routes.doctorAppointmentsScreen:
+        {
+          return MaterialPageRoute(
+            builder: (_) => DoctorAppointmentsScreen(),
+          );
+        }
+      case Routes.doctorPatientsScreen:
+        {
+          return MaterialPageRoute(
+            builder: (_) => DoctorPatientsScreen(),
+          );
+        }
+      case Routes.doctorProfileScreen:
+        {
+          return MaterialPageRoute(
+            builder: (_) => DoctorProfileScreen(),
           );
         }
       case Routes.updateProfileScreen:
