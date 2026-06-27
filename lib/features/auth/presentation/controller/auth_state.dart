@@ -14,6 +14,9 @@ final class SignUpFailure extends AuthState {
 
 final class SignInLoading extends AuthState {}
 final class SignInSuccess extends AuthState {}
+class SignInDoctorSuccess extends AuthState {}
+
+class SignInPatientSuccess extends AuthState {}
 final class SignInFailure extends AuthState {
   final String message;
 

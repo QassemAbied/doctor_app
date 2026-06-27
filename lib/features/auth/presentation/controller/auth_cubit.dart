@@ -5,6 +5,7 @@ import 'package:doctor_app/features/auth/domain/use_case/get_user_uescase.dart';
 import 'package:doctor_app/features/auth/domain/use_case/sign_out_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import '../../../../core/helpers/app_regex.dart';
+import '../../../../core/services/supa_base_service/supa_base_auth_service.dart';
 import '../../domain/entities/sign_up_params.dart';
 import '../../domain/entities/user_entity.dart';
 import '../../domain/use_case/forget_password_usecase.dart';
@@ -29,8 +30,8 @@ class AuthCubit extends Cubit<AuthState> {
     this._forgotPasswordUseCase,
     this._updatePasswordUseCase,
     this._signOutUseCase,
-      this._getUserUesCase,
-      this._updateUserUseCase,
+    this._getUserUesCase,
+    this._updateUserUseCase,
   ) : super(AuthInitial());
 
   bool passwordSigUp = true;
@@ -71,12 +72,39 @@ class AuthCubit extends Cubit<AuthState> {
     );
   }
 
+  // Future<void> signIn(SignInParams params) async {
+  //   emit(SignInLoading());
+  //   final res = await _signInUseCase(params);
+  //   res.fold(
+  //     (l) => emit(SignInFailure(l.message)),
+  //     (r) => emit(SignInSuccess()),
+  //   );
+  // }
   Future<void> signIn(SignInParams params) async {
     emit(SignInLoading());
+
     final res = await _signInUseCase(params);
-    res.fold(
-      (l) => emit(SignInFailure(l.message)),
-      (r) => emit(SignInSuccess()),
+
+    await res.fold(
+      (failure) async {
+        emit(SignInFailure(failure.message));
+      },
+      (_) async {
+        try {
+          final role = await SupAbaseAuthService().getUserRole();
+          await SharedPrefHelper.setData(
+            SharedPrefKeys.userRole,
+            role,
+          );
+          if (role == 'doctor') {
+            emit(SignInDoctorSuccess());
+          } else {
+            emit(SignInPatientSuccess());
+          }
+        } catch (e) {
+          emit(SignInFailure(e.toString()));
+        }
+      },
     );
   }
 
@@ -115,29 +143,29 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signOut() async {
     emit(SignOutLoading());
     final res = await _signOutUseCase();
-   await SharedPrefHelper.removeData(SharedPrefKeys.userId);
+    await SharedPrefHelper.removeData(SharedPrefKeys.userId);
     res.fold(
       (l) => emit(SignOutFailure(l.message)),
       (r) => emit(SignOutSuccess()),
     );
   }
+
   UserEntity? userEntity;
   Future<void> getUser() async {
     emit(GetUserDataLoading());
     final res = await _getUserUesCase();
-    res.fold(
-      (l) => emit(GetUserDataFailure(l.message)),
-      (data) {
-      userEntity= data;
-        emit(GetUserDataSuccess(data));
-      },
-    );
+    res.fold((l) => emit(GetUserDataFailure(l.message)), (data) {
+      userEntity = data;
+      emit(GetUserDataSuccess(data));
+    });
   }
+
   Future<void> updateUser(UpdateUserParams updateUserParams) async {
     emit(UpdateUserDataLoading());
     final res = await _updateUserUseCase(updateUserParams);
     res.fold(
       (l) => emit(UpdateUserDataFailure(l.message)),
-      (r) => emit(UpdateUserDataSuccess(r)));
+      (r) => emit(UpdateUserDataSuccess(r)),
+    );
   }
 }
