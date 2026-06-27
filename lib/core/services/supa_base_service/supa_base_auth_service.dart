@@ -29,7 +29,21 @@ class SupAbaseAuthService {
       'image': params.image,
     });
   }
+  Future<String> getUserRole() async {
+    final auth = Supabase.instance.client.auth;
+    if(auth.currentUser?.id == null){
+      throw Exception('User is null');
+    }
+    final userId = auth.currentUser!.id;
 
+  final response =  await instance
+        .from('users')
+        .select('role')
+        .eq('id', userId)
+        .single();
+
+    return response['role'];
+  }
   Future<void> forgotPassword(String email) async {
     await instance.auth.resetPasswordForEmail(
       email.trim(),
