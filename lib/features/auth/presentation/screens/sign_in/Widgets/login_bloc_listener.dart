@@ -14,15 +14,21 @@ class LoginBlocListener extends StatelessWidget {
     return BlocListener<AuthCubit, AuthState>(
       listenWhen: (previous, current) =>
           current is SignInLoading ||
-          current is SignInSuccess ||
+              current is SignInDoctorSuccess ||
+              current is SignInPatientSuccess ||
           current is SignInFailure,
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state is SignInLoading) {
           CustomDialogWidget.circleDialog(context);
         }
-        if (state is SignInSuccess) {
+        if (state is SignInDoctorSuccess) {
           context.pop();
-          context.pushNamedAndRemoveUntil(Routes.bottonNavScreen,);
+          context.pushNamedAndRemoveUntil(Routes.doctorHomeScreen);
+        }
+
+        if (state is SignInPatientSuccess) {
+          context.pop();
+          context.pushNamedAndRemoveUntil(Routes.bottonNavScreen);
         }
         if (state is SignInFailure) {
           context.pop();
