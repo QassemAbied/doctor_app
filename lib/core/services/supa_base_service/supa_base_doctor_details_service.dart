@@ -24,4 +24,5 @@ class SupABaseDoctorDetailsService {
 
     return DoctorModel.fromJson(response);
   }
+
 }
