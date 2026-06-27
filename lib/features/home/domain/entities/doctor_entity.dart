@@ -1,6 +1,6 @@
 class DoctorEntity {
   final String id;
-
+  final String? userId;
   final String name;
 
   final String image;
@@ -73,7 +73,7 @@ class DoctorEntity {
     required this.languages,
     required this.isAvailable,
     required this.specializationName,
-    required this.specializationImage,
+    required this.specializationImage, required this.userId,
   });
   factory DoctorEntity.fake() {
     return DoctorEntity(
@@ -125,7 +125,7 @@ class DoctorEntity {
 
       languages: [],
 
-      isAvailable: true,
+      isAvailable: true, userId: '',
     );
   }
 }
