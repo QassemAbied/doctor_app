@@ -28,7 +28,7 @@ class UpcomingWidget extends StatelessWidget {
                   CustomDoctorsDataWidget(
                     doctor: appointments[index].doctor,
                     day: DateFormat('EEEE, dd MMM').format(
-                      DateTime.parse(appointments[index].appointmentDate),
+                      appointments[index].appointmentDate,
                     ),
                     time: appointments[index].appointmentTime,
 
@@ -48,7 +48,9 @@ class UpcomingWidget extends StatelessWidget {
                                 sl<BookAppointmentCubit>()..setInitialData(
                                   time: appointments[index].appointmentTime,
                                   type: appointments[index].appointmentType,
-                                  date: appointments[index].appointmentDate,
+                                  date: DateFormat('EEEE, dd MMM').format(
+                                    appointments[index].appointmentDate,
+                                  ),
                                 ),
                             child: RescheduleScreen(
                               dataForDoctors: appointments[index].doctor,
