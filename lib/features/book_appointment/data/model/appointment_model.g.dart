@@ -22,6 +22,9 @@ AppointmentModel _$AppointmentModelFromJson(Map<String, dynamic> json) =>
         unknownValue: Status.upcoming,
       ),
       doctor: DoctorModel.fromJson(json['doctors'] as Map<String, dynamic>),
+      user: json['users'] == null
+          ? null
+          : UserModel.fromJson(json['users'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$AppointmentModelToJson(AppointmentModel instance) =>
@@ -36,6 +39,7 @@ Map<String, dynamic> _$AppointmentModelToJson(AppointmentModel instance) =>
       'price': instance.price,
       'status': _$StatusEnumMap[instance.status]!,
       'doctors': instance.doctor.toJson(),
+      'users': instance.user?.toJson(),
     };
 
 const _$StatusEnumMap = {

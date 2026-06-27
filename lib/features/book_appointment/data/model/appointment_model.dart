@@ -2,12 +2,12 @@ import 'package:doctor_app/features/home/data/models/doctor_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../../core/utils/eunm.dart';
+import '../../../auth/data/model/user_model.dart';
 
 part 'appointment_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class AppointmentModel {
-
   final String id;
 
   @JsonKey(name: 'doctor_id')
@@ -29,36 +29,30 @@ class AppointmentModel {
   final String paymentMethod;
 
   final double price;
+
   @JsonKey(
-    unknownEnumValue:
-    Status.upcoming,
+    unknownEnumValue: Status.upcoming,
   )
   final Status status;
 
   @JsonKey(name: 'doctors')
   final DoctorModel doctor;
 
+  @JsonKey(name: 'users')
+  final UserModel? user;
+
   const AppointmentModel({
-
     required this.id,
-
     required this.doctorId,
-
     required this.userId,
-
     required this.appointmentDate,
-
     required this.appointmentTime,
-
     required this.appointmentType,
-
     required this.paymentMethod,
-
     required this.price,
-
     required this.status,
-
     required this.doctor,
+    this.user,
   });
 
   factory AppointmentModel.fromJson(
