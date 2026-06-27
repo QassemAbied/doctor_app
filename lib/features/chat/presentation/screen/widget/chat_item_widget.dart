@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
+import '../../../../../core/common_widgets/custom_image_or_name_widget.dart';
 import '../../../../../core/theming/app_color.dart';
 import '../../../../../core/theming/app_styles.dart';
 import '../../../../../core/utils/spacing.dart';
@@ -34,11 +34,7 @@ class ChatItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
 
       children: [
-        CircleAvatar(
-          radius: 30,
-          backgroundColor: ColorManager.primary40,
-          backgroundImage: NetworkImage(image),
-        ),
+        CustomImageOrNameWidget(image: image, name: name,),
         horizontalSpace(14),
         Expanded(
           child: Column(
