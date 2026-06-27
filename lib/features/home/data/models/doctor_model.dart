@@ -6,7 +6,8 @@ part 'doctor_model.g.dart';
 
 class DoctorModel {
   final String id;
-
+  @JsonKey(name: 'user_id')
+  final String? userId;
   final String name;
 
   final String image;
@@ -88,13 +89,13 @@ class DoctorModel {
     required this.isAvailable,
     required this.specializationName,
 
-    required this.specializationImage,
+    required this.specializationImage, required this.userId,
   });
 
   factory DoctorModel.fromJson(
       Map<String, dynamic> json,
       ) {
-
+    print(json);
     return DoctorModel(
 
       id: json['id'],
@@ -166,6 +167,7 @@ class DoctorModel {
 
       isAvailable:
       json['is_available'],
+      userId: json['user_id'],
     );
   }
 

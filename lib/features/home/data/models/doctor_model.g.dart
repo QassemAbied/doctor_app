@@ -34,11 +34,13 @@ DoctorModel _$DoctorModelFromJson(Map<String, dynamic> json) => DoctorModel(
   isAvailable: json['is_available'] as bool,
   specializationName: json['specializationName'] as String,
   specializationImage: json['specializationImage'] as String,
+  userId: json['user_id'] as String,
 );
 
 Map<String, dynamic> _$DoctorModelToJson(DoctorModel instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'user_id': instance.userId,
       'name': instance.name,
       'image': instance.image,
       'specialization_id': instance.specializationId,
