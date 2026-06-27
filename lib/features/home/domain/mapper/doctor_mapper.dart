@@ -31,7 +31,7 @@ class DoctorMapper {
       languages: model.languages,
       isAvailable: model.isAvailable,
       specializationName: model.specializationName,
-      specializationImage: model.specializationImage,
+      specializationImage: model.specializationImage, userId: model.userId,
     );
   }
 
