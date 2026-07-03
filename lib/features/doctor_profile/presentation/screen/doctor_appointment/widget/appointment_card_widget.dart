@@ -8,6 +8,8 @@ import '../../../../../../core/theming/app_color.dart';
 import '../../../../../../core/theming/app_styles.dart';
 import '../../../../../../core/utils/spacing.dart';
 import '../../../../../chat/presentation/screen/chat/chat_screen.dart';
+import '../../../../../notification/domain/entity/local_notification_params.dart';
+import '../../../../../notification/presentation/controller/notification_cubit.dart';
 import '../../../controller/doctor_cubit.dart';
 import 'bulid_dialoge.dart';
 
@@ -155,8 +157,6 @@ class AppointmentCardWidget extends StatelessWidget {
   }
 }
 
-
-
 Row messageAndCall(BuildContext context, UserEntity? patient) {
   return Row(
     children: [
@@ -219,6 +219,8 @@ Row cancelAndComplete(
   List<AppointmentEntity> appointments,
   int index,
 ) {
+  final notificationCubit = context.read<NotificationCubit>();
+
   return Row(
     children: [
       Expanded(
@@ -235,8 +237,16 @@ Row cancelAndComplete(
                 appointments[index].id,
               );
 
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Appointment Cancelled')),
+              await notificationCubit.addShowNotification(
+                params: LocalNotificationParams(
+                  title: 'New appointment with Cancel',
+                  body:
+                  'Dear ${appointments[index].user?.name??''} '
+                      '${appointments[index].doctor.name} Cancel an appointment with you',
+                  isRead: false,
+                  id: appointments[index].userId,
+                ),
+                doctorUserId: appointments[index].userId,
               );
             }
           },
