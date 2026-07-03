@@ -5,18 +5,22 @@ import '../../../features/notification/domain/entity/local_notification_params.d
 
 class SupABaseNotificationService {
   final instance = Supabase.instance.client;
-
   Future<void> addNotification(LocalNotificationParams params) async {
-    final user = instance.auth.currentUser;
-    if (user == null) {
-      throw Exception('User is null');
+    try {
+      final response = await instance.from('notifications').insert({
+        'title': params.title,
+        'body': params.body,
+        'user_id': params.id,
+        'is_read': params.isRead,
+      }).select();
+
+      print("INSERT RESPONSE => $response");
+    } catch (e, s) {
+      print("INSERT ERROR => $e");
+      print(s);
     }
-    return await instance.from('notifications').insert({
-      'title': params.title,
-      'body': params.body,
-      'user_id': user.id,
-      'is_read': params.isRead,
-    });
+
+    print("==============");
   }
 
   Future<List<NotificationModel>> getNotifications() async {
@@ -24,6 +28,7 @@ class SupABaseNotificationService {
     if (user == null) {
       throw Exception('User is null');
     }
+    print('Current User => ${user.id}');
     final response = await instance
         .from('notifications')
         .select()
@@ -38,6 +43,7 @@ class SupABaseNotificationService {
   Future<void> markAsReadNotification(String id) async {
     await instance.from('notifications').update({'is_read': true}).eq('id', id);
   }
+
   Future<void> deleteNotification(String id) async {
     await instance.from('notifications').delete().eq('id', id);
   }
