@@ -13,7 +13,7 @@ class TodayAppointmentsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appointments = appointment
-        .where((e) => e.status.name == 'upcoming')
+        .where((e) => e.isToday == true)
         .toList();
     return Padding(
       padding: const EdgeInsets.all(20.0),
