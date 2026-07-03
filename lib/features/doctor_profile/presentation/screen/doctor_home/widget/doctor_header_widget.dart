@@ -1,6 +1,10 @@
 import 'package:doctor_app/core/common_widgets/custom_image_or_name_widget.dart';
+import 'package:doctor_app/core/utils/app_router/routes.dart';
+import 'package:doctor_app/core/utils/extension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
+import '../../../../../../core/constants/app_svgs.dart';
 import '../../../../../../core/theming/app_color.dart';
 import '../../../../../../core/theming/app_styles.dart';
 import '../../../../../../core/utils/spacing.dart';
@@ -18,9 +22,7 @@ class DoctorHeaderWidget extends StatelessWidget {
       child: Row(
         children: [
           CustomImageOrNameWidget(name: doctor.name, image: doctor.image),
-
           horizontalSpace(16),
-
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,6 +65,12 @@ class DoctorHeaderWidget extends StatelessWidget {
               ],
             ),
           ),
+          verticalSpace(16),
+          GestureDetector(
+              onTap: () {
+                context.pushNamed(Routes.notificationScreen);
+              },
+              child: SvgPicture.asset(AppSvgs.notification),),
         ],
       ),
     );
