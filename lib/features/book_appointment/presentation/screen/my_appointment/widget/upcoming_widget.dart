@@ -59,7 +59,7 @@ class UpcomingWidget extends StatelessWidget {
                           ),
                         ),
                       );
-                    },
+                    }, appointments: appointments[index],
                   ),
                   verticalSpace(30),
                 ],
