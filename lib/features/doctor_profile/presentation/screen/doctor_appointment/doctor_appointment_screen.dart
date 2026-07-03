@@ -26,11 +26,11 @@ class DoctorAppointmentsScreen extends StatelessWidget {
                   return const Center(child: Text('No Appointments Yet'));
                 }
                 final upComingAppointments = state.appointments
-                    .where((e) => e.status.name == 'upcoming')
+                    .where((e) => e.status.name == 'upcoming'&&e.isUpcoming)
                     .toList();
 
                 final completedAppointments = state.appointments
-                    .where((e) => e.status.name == 'completed')
+                    .where((e) => e.status.name == 'completed'&&e.isCompleted)
                     .toList();
 
                 final cancelledAppointments = state.appointments
