@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timezone/timezone.dart' as tz;
 import '../../../../auth/presentation/controller/auth_cubit.dart';
@@ -11,15 +14,18 @@ class AppointmentNotificationHelper {
     required BuildContext context,
     required AppointmentParams appointmentParams,
     required String title1,
-  })
-  async {
+  }) async {
     final notificationCubit = context.read<NotificationCubit>();
 
     final authCubit = context.read<AuthCubit>();
 
     final userName = authCubit.userEntity?.name ?? '';
-
-    await notificationCubit.addShowNotification(
+    final userId = authCubit.userEntity?.id ?? '';
+    final doctorUserId = appointmentParams.doctor.userId;
+    log('Patient ID  => $userId');
+    log('Doctor ID   => $doctorUserId');
+    if (doctorUserId == null) return;
+    await notificationCubit.addShowNotificationLocal(
       params: LocalNotificationParams(
         title: title1,
 
@@ -30,9 +36,20 @@ class AppointmentNotificationHelper {
             'has been confirmed.',
 
         isRead: false,
+        id: userId,
       ),
     );
-
+    await notificationCubit.addShowNotification(
+      params: LocalNotificationParams(
+        title: 'New appointment with ',
+        body:
+            'Dear ${appointmentParams.doctor.name} '
+            '$userName an appointment with you',
+        isRead: false,
+        id: doctorUserId,
+      ),
+      doctorUserId: doctorUserId,
+    );
     final scheduledDate = _generateScheduledDate(appointmentParams);
 
     await notificationCubit.addScheduleNotification(
@@ -46,18 +63,18 @@ class AppointmentNotificationHelper {
             'starts in 1 hour.',
 
         isRead: false,
+        id: userId,
       ),
 
       scheduledDate: scheduledDate,
 
       id: DateTime.now().millisecondsSinceEpoch % 2147483647,
     );
+    if (kDebugMode) {
+      print(scheduledDate);
+      print(DateTime.now());
+    }
   }
-
-
-
-
-
 
   static tz.TZDateTime _generateScheduledDate(
     AppointmentParams appointmentParams,
