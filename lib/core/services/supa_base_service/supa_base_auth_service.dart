@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../../features/auth/data/model/user_model.dart';
 import '../../../features/auth/domain/entities/sign_up_params.dart';
@@ -29,14 +30,15 @@ class SupAbaseAuthService {
       'image': params.image,
     });
   }
+
   Future<String> getUserRole() async {
     final auth = Supabase.instance.client.auth;
-    if(auth.currentUser?.id == null){
+    if (auth.currentUser?.id == null) {
       throw Exception('User is null');
     }
     final userId = auth.currentUser!.id;
 
-  final response =  await instance
+    final response = await instance
         .from('users')
         .select('role')
         .eq('id', userId)
@@ -44,6 +46,7 @@ class SupAbaseAuthService {
 
     return response['role'];
   }
+
   Future<void> forgotPassword(String email) async {
     await instance.auth.resetPasswordForEmail(
       email.trim(),
@@ -103,6 +106,18 @@ class SupAbaseAuthService {
     return UserModel.fromJson(response);
   }
 
+  static Future<void> saveToken() async {
+    final token = await FirebaseMessaging.instance.getToken();
 
+    final user = Supabase.instance.client.auth.currentUser;
+
+    if (token == null || user == null) return;
+
+    await Supabase.instance.client
+        .from('users')
+        .update({'fcm_token': token})
+        .eq('id', user.id);
+
+    print("Saved Token => $token");
+  }
 }
-
