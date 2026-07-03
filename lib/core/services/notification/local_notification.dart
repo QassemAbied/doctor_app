@@ -1,6 +1,5 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
-
 import '../../../features/notification/domain/entity/local_notification_params.dart';
 import '../../../features/notification/domain/use_case/add_local_notification_usecase.dart';
 import '../../utils/app_router/navigator_service.dart';
@@ -11,7 +10,6 @@ class LocalNotification {
   static String? launchPayload;
   static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
-  //static void onTap(NotificationResponse notificationResponse) {}
   static Future<void> init() async {
     InitializationSettings initializationSettings = InitializationSettings(
       android: AndroidInitializationSettings('@mipmap/ic_launcher'),
@@ -34,7 +32,8 @@ class LocalNotification {
   static Future showNotification({
     required String title,
     required String body,
-  }) async {
+  })
+  async {
     await flutterLocalNotificationsPlugin.show(
       id: 0,
       title: title,
@@ -58,7 +57,8 @@ class LocalNotification {
     required String body,
     required tz.TZDateTime scheduledDate,
     required int id,
-  }) async {
+  })
+  async {
     await flutterLocalNotificationsPlugin.zonedSchedule(
       id: id,
 
@@ -88,7 +88,7 @@ class LocalNotification {
     final parts = payload.split('|');
 
     await sl<AddLocalNotificationUseCase>()(
-      LocalNotificationParams(title: parts[0], body: parts[1], isRead: false),
+      LocalNotificationParams(title: parts[0], body: parts[1], isRead: false, id: ''),
     );
     navigatorKey.currentState?.pushNamed(Routes.notificationScreen);
   }
