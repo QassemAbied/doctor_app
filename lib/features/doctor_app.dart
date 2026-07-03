@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:doctor_app/features/auth/presentation/controller/auth_cubit.dart';
 import 'package:doctor_app/features/chat/presentation/controller/chat_cubit.dart';
 import 'package:doctor_app/features/home/presentation/controller/doctor/doctors_cubit.dart';
@@ -59,8 +58,6 @@ class _DoctorAppState extends State<DoctorApp> {
         BlocProvider(create: (context) => sl<AuthCubit>()..getUser()),
       ],
       child: MaterialApp(
-        locale: DevicePreview.locale(context),
-        builder: DevicePreview.appBuilder,
         navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme(context),
