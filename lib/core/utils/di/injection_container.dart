@@ -55,6 +55,7 @@ import '../../../features/notification/data/data_source/remote_data_source/local
 import '../../../features/notification/data/repository_impl.dart';
 import '../../../features/notification/domain/repository.dart';
 import '../../../features/notification/presentation/controller/notification_cubit.dart';
+import '../../services/notification/fcm_push_request_service.dart';
 import '../../services/supa_base_service/supa_base_auth_service.dart';
 import '../../services/supa_base_service/supa_base_notification_service.dart';
 
@@ -114,8 +115,10 @@ Future<void> init() async {
     () => AppointmentRepositoryImpl(sl()),
   );
   sl.registerLazySingleton(() => BookAppointmentService());
+  sl.registerLazySingleton(() => FcmPushService());
 
-  sl.registerFactory(() => NotificationCubit(sl(), sl(), sl()));
+
+  sl.registerFactory(() => NotificationCubit(sl(), sl(), sl(), sl()));
 
   sl.registerLazySingleton(() => AddLocalNotificationUseCase(sl()));
   sl.registerLazySingleton(() => GetLocalNotificationUseCase(sl()));
