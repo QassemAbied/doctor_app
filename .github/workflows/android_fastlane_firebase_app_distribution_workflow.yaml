@@ -29,6 +29,8 @@ jobs:
           cat << EOF > .env
           SUPABASE_URL=${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY=${{ secrets.SUPABASE_ANON_KEY }}
+          STRIPE_PUBLISHABLE_KEY=${{ secrets.STRIPE_PUBLISHABLE_KEY }}
+          STRIPE_SECRET=${{ secrets.STRIPE_SECRET }}
           EOF
 
       - name: Flutter pub get

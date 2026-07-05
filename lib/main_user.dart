@@ -20,8 +20,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await dotenv.load(fileName: ".env");
-
   tz.initializeTimeZones();
+
   await SupAbaseHelper.init();
   if (!kIsWeb) {
     await LocalNotification.init();
@@ -34,6 +34,5 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FcmNotificationService.init();
   await SupAbaseAuthService.saveToken();
-
   runApp(DoctorApp(routerApp: RouterApp()));
 }
