@@ -675,7 +675,7 @@ Doctor App has a dedicated dashboard completely separated from the Patient Appli
 
 ### Doctor Profile
 
-<img src="assets/readme/doctor_profile.png" width="/>
+<img src="assets/readme/doctor_profile.png" width="250"/>
 
 </td>
 
@@ -683,7 +683,7 @@ Doctor App has a dedicated dashboard completely separated from the Patient Appli
 
 ### Edit Profile
 
-<img src="assets/readme/doctor_profile_home_2.png" width="/>
+<img src="assets/readme/doctor_profile_home_2.png" width="250"/>
 
 </td>
 
