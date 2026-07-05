@@ -477,7 +477,7 @@ The application uses **Supabase** as the primary backend.
 
 ### Doctor Details
 
-<img src="assets/readme/doctor_details.png" width="250"/>
+<img src="assets/readme/doctor_profile_1.png" width="250"/>
 
 </td>
 
@@ -485,7 +485,7 @@ The application uses **Supabase** as the primary backend.
 
 ### Doctor Reviews
 
-<img src="assets/readme/doctor_details_2.png" width="250"/>
+<img src="assets/readme/doctor_profile_2.png" width="250"/>
 
 </td>
 
@@ -659,7 +659,9 @@ Doctor App has a dedicated dashboard completely separated from the Patient Appli
 
 ## 🏥 Doctor Home
 
-<img src="assets/readme/doctor_profile_home_2.png" width="270"/>
+<img src="assets/readme/doctor_details.png" width="250"/>
+
+<img src="assets/readme/doctor_details_2.png" width="250"/>
 
 ---
 
@@ -673,7 +675,7 @@ Doctor App has a dedicated dashboard completely separated from the Patient Appli
 
 ### Doctor Profile
 
-<img src="assets/readme/doctor_profile.png" width="250"/>
+<img src="assets/readme/doctor_profile.png" width="/>
 
 </td>
 
@@ -681,19 +683,10 @@ Doctor App has a dedicated dashboard completely separated from the Patient Appli
 
 ### Edit Profile
 
-<img src="assets/readme/doctor_profile_1.png" width="250"/>
+<img src="assets/readme/doctor_profile_home_2.png" width="/>
 
 </td>
 
-<td align="center">
-
-### Personal Information
-
-<img src="assets/readme/doctor_profile_2.png" width="250"/>
-
-</td>
-
-</tr>
 
 </table>
 
