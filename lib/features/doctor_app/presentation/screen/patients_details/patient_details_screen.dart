@@ -1,6 +1,6 @@
 import 'package:doctor_app/features/auth/domain/entities/user_entity.dart';
-import 'package:doctor_app/features/doctor_profile/presentation/screen/patients_details/widget/header_patient_details_widget.dart';
-import 'package:doctor_app/features/doctor_profile/presentation/screen/patients_details/widget/statistic_patient_widget.dart';
+import 'package:doctor_app/features/doctor_app/presentation/screen/patients_details/widget/header_patient_details_widget.dart';
+import 'package:doctor_app/features/doctor_app/presentation/screen/patients_details/widget/statistic_patient_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,10 +24,6 @@ class PatientDetailsScreen extends StatelessWidget {
             children: [
               HeaderPatientDetailsWidget(patient: patient),
               StatisticPatientWidget(),
-
-
-
-
             ],
           ),
         ),

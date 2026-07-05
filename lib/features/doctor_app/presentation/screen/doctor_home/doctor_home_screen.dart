@@ -1,7 +1,7 @@
-import 'package:doctor_app/features/doctor_profile/presentation/screen/doctor_home/widget/doctor_header_widget.dart';
-import 'package:doctor_app/features/doctor_profile/presentation/screen/doctor_home/widget/quick_action_widget.dart';
-import 'package:doctor_app/features/doctor_profile/presentation/screen/doctor_home/widget/statistic_widget.dart';
-import 'package:doctor_app/features/doctor_profile/presentation/screen/doctor_home/widget/today_appointment_widget.dart';
+import 'package:doctor_app/features/doctor_app/presentation/screen/doctor_home/widget/doctor_header_widget.dart';
+import 'package:doctor_app/features/doctor_app/presentation/screen/doctor_home/widget/quick_action_widget.dart';
+import 'package:doctor_app/features/doctor_app/presentation/screen/doctor_home/widget/statistic_widget.dart';
+import 'package:doctor_app/features/doctor_app/presentation/screen/doctor_home/widget/today_appointment_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/theming/app_color.dart';

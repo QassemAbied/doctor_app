@@ -1,6 +1,6 @@
-import 'package:doctor_app/features/doctor_profile/presentation/screen/doctor_profile/widget/doctor_profile_header_widget.dart';
-import 'package:doctor_app/features/doctor_profile/presentation/screen/doctor_profile/widget/doctor_profile_info_list.dart';
-import 'package:doctor_app/features/doctor_profile/presentation/screen/doctor_profile/widget/doctor_profile_statistic_widget.dart';
+import 'package:doctor_app/features/doctor_app/presentation/screen/doctor_profile/widget/doctor_profile_header_widget.dart';
+import 'package:doctor_app/features/doctor_app/presentation/screen/doctor_profile/widget/doctor_profile_info_list.dart';
+import 'package:doctor_app/features/doctor_app/presentation/screen/doctor_profile/widget/doctor_profile_statistic_widget.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/common_widgets/dialog/custom_dialog_widget.dart';
 import '../../../../../core/utils/spacing.dart';

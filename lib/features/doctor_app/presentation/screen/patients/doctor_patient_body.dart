@@ -1,4 +1,4 @@
-import 'package:doctor_app/features/doctor_profile/presentation/screen/patients/widget/patient_card_widget.dart';
+import 'package:doctor_app/features/doctor_app/presentation/screen/patients/widget/patient_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/theming/app_color.dart';

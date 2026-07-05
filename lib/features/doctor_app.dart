@@ -13,7 +13,7 @@ import '../core/utils/app_router/navigator_service.dart';
 import '../core/utils/app_router/router_app.dart';
 import '../core/utils/app_router/routes.dart';
 import '../core/utils/di/injection_container.dart';
-import 'doctor_profile/presentation/controller/doctor_cubit.dart';
+import 'doctor_app/presentation/controller/doctor_cubit.dart';
 
 class DoctorApp extends StatefulWidget {
   final RouterApp routerApp;
