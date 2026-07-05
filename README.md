@@ -734,7 +734,7 @@ Doctor App has a dedicated dashboard completely separated from the Patient Appli
 
 ## 🔔 Doctor Notifications
 
-<img src="assets/readme/doctor_notifi.png" width="270"/>
+<img src="assets/readme/doctor_notification.png" width="270"/>
 
 ---
 
