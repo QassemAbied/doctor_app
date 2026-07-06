@@ -3,7 +3,7 @@ name: Android Fastlane with Firebase App Distribution Workflow
 on:
   push:
     branches:
-      - masters
+      - main
 
 jobs:
   distribute_to_firebase:
@@ -33,6 +33,14 @@ jobs:
           STRIPE_SECRET=${{ secrets.STRIPE_SECRET }}
           EOF
 
+      - name: Verify Secrets
+        run: |
+          echo "SUPABASE_URL: ${{ secrets.SUPABASE_URL != '' }}"
+          echo "SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY != '' }}"
+          echo "STRIPE_PUBLISHABLE_KEY: ${{ secrets.STRIPE_PUBLISHABLE_KEY != '' }}"
+          echo "STRIPE_SECRET: ${{ secrets.STRIPE_SECRET != '' }}"
+          echo "FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT != '' }}"
+
       - name: Flutter pub get
         run: flutter pub get
 
@@ -44,35 +52,41 @@ jobs:
           working-directory: android
 
       - name: Install gems
+        working-directory: android
         run: |
           rm -rf vendor/bundle
           bundle config set path vendor/bundle
           bundle install --jobs 4 --retry 3
-        working-directory: android
 
       - name: Check installed gems
+        working-directory: android
         run: |
           bundle list | grep faraday
-        working-directory: android
 
       - name: Verify Faraday
+        working-directory: android
         run: |
           bundle exec ruby -e "require 'faraday'; require 'faraday/net_http_persistent'; puts 'Faraday OK'"
-        working-directory: android
 
       - name: Fastlane Version
+        working-directory: android
         run: |
           bundle exec fastlane --version
-        working-directory: android
 
       - name: Create Firebase Service Account
         run: |
           echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > firebase-service-account.json
-      - name: Verify env
-        run: |
-          echo "URL EXISTS: ${{ secrets.SUPABASE_URL != '' }}"
-          echo "KEY EXISTS: ${{ secrets.SUPABASE_ANON_KEY != '' }}"
+
       - name: Build and Distribute App
+        working-directory: android
         run: |
           bundle exec fastlane android dist
-        working-directory: android
+
+      - name: Verify APK
+        run: |
+          echo "================ APK FILE ================"
+          ls -lh build/app/outputs/flutter-apk/
+
+          echo ""
+          echo "============= APK SHA256 ============="
+          sha256sum build/app/outputs/flutter-apk/app-user-release.apk
